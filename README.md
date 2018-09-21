@@ -176,3 +176,10 @@ Usage:
 
 which will output a file named `instance_training-<identifier>.tf`. You should
 commit this.
+
+### Remove Compute Nodes
+
+Instead of simply deleting the TF file for the instance, first set `count = 0`
+in order to tell terraform to safely remove the resources using the proper
+ssh/condor_drain code. If you just remove the tf file, it will just remove the
+servers uncleanly.
