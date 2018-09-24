@@ -1,10 +1,10 @@
-resource "openstack_compute_instance_v2" "aaaaaaaaaaaaaa" {
-  name            = "vgcnbwc-training-hts2018-${count.index}"
-  image_name      = "vggp-v31-j74-edc5aa3dc22c-master"
-  flavor_name     = "c.c20m120"
+resource "openstack_compute_instance_v2" "training-beca2018" {
+  name            = "vgcnbwc-training-beca2018-${count.index}"
+  image_name      = "${var.vgcn_image}"
+  flavor_name     = "c.c10m55"
   key_pair        = "cloud2"
   security_groups = ["public"]
-  count           = 0
+  count           = 1
 
   user_data = "${file("conf/node.yml")}"
 
