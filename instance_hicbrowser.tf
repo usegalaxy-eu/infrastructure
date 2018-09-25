@@ -13,7 +13,7 @@ resource "openstack_compute_instance_v2" "hicbrowser" {
 resource "openstack_blockstorage_volume_v2" "hicbrowser-data" {
   name        = "hicbrowser"
   description = "Data volume for hicbrowser"
-  size        = 10
+  size        = 30
 }
 
 resource "openstack_compute_volume_attach_v2" "hicbrowser-va" {
