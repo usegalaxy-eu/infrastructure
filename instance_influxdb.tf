@@ -3,7 +3,7 @@ resource "openstack_compute_instance_v2" "influxdb-usegalaxy" {
   image_name      = "${var.centos_image}"
   flavor_name     = "m1.large"
   key_pair        = "cloud2"
-  security_groups = "${var.sg_webservice}"
+  security_groups = ["egress", "ufr-ssh", "public-ping", "ufr-influxdb"]
 
   network {
     name = "public"
