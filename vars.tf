@@ -10,10 +10,14 @@ variable "zone_usegalaxy_de" {
   default = "Z2LADCUB4BUBWX"
 }
 
+variable "netz_count" {
+  default = 3
+}
+
 variable "netz" {
   description = "Internal networks"
   type        = "list"
-  default     = ["192.52.32.0/20", "10.0.0.0/8"]
+  default     = ["192.52.32.0/20", "10.0.0.0/8", "132.230.0.0/16"]
 }
 
 variable "centos_image" {

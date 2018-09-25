@@ -9,7 +9,7 @@ resource "openstack_networking_secgroup_rule_v2" "in-80" {
   ethertype         = "IPv4"
   protocol          = "tcp"
   remote_ip_prefix  = "${element(var.netz, count.index)}"
-  count             = 2
+  count             = "${var.netz_count}"
   port_range_min    = "80"
   port_range_max    = "80"
   security_group_id = "${openstack_networking_secgroup_v2.ufr-web.id}"
@@ -22,7 +22,7 @@ resource "openstack_networking_secgroup_rule_v2" "in-443" {
 
   # https://blog.gruntwork.io/terraform-tips-tricks-loops-if-statements-and-gotchas-f739bbae55f9?gi=3aa164111a31
   remote_ip_prefix  = "${element(var.netz, count.index)}"
-  count             = 2
+  count             = "${var.netz_count}"
   port_range_min    = "443"
   port_range_max    = "443"
   security_group_id = "${openstack_networking_secgroup_v2.ufr-web.id}"
