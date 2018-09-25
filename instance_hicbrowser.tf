@@ -3,7 +3,7 @@ resource "openstack_compute_instance_v2" "hicbrowser" {
   image_name      = "${var.centos_image}"
   flavor_name     = "m1.xxlarge"
   key_pair        = "cloud2"
-  security_groups = ["egress", "ufr-ssh", "public-ping", "public-web2"]
+  security_groups = ["egress", "public-ssh", "public-ping", "public-web2"]
 
   network {
     name = "public"
