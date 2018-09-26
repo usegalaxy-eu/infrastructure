@@ -36,3 +36,8 @@ variable "sg_webservice" {
   type    = "list"
   default = ["egress", "ufr-ssh", "public-ping", "public-web2"]
 }
+
+variable "sg_webservice-pubssh" {
+  type    = "list"
+  default = ["egress", "public-ssh", "public-ping", "public-web2"]
+}
