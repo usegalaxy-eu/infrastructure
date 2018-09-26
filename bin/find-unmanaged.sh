@@ -48,7 +48,7 @@ for domain in {Z391FYOSFHL9U7,Z3BOXJYLR7ZV7D,Z2LADCUB4BUBWX}; do
         # Reformat as a terraform ID
         jq '. | "'${domain}'_" + .Name + "_" + .Type' -r | \
         # domains from aws end in `.`
-        sed 's/\._/_/' > ${tmp_ids}
+        sed 's/\._\([A-Z]\+\)$/_\1/g' > ${tmp_ids}
 
     for id in `cat ${tmp_ids}`; do
         grep --quiet ${id} ${managed_resources};
