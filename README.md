@@ -190,3 +190,12 @@ Instead of simply deleting the TF file for the instance, first set `count = 0`
 in order to tell terraform to safely remove the resources using the proper
 ssh/condor_drain code. If you just remove the tf file, it will just remove the
 servers uncleanly.
+
+
+## Commands
+
+All infra IPs (without going to openstack.)
+
+```
+./bin/tfinfo-to-json.sh | jq -r '.openstack_compute_instance_v2 | keys[] as $k | [$k, .[$k]."network.0.fixed_ip_v4"] | @tsv'
+```
