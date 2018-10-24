@@ -20,15 +20,15 @@ merge it.
 
 [Download](https://www.terraform.io/downloads.html) terraform if you haven't already.
 
-```
-terraform init # downloads openstack + aws plugins
-. /path/to/openstack-creds.sh
+```console
+$ terraform init # downloads openstack + aws plugins
+$ . /path/to/openstack-creds.sh
 ```
 
 ## Running
 
-```
-make
+```console
+$ make
 ```
 
 ## Layout/Theory
@@ -46,7 +46,7 @@ All important variables like flavour names, AWS Route53 zones, groups of
 security groups for default things like webservices, etc. go in the variables
 file.
 
-```
+```hcl
 variable "vgcn_image" {
   default = "vggp-v31-j74-edc5aa3dc22c-master"
 }
@@ -59,7 +59,7 @@ defines a variable and then you can use this with `${var.vgcn_image}`
 All instances are stored in files named `instance_<name>.tf`. Their structure is
 not too complex:
 
-```
+```hcl
 #        type of resource                 resource name
 resource "openstack_compute_instance_v2" "apollo-usegalaxy" {
   # Server name in the OpenStack api. becomes the internal hostname with
@@ -110,7 +110,7 @@ re-created, they will and DNS records will update appropriately.
 These have an extra step whereby there are some additional commands that are run
 before shutdown:
 
-```
+```hcl
 resource "openstack_compute_instance_v2" "vgcn-compute-general" {
   # snip
 
@@ -174,7 +174,7 @@ since that is more stable than the python code.
 
 There is a script for adding the appropriate stanzas for a training instance:
 
-```
+```console
 $ ./add-training.sh
 
 Usage:
@@ -196,6 +196,6 @@ servers uncleanly.
 
 All infra IPs (without going to openstack.)
 
-```
-./bin/tfinfo-to-json.sh | jq -r '.openstack_compute_instance_v2 | keys[] as $k | [$k, .[$k]."network.0.fixed_ip_v4"] | @tsv'
+```console
+$ ./bin/tfinfo-to-json.sh | jq -r '.openstack_compute_instance_v2 | keys[] as $k | [$k, .[$k]."network.0.fixed_ip_v4"] | @tsv'
 ```
