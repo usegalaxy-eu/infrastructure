@@ -9,6 +9,10 @@
 
 -----
 
+Current Infrastructure Graph:
+
+![](./graph.png)
+
 The plan is that this will run in Jenkins on cron, to ensure our infrastructure
 matches exactly what it should.
 
