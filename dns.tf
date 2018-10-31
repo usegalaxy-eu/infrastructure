@@ -8,6 +8,14 @@ resource "aws_route53_record" "usegalaxy-eu" {
   records = ["${openstack_compute_instance_v2.proxy.access_ip_v4}"]
 }
 
+resource "aws_route53_record" "proxy-usegalaxy-eu" {
+  zone_id = "${var.zone_usegalaxy_eu}"
+  name    = "proxy.usegalaxy.eu"
+  type    = "CNAME"
+  ttl     = "7200"
+  records = ["proxy.galaxyproject.eu"]
+}
+
 resource "aws_route53_record" "usegalaxy-de" {
   zone_id = "${var.zone_usegalaxy_de}"
   name    = "usegalaxy.de"
@@ -37,13 +45,14 @@ variable "subdomain" {
     "stats.usegalaxy.eu",
     "beta.usegalaxy.eu",
     "proteomics.usegalaxy.eu",
+    "clipseq.usegalaxy.eu",
   ]
 }
 
 resource "aws_route53_record" "subdomains" {
   zone_id = "${var.zone_usegalaxy_eu}"
 
-  count = 8
+  count = 9
   name  = "${element(var.subdomain, count.index)}"
 
   type    = "CNAME"
@@ -58,14 +67,6 @@ resource "aws_route53_record" "influxdb-usegalaxy-eu" {
   type    = "A"
   ttl     = "7200"
   records = ["192.52.2.249"]
-}
-
-resource "aws_route53_record" "proxy-usegalaxy-eu" {
-  zone_id = "${var.zone_usegalaxy_eu}"
-  name    = "proxy.usegalaxy.eu"
-  type    = "A"
-  ttl     = "7200"
-  records = ["192.52.3.222"]
 }
 
 resource "aws_route53_record" "sentry-usegalaxy-eu" {

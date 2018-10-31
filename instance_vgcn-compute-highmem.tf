@@ -4,7 +4,7 @@ resource "openstack_compute_instance_v2" "vgcn-compute-highmem" {
   flavor_name     = "c.c20m120"
   key_pair        = "cloud2"
   security_groups = ["public"]
-  count           = 10
+  count           = 30
 
   user_data = "${file("conf/node.yml")}"
 

@@ -29,7 +29,7 @@ variable "vgcn_image" {
 }
 
 variable "jenkins_image" {
-  default = "jenkins-worker-j26-edc5aa3dc22c-master"
+  default = "jenkins-worker-j52-63ca7a6c7a15-master"
 }
 
 variable "sg_webservice" {
