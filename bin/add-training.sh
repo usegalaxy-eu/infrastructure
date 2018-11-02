@@ -7,15 +7,22 @@ if (( $# != 1 )) && (( $# != 3 )); then
     exit 1;
 fi
 
-training_identifier=$1
+training_identifier=$(echo "$1" | tr '[:upper:]' '[:lower:]')
 vm_size=${2:-c.c10m55}
 vm_count=${3:-1}
 output="instance_training-${training_identifier}.tf"
 
-cat training-template.txt | \
-    sed "s/TRAINING_IDENTIFIER/${training_identifier}/g" | \
-    sed "s/VM_SIZE/${vm_size}/g" | \
-    sed "s/VM_COUNT/${vm_count}/g" > $output
+cat >> instance_training.tf <<-EOF
+	module "training-${training_identifier}" {
+	  source      = "modules/vgcn-node"
+	  count       = ${vm_count} 
+	  flavor      = "${vm_size}"
+	  name        = "${training_identifier}"
+	  galaxygroup = "${training_identifier}"
+	  is_training = "True"
+	}
+
+EOF
 
 #echo "Done: instance_training-${training_identifier}.tf"
 
@@ -35,7 +42,7 @@ This should be sufficient for your purposes. If you find that it is not, please 
 and we can update that at any time.
 
 On the day of your training, please ask your users to go to the following URL:
-https://usegalaxy.eu/join-training/${training_identifier}
+https://usegalaxy.eu/join-training/${1}
 
 They will be added to the training group and put into a private queue which
 should be a bit faster than our regular queue.

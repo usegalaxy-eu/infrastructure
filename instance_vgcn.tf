@@ -1,15 +1,23 @@
 module "compute-highmem" {
   source = "modules/vgcn-node"
-  count  = 30
+  count  = 20
   flavor = "c.c20m120"
   name   = "compute-highmem"
 }
 
 module "compute-general" {
   source = "modules/vgcn-node"
-  count  = 4
+  count  = 20
   flavor = "c.c10m55"
   name   = "compute-general"
+}
+
+module "sklearn" {
+  source      = "modules/vgcn-node"
+  count       = 20
+  flavor      = "c.c10m55"
+  name        = "sklearn"
+  galaxygroup = "sklearn"
 }
 
 module "compute-superhighmem" {
@@ -19,16 +27,10 @@ module "compute-superhighmem" {
   name   = "compute-superhighmem"
 }
 
-module "metadata" {
-  source = "modules/vgcn-node"
-  count  = 0
-  flavor = "m1.xlarge"
-  name   = "metadata"
-}
-
 module "upload" {
-  source = "modules/vgcn-node"
-  count  = 2
-  flavor = "m1.xlarge"
-  name   = "upload"
+  source      = "modules/vgcn-node"
+  count       = 2
+  flavor      = "m1.xlarge"
+  name        = "upload"
+  galaxygroup = "upload"
 }

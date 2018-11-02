@@ -35,7 +35,7 @@ resource "openstack_compute_instance_v2" "vgcn-node" {
         STARTD.PROPORTIONAL_SWAP_ASSIGNMENT = True
         # END MANAGED BLOCK
         GalaxyTraining = ${var.is_training}
-        GalaxyGroup = ${var.name}
+        GalaxyGroup = "${var.galaxygroup}"
         STARTD_ATTRS = GalaxyTraining, GalaxyGroup
       owner: root:root
       path: /etc/condor/condor_config.local
@@ -88,6 +88,10 @@ resource "openstack_compute_instance_v2" "vgcn-node" {
       type        = "ssh"
       user        = "centos"
       private_key = "${file("~/.ssh/keys/id_rsa_cloud2")}"
+
+      bastion_user        = "centos"
+      bastion_private_key = "${file("~/.ssh/keys/id_rsa_cloud2")}"
+      bastion_host        = "sn04.bi.uni-freiburg.de"
     }
   }
 }

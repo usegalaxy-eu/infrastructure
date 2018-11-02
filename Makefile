@@ -1,8 +1,12 @@
 all: ## Sync resources
+	terraform init
 	terraform fmt
 	terraform validate
 	terraform apply
 
+
+fmt:
+	terraform fmt
 
 find-unmanaged: ## Identify any resources that are not currently managed
 	./bin/find-unmanaged.sh
