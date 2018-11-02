@@ -15,7 +15,7 @@ output="instance_training-${training_identifier}.tf"
 cat >> instance_training.tf <<-EOF
 	module "training-${training_identifier}" {
 	  source      = "modules/vgcn-node"
-	  count       = ${vm_count} 
+	  count       = ${vm_count}
 	  flavor      = "${vm_size}"
 	  name        = "${training_identifier}"
 	  galaxygroup = "${training_identifier}"
@@ -32,7 +32,7 @@ vm_mem=$(echo $vm_size | sed 's/[^0-9]/ /g' | awk '{print $2}')
 
 
 echo "
-Subject: Training Infrastructure Request: Approved
+Subject: UseGalaxy.eu TIaaS Request: Approved
 
 Hello,
 
