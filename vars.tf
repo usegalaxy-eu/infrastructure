@@ -24,6 +24,10 @@ variable "centos_image" {
   default = "generic-centos7-v31-j4-edc5aa3dc22c-master"
 }
 
+variable "centos_image_new" {
+  default = "generic-centos7-v31-j18-2deef7cb2572-master"
+}
+
 variable "vgcn_image" {
   default = "vggp-v31-j101-2deef7cb2572-master"
 }
