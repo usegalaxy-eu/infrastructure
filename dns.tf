@@ -53,7 +53,7 @@ variable "subdomain" {
 resource "aws_route53_record" "subdomains" {
   zone_id = "${var.zone_usegalaxy_eu}"
 
-  count = "${length(var.subdomain)}"
+  count = 10
   name  = "${element(var.subdomain, count.index)}"
 
   type    = "CNAME"
