@@ -40,7 +40,8 @@ module "training-ucabgt2018" {
 module "training-big-data2018" {
   # 11/19/2018
   # 11/23/2018
-  source      = "modules/vgcn-node"
+  source = "modules/vgcn-node"
+
   count       = 10
   flavor      = "c.c16m120"
   name        = "training-big-data2018"
@@ -51,7 +52,8 @@ module "training-big-data2018" {
 module "training-emc2018" {
   # 11/22/2018
   # 11/23/2018
-  source      = "modules/vgcn-node"
+  source = "modules/vgcn-node"
+
   count       = 15
   flavor      = "c.c16m120"
   name        = "training-emc2018"
