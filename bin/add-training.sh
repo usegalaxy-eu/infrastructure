@@ -38,8 +38,8 @@ Hello,
 
 We're happy to provide resources for your training. Based on your requested
 training we have allocated ${vm_count} server(s), each with ${vm_cpu} Cores and ${vm_mem} GB of RAM.
-This should be sufficient for your purposes. If you find that it is not, please contact us
-and we can update that at any time.
+This should be sufficient for your purposes. If you find that it is not, please
+contact us and we can update that at any time.
 
 On the day of your training, please ask your users to go to the following URL:
 https://usegalaxy.eu/join-training/${1}
