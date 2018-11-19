@@ -12,7 +12,7 @@ cleanup-images: ## Remove unused Images
 	openstack image list -c ID -c Name -f value | grep vggp | awk '{print $1}' | xargs openstack image delete
 
 cleanup-vms: ## Remove failed/off VMs
-	openstack server list --name 'vgcnbwc' -f value | grep -v ACTIVE | grep -v BUILD | awk '{print $1}' | xargs openstack server delete
+	openstack server list --name 'vgcnbwc' -f value | grep -v ACTIVE | grep -v BUILD | awk '{print $$1}' | xargs openstack server delete
 
 find-unmanaged: ## Identify any resources that are not currently managed
 	./bin/find-unmanaged.sh
