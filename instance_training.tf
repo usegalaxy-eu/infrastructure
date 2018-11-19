@@ -60,3 +60,12 @@ module "training-emc2018" {
   galaxygroup = "training-emc2018"
   is_training = "True"
 }
+module "training-genomika1" {
+  source      = "modules/vgcn-node"
+  count       = 1
+  flavor      = "c.c32m240"
+  name        = "genomika1"
+  galaxygroup = "genomika1"
+  is_training = "True"
+}
+
