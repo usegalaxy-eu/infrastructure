@@ -1,15 +1,3 @@
-module "training-beta" {
-  source = "modules/vgcn-node"
-  count  = 1
-  flavor = "c.c10m55"
-
-  # custom image
-  image       = "vggp-v31-j95-9c1a332fb4d7-master"
-  name        = "training-beta"
-  is_training = "True"
-  galaxygroup = "training-beta"
-}
-
 module "training-bioinfbrad2018_1" {
   source      = "modules/vgcn-node"
   count       = 1
@@ -19,15 +7,7 @@ module "training-bioinfbrad2018_1" {
   is_training = "True"
 }
 
-module "training-20181106ngs" {
-  source      = "modules/vgcn-node"
-  count       = 4
-  flavor      = "c.c10m55"
-  name        = "training-20181106ngs"
-  galaxygroup = "training-20181106ngs"
-  is_training = "True"
-}
-
+# Until 2018-11-25
 module "training-ucabgt2018" {
   source      = "modules/vgcn-node"
   count       = 4
@@ -37,6 +17,7 @@ module "training-ucabgt2018" {
   is_training = "True"
 }
 
+# Until 2018-11-23
 module "training-big-data2018" {
   # 11/19/2018
   # 11/23/2018
@@ -49,6 +30,7 @@ module "training-big-data2018" {
   is_training = "True"
 }
 
+# Until 2018-11-23
 module "training-emc2018" {
   # 11/22/2018
   # 11/23/2018
@@ -60,12 +42,12 @@ module "training-emc2018" {
   galaxygroup = "training-emc2018"
   is_training = "True"
 }
-module "training-genomika1" {
+
+module "training-genomika2" {
   source      = "modules/vgcn-node"
   count       = 1
   flavor      = "c.c32m240"
-  name        = "genomika1"
-  galaxygroup = "genomika1"
+  name        = "training-genomika2"
+  galaxygroup = "training-genomika2"
   is_training = "True"
 }
-
