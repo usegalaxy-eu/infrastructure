@@ -36,3 +36,13 @@ module "training-bioinformatika2018" {
   galaxygroup = "training-bioinformatika2018"
   is_training = "True"
 }
+module "training-msi_dresden" {
+  # 11/29/2018
+  source      = "modules/vgcn-node"
+  count       = 3
+  flavor      = "c.c32m240"
+  name        = "msi_dresden"
+  galaxygroup = "msi_dresden"
+  is_training = "True"
+}
+
