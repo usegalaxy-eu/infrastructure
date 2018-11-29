@@ -7,7 +7,7 @@ module "compute-highmem" {
 
 module "compute-general" {
   source = "modules/vgcn-node"
-  count  = 10
+  count  = 40
   flavor = "c.c10m55"
   name   = "compute-general"
 }
