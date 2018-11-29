@@ -17,8 +17,8 @@ cat >> instance_training.tf <<-EOF
 	  source      = "modules/vgcn-node"
 	  count       = ${vm_count}
 	  flavor      = "${vm_size}"
-	  name        = "${training_identifier}"
-	  galaxygroup = "${training_identifier}"
+	  name        = "training-${training_identifier}"
+	  galaxygroup = "training-${training_identifier}"
 	  is_training = "True"
 	}
 

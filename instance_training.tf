@@ -39,10 +39,10 @@ module "training-bioinformatika2018" {
 module "training-msi_dresden" {
   # 11/29/2018
   source      = "modules/vgcn-node"
-  count       = 3
+  count       = 8
   flavor      = "c.c32m240"
-  name        = "msi_dresden"
-  galaxygroup = "msi_dresden"
+  name        = "trianing-msi_dresden"
+  galaxygroup = "training-msi_dresden"
   is_training = "True"
 }
 
