@@ -20,4 +20,10 @@ find-unmanaged: ## Identify any resources that are not currently managed
 help: ## This message
 	@egrep '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-10s\033[0m %s\n", $$1, $$2}'
 
+fetch-apply: ## Fetch and apply
+	git fetch
+	git reset --hard origin/master
+	$(MAKE) cleanup-vms
+	$(MAKE)
+
 .PHONY: help all find-unmanaged
