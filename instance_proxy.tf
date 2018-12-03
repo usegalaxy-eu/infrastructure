@@ -26,7 +26,7 @@ resource "openstack_compute_instance_v2" "proxy-internal" {
   security_groups = "${var.sg_webservice-pubssh}"
 
   network {
-    name = "public-ext"
+    name = "public-extended"
   }
 }
 
