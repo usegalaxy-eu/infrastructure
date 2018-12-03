@@ -30,7 +30,7 @@ resource "openstack_compute_instance_v2" "proxy-internal" {
   }
 }
 
-resource "aws_route53_record" "test-galaxy-dns" {
+resource "aws_route53_record" "proxy-internal" {
   zone_id = "${var.zone_usegalaxy_eu}"
   name    = "proxy.internal.galaxyproject.eu"
   type    = "A"

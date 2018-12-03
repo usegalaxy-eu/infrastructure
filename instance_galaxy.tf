@@ -10,7 +10,7 @@ resource "openstack_compute_instance_v2" "test-galaxy" {
   }
 }
 
-resource "aws_route53_record" "test-galaxy-dns" {
+resource "aws_route53_record" "test-galaxy" {
   zone_id = "${var.zone_usegalaxy_eu}"
   name    = "test.internal.usegalaxy.eu"
   type    = "A"
