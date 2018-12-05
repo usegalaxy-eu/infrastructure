@@ -19,12 +19,12 @@ module "training-bioinformatika2018" {
   is_training = "True"
 }
 
-module "training-freiburg-RNAseq-2018" {
+module "training-freiburg-rnaseq-2018" {
   # Until 12/8/2018
   source      = "modules/vgcn-node"
   count       = 3
   flavor      = "c.c32m240"
-  name        = "training-freiburg-RNAseq-2018"
-  galaxygroup = "training-freiburg-RNAseq-2018"
+  name        = "training-freiburg-rnaseq-2018"
+  galaxygroup = "training-freiburg-rnaseq-2018"
   is_training = "True"
 }
