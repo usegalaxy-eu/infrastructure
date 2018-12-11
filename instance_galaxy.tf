@@ -14,6 +14,6 @@ resource "aws_route53_record" "test-galaxy" {
   zone_id = "${var.zone_usegalaxy_eu}"
   name    = "test.internal.usegalaxy.eu"
   type    = "A"
-  ttl     = "7200"
+  ttl     = "600"
   records = ["${openstack_compute_instance_v2.test-galaxy.access_ip_v4}"]
 }
