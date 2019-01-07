@@ -30,7 +30,7 @@ module "compute-superhighmem" {
 module "compute-megahighmem" {
   source = "modules/vgcn-node"
   count  = 4
-  flavor = "c.c32m1000"
+  flavor = "c.c40m1000"
   name   = "compute-megahighmem"
 }
   
