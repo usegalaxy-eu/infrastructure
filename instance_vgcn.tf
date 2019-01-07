@@ -22,11 +22,18 @@ module "sklearn" {
 
 module "compute-superhighmem" {
   source = "modules/vgcn-node"
-  count  = 15
+  count  = 4
   flavor = "c.c32m240"
   name   = "compute-superhighmem"
 }
 
+module "compute-megahighmem" {
+  source = "modules/vgcn-node"
+  count  = 4
+  flavor = "c.c32m1000"
+  name   = "compute-megahighmem"
+}
+  
 module "upload" {
   source      = "modules/vgcn-node"
   count       = 2
