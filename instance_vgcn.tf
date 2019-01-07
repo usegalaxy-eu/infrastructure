@@ -7,14 +7,14 @@ module "compute-highmem" {
 
 module "compute-general" {
   source = "modules/vgcn-node"
-  count  = 40
+  count  = 20
   flavor = "c.c10m55"
   name   = "compute-general"
 }
 
 module "sklearn" {
   source      = "modules/vgcn-node"
-  count       = 10
+  count       = 5
   flavor      = "c.c10m55"
   name        = "sklearn"
   galaxygroup = "sklearn"
@@ -22,7 +22,7 @@ module "sklearn" {
 
 module "compute-superhighmem" {
   source = "modules/vgcn-node"
-  count  = 4
+  count  = 15
   flavor = "c.c32m240"
   name   = "compute-superhighmem"
 }
