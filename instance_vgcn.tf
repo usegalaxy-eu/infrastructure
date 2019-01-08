@@ -29,11 +29,11 @@ module "compute-superhighmem" {
 
 module "compute-megahighmem" {
   source = "modules/vgcn-node"
-  count  = 4
+  count  = 8
   flavor = "c.c40m1000"
   name   = "compute-megahighmem"
 }
-  
+
 module "upload" {
   source      = "modules/vgcn-node"
   count       = 2
