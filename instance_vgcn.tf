@@ -14,7 +14,7 @@ module "compute-general" {
 
 module "sklearn" {
   source      = "modules/vgcn-node"
-  count       = 5
+  count       = 4
   flavor      = "c.c10m55"
   name        = "sklearn"
   galaxygroup = "sklearn"
