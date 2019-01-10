@@ -66,19 +66,23 @@ resource "aws_route53_record" "subdomains" {
   records = ["proxy.galaxyproject.eu"]
 }
 
-# DEPRECATE
-resource "aws_route53_record" "influxdb-usegalaxy-eu" {
-  zone_id = "${var.zone_usegalaxy_eu}"
-  name    = "influxdb.usegalaxy.eu"
-  type    = "A"
-  ttl     = "7200"
-  records = ["192.52.2.249"]
+# Internal
+variable "subdomain-internal" {
+  type = "list"
+
+  default = [
+    # Please place new subdomains at the end of the list
+    "cvmfs1-ufr0.galaxyproject.eu",
+  ]
 }
 
-resource "aws_route53_record" "sentry-usegalaxy-eu" {
-  zone_id = "${var.zone_usegalaxy_eu}"
-  name    = "sentry.usegalaxy.eu"
-  type    = "A"
+resource "aws_route53_record" "subdomain-internal" {
+  zone_id = "${var.zone_galaxyproject_eu}"
+
+  count = 1
+  name  = "${element(var.subdomain-internal, count.index)}"
+
+  type    = "CNAME"
   ttl     = "7200"
-  records = ["192.52.2.56"]
+  records = ["proxy.internal.galaxyproject.eu"]
 }
