@@ -6,10 +6,6 @@ resource "openstack_compute_instance_v2" "cvmfs1-ufr0-usegalaxy" {
   security_groups = "${var.sg_webservice}"
 
   network {
-    name = "public"
-  }
-
-  network {
     name = "bioinf"
   }
 }

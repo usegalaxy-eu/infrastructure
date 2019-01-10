@@ -78,20 +78,20 @@ resource "openstack_compute_instance_v2" "vgcn-node" {
   }
 
   #provisioner "remote-exec" {
-    #when = "destroy"
+  #when = "destroy"
 
-    #scripts = [
-      #"./conf/prepare-restart.sh",
-    #]
+  #scripts = [
+  #"./conf/prepare-restart.sh",
+  #]
 
-    #connection {
-      #type        = "ssh"
-      #user        = "centos"
-      #private_key = "${file("~/.ssh/keys/id_rsa_cloud2")}"
+  #connection {
+  #type        = "ssh"
+  #user        = "centos"
+  #private_key = "${file("~/.ssh/keys/id_rsa_cloud2")}"
 
-      #bastion_user        = "centos"
-      #bastion_private_key = "${file("~/.ssh/keys/id_rsa_cloud2")}"
-      #bastion_host        = "sn04.bi.uni-freiburg.de"
-    #}
+  #bastion_user        = "centos"
+  #bastion_private_key = "${file("~/.ssh/keys/id_rsa_cloud2")}"
+  #bastion_host        = "sn04.bi.uni-freiburg.de"
+  #}
   #}
 }

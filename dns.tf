@@ -39,6 +39,7 @@ variable "subdomain" {
   default = [
     # Please place new subdomains at the end of the list
     "ecology.usegalaxy.eu",
+
     "hicexplorer.usegalaxy.eu",
     "metagenomics.usegalaxy.eu",
     "rna.usegalaxy.eu",
