@@ -67,22 +67,22 @@ resource "aws_route53_record" "subdomains" {
 }
 
 # Internal
-variable "subdomain-internal" {
-  type = "list"
+#variable "subdomain-internal" {
+  #type = "list"
 
-  default = [
-    # Please place new subdomains at the end of the list
-    "cvmfs1-ufr0.galaxyproject.eu",
-  ]
-}
+  #default = [
+    ## Please place new subdomains at the end of the list
+    #"cvmfs1-ufr0.galaxyproject.eu",
+  #]
+#}
 
-resource "aws_route53_record" "subdomain-internal" {
-  zone_id = "${var.zone_galaxyproject_eu}"
+#resource "aws_route53_record" "subdomain-internal" {
+  #zone_id = "${var.zone_galaxyproject_eu}"
 
-  count = 1
-  name  = "${element(var.subdomain-internal, count.index)}"
+  #count = 1
+  #name  = "${element(var.subdomain-internal, count.index)}"
 
-  type    = "CNAME"
-  ttl     = "7200"
-  records = ["proxy.internal.galaxyproject.eu"]
-}
+  #type    = "CNAME"
+  #ttl     = "7200"
+  #records = ["proxy.internal.galaxyproject.eu"]
+#}
