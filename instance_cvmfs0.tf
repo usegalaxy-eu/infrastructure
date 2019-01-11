@@ -3,7 +3,7 @@ resource "openstack_compute_instance_v2" "cvmfs-stratum0" {
   image_name      = "${var.centos_image_new}"
   flavor_name     = "m1.small"
   key_pair        = "cloud2"
-  security_groups = "${var.sg_webservice}"
+  security_groups = "${var.sg_webservice-pubssh}"
 
   network {
     name = "public"
