@@ -48,6 +48,8 @@ variable "subdomain" {
     "beta.usegalaxy.eu",
     "proteomics.usegalaxy.eu",
     "clipseq.usegalaxy.eu",
+    "cheminformatics.usegalaxy.eu",
+    "imaging.usegalaxy.eu",
     "test.usegalaxy.eu",
     "old.usegalaxy.eu",
     "streetscience.usegalaxy.eu",
