@@ -17,3 +17,15 @@ resource "aws_route53_record" "martenson-test" {
   ttl     = "7200"
   records = ["${openstack_compute_instance_v2.martenson-test.access_ip_v4}"]
 }
+
+resource "openstack_compute_instance_v2" "helena-test" {
+  name            = "helena-test"
+  image_name      = "${var.centos_image_new}"
+  flavor_name     = "m1.small"
+  key_pair        = "cloud2"
+  security_groups = "${var.sg_webservice-pubssh}"
+
+  network {
+    name = "public"
+  }
+}
