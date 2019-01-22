@@ -41,3 +41,14 @@ resource "openstack_compute_instance_v2" "jwolff-test" {
     name = "public"
   }
 }
+
+resource "openstack_blockstorage_volume_v2" "jwolff-test-data" {
+  name        = "jwolff-test"
+  description = "Data volume for test"
+  size        = 20
+}
+
+resource "openstack_compute_volume_attach_v2" "jwolff-test-va" {
+  instance_id = "${openstack_compute_instance_v2.jwolff-test.id}"
+  volume_id   = "${openstack_blockstorage_volume_v2.jwolff-test-data.id}"
+}
