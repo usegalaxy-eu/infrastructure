@@ -29,3 +29,15 @@ resource "openstack_compute_instance_v2" "helena-test" {
     name = "public"
   }
 }
+
+resource "openstack_compute_instance_v2" "jwolff-test" {
+  name            = "jwolff-test"
+  image_name      = "Ubuntu 18.04"
+  flavor_name     = "c.c40m1000"
+  key_pair        = "jwolff"
+  security_groups = "${var.sg_webservice-pubssh}"
+
+  network {
+    name = "public"
+  }
+}
