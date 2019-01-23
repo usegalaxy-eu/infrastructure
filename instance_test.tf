@@ -30,6 +30,14 @@ resource "openstack_compute_instance_v2" "helena-test" {
   }
 }
 
+resource "aws_route53_record" "helena-test" {
+  zone_id = "${var.zone_galaxyproject_eu}"
+  name    = "helena-test.galaxyproject.eu"
+  type    = "A"
+  ttl     = "7200"
+  records = ["${openstack_compute_instance_v2.helena-test.access_ip_v4}"]
+}
+
 resource "openstack_compute_instance_v2" "jwolff-test" {
   name            = "jwolff-test"
   image_name      = "Ubuntu 18.04"
