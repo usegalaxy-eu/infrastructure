@@ -23,7 +23,7 @@ resource "openstack_compute_instance_v2" "helena-test" {
   image_name      = "${var.centos_image_new}"
   flavor_name     = "m1.small"
   key_pair        = "cloud2"
-  security_groups = "${var.sg_webservice-pubssh}"
+  security_groups = ["public", "egress", "public-ssh", "public-ping", "public-web2"]
 
   network {
     name = "public"
