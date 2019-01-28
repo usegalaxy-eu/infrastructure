@@ -197,3 +197,44 @@ resource "aws_route53_record" "jan-2019-training-inst-24-training-galaxyproject-
   ttl     = "7200"
   records = ["149.165.156.17"]
 }
+
+resource "aws_route53_record" "jan-2019-training-inst-25-training-galaxyproject-eu" {
+  zone_id = "${var.zone_galaxyproject_eu}"
+  name    = "jan-2019-training-inst-25.training.galaxyproject.eu"
+  type    = "A"
+  ttl     = "7200"
+  records = ["149.165.169.40"]
+}
+
+resource "aws_route53_record" "jan-2019-training-inst-26-training-galaxyproject-eu" {
+  zone_id = "${var.zone_galaxyproject_eu}"
+  name    = "jan-2019-training-inst-26.training.galaxyproject.eu"
+  type    = "A"
+  ttl     = "7200"
+  records = ["149.165.169.146"]
+}
+
+resource "aws_route53_record" "jan-2019-training-inst-27-training-galaxyproject-eu" {
+  zone_id = "${var.zone_galaxyproject_eu}"
+  name    = "jan-2019-training-inst-27.training.galaxyproject.eu"
+  type    = "A"
+  ttl     = "7200"
+  records = ["149.165.157.174"]
+}
+
+resource "aws_route53_record" "jan-2019-training-inst-28-training-galaxyproject-eu" {
+  zone_id = "${var.zone_galaxyproject_eu}"
+  name    = "jan-2019-training-inst-28.training.galaxyproject.eu"
+  type    = "A"
+  ttl     = "7200"
+  records = ["149.165.157.39"]
+}
+
+resource "aws_route53_record" "jan-2019-training-inst-29-training-galaxyproject-eu" {
+  zone_id = "${var.zone_galaxyproject_eu}"
+  name    = "jan-2019-training-inst-29.training.galaxyproject.eu"
+  type    = "A"
+  ttl     = "7200"
+  records = ["149.165.168.254"]
+}
+
