@@ -1,12 +1,12 @@
-dns_training.tf: dns_training.txt
-	python process.py < dns_training.txt > dns_training.tf
-
-
 all: ## Sync resources
 	terraform init
 	terraform fmt
 	terraform validate
 	terraform apply
+
+
+dns_training.tf: dns_training.txt
+	python process.py < dns_training.txt > dns_training.tf
 
 
 fmt:

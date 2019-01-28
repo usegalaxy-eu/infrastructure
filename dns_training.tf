@@ -237,4 +237,3 @@ resource "aws_route53_record" "jan-2019-training-inst-29-training-galaxyproject-
   ttl     = "7200"
   records = ["149.165.168.254"]
 }
-
