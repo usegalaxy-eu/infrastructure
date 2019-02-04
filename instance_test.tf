@@ -37,3 +37,9 @@ resource "aws_route53_record" "helena-test" {
   ttl     = "7200"
   records = ["${openstack_compute_instance_v2.helena-test.access_ip_v4}"]
 }
+
+resource "openstack_blockstorage_volume_v2" "jwolff-test-data" {
+  name        = "jwolff-test"
+  description = "Data volume for test"
+  size        = 20
+}

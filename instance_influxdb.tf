@@ -28,3 +28,40 @@ resource "aws_route53_record" "influxdb-usegalaxy-internal" {
   ttl     = "7200"
   records = ["${openstack_compute_instance_v2.influxdb-usegalaxy.access_ip_v4}"]
 }
+
+
+
+
+
+
+
+resource "openstack_compute_instance_v2" "training-influx" {
+  name            = "influx.training.galaxyproject.eu"
+  image_name      = "${var.centos_image}"
+  flavor_name     = "m1.large"
+  key_pair        = "cloud2"
+  security_groups = ["egress", "public-ssh", "public-ping", "public-influxdb", "public-web2"]
+
+  network {
+    name = "public"
+  }
+}
+
+resource "openstack_blockstorage_volume_v2" "training-influx-data" {
+  name        = "influxdb"
+  description = "Data volume for InfluxDB"
+  size        = 20
+}
+
+resource "openstack_compute_volume_attach_v2" "training-influx-va" {
+  instance_id = "${openstack_compute_instance_v2.training-influx.id}"
+  volume_id   = "${openstack_blockstorage_volume_v2.training-influx-data.id}"
+}
+
+resource "aws_route53_record" "training-influx" {
+  zone_id = "${var.zone_galaxyproject_eu}"
+  name    = "influx.training.galaxyproject.eu"
+  type    = "A"
+  ttl     = "7200"
+  records = ["${openstack_compute_instance_v2.training-influx.access_ip_v4}"]
+}
