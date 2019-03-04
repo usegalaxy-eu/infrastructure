@@ -12,7 +12,7 @@ resource "openstack_compute_instance_v2" "ftp" {
   }
 }
 
-resource "aws_route53_record" "ftp" {
+resource "aws_route53_record" "ftp-internal" {
   zone_id = "${var.zone_galaxyproject_eu}"
   name    = "ftp.internal.galaxyproject.eu"
   type    = "A"
