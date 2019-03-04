@@ -8,7 +8,7 @@ resource "openstack_compute_instance_v2" "ftp" {
   security_groups = ["egress", "public"]
 
   network {
-    name = "public-extended"
+    name = "bioinf"
   }
 }
 
