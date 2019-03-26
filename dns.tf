@@ -32,7 +32,7 @@ resource "aws_route53_record" "galaxyproject-eu" {
   records = ["${openstack_compute_instance_v2.proxy.access_ip_v4}"]
 }
 
-# Subdomains are all just CNAMEs for galaxyproject.eu
+# Subdomains are all just CNAMEs for galaxyproject.eu → proxy-external
 variable "subdomain" {
   type = "list"
 
@@ -69,14 +69,33 @@ resource "aws_route53_record" "subdomains" {
   records = ["proxy.galaxyproject.eu"]
 }
 
-# Internal
+# Subdomains for Project → proxy-external
+variable "subdomain-project" {
+  type = "list"
+
+  default = [
+    "status.galaxyproject.eu",
+  ]
+}
+
+resource "aws_route53_record" "subdomains-project" {
+  zone_id = "${var.zone_usegalaxy_eu}"
+
+  count = 1
+  name  = "${element(var.subdomain, count.index)}"
+
+  type    = "CNAME"
+  ttl     = "7200"
+  records = ["proxy.galaxyproject.eu"]
+}
+
+# Subdomains for Project → proxy-internal
 variable "subdomain-internal" {
   type = "list"
 
   default = [
     # Please place new subdomains at the end of the list
     "cvmfs1-ufr0.galaxyproject.eu",
-    "status.galaxyproject.eu",
   ]
 }
 
