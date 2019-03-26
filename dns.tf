@@ -76,13 +76,14 @@ variable "subdomain-internal" {
   default = [
     # Please place new subdomains at the end of the list
     "cvmfs1-ufr0.galaxyproject.eu",
+    "status.galaxyproject.eu",
   ]
 }
 
 resource "aws_route53_record" "subdomain-internal" {
   zone_id = "${var.zone_galaxyproject_eu}"
 
-  count = 1
+  count = 2
   name  = "${element(var.subdomain-internal, count.index)}"
 
   type    = "CNAME"
