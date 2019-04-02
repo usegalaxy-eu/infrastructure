@@ -7,7 +7,7 @@ resource "openstack_compute_instance_v2" "sentry-usegalaxy" {
   image_id        = "${data.openstack_images_image_v2.centos-image.id}"
   flavor_name     = "m1.small"
   key_pair        = "cloud2"
-  security_groups = "${var.sg_webservice-pubssh}"
+  security_groups = "${var.sg_webservice}"
 
   network {
     name = "public"
