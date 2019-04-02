@@ -1,5 +1,5 @@
 data "openstack_images_image_v2" "centos-image" {
-  name   = "${var.centos_image}"
+  name = "${var.centos_image}"
 }
 
 resource "openstack_compute_instance_v2" "sentry-usegalaxy" {
@@ -13,7 +13,7 @@ resource "openstack_compute_instance_v2" "sentry-usegalaxy" {
     name = "public"
   }
 
-    block_device {
+  block_device {
     uuid                  = "${data.openstack_images_image_v2.centos-image.id}"
     source_type           = "image"
     destination_type      = "local"
@@ -49,7 +49,7 @@ resource "openstack_compute_instance_v2" "sentry-usegalaxy" {
 resource "openstack_blockstorage_volume_v2" "sentry_volume_data" {
   name        = "sentry_volume"
   description = "Data volume for Sentry"
-  size = "10"
+  size        = "10"
 }
 
 resource "aws_route53_record" "sentry-usegalaxy" {
