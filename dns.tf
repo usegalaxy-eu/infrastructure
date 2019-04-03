@@ -82,7 +82,7 @@ resource "aws_route53_record" "subdomains-project" {
   zone_id = "${var.zone_galaxyproject_eu}"
 
   count = 1
-  name  = "${element(var.subdomain, count.index)}"
+  name  = "${element(var.subdomain-project, count.index)}"
 
   type    = "CNAME"
   ttl     = "7200"
