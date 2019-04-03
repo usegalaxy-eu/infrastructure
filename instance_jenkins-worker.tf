@@ -11,7 +11,7 @@ resource "openstack_compute_instance_v2" "jenkins-workers" {
   }
 }
 
-resource "openstack_compute_instance_v2" "jenkins-workers2" {
+resource "openstack_compute_instance_v2" "jenkins-workers-internal" {
   name            = "worker-internal.build.galaxyproject.eu"
   image_name      = "${var.jenkins_image}"
   flavor_name     = "m1.xlarge"
