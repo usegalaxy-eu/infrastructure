@@ -20,21 +20,6 @@ For pull requests I believe we will have the Jenkins bot comment on the PR with
 the `terraform plan` output, allowing the admin to decide whether or not to
 merge it.
 
-## Setup
-
-[Download](https://www.terraform.io/downloads.html) terraform if you haven't already.
-
-```console
-$ terraform init # downloads openstack + aws plugins
-$ . /path/to/openstack-creds.sh
-```
-
-## Running
-
-```console
-$ make
-```
-
 ## Layout/Theory
 
 We're using this to manager every cloud resource. If it is something you would
@@ -43,6 +28,8 @@ for it.
 
 Our DNS provider is Amazon AWS/Route53 since they have a mostly reliable service
 and a nice API.
+
+All changes come in through PRs and are applied automatically by our [build server](https://build.galaxyproject.eu/job/usegalaxy-eu/job/infrastructure/). Sometimes jobs error there but it is normal.
 
 ### Variables
 
@@ -109,93 +96,6 @@ resource "aws_route53_record" "apollo-usegalaxy" {
 When you run `make` terraform will sync, and if VMs need to be destroyed and
 re-created, they will and DNS records will update appropriately.
 
-### Compute Instances
-
-These have an extra step whereby there are some additional commands that are run
-before shutdown:
-
-```hcl
-resource "openstack_compute_instance_v2" "vgcn-compute-general" {
-  # snip
-
-  # The user data file is mostly self-explanatory. That data will be added into
-  # the VM during launch. Whenever that file changes, terraform is aware, and will
-  # register that the VM should be DESTROYED and replaced.
-  user_data = "${file("conf/node.yml")}"
-
-  # This is a provisioner which executes commands remotely
-  provisioner "remote-exec" {
-    # Most provisioners run on instantiation, however here we declare one for
-    # before destruction
-    when = "destroy"
-
-    # These scripts will be copied over and executed
-    scripts = [
-      "./conf/prepare-restart.sh",
-    ]
-
-    # Using an SSH connection with these parameters
-    connection {
-      type        = "ssh"
-      user        = "centos"
-      private_key = "${file("~/.ssh/keys/id_rsa_cloud2")}"
-    }
-  }
-}
-```
-
-
-#### prepare-restart.sh
-
-This script is designed to:
-
-- drain the host
-- find out how many slots are used (i.e. jobs executing on local host)
-  - if > 1: exit 1 (i.e. the `prepare-restart.sh` failed, terraform should try
-    again later.)
-  - else: issue `condor_off` and exit 0
-
-This should result in terraform promptly removing nodes from the `condor_status`
-output whenever they're to be shutdown.
-
-Currently the behaviour is **STRICTLY WORSE** than our
-[vgcn-infrastructure](https://github.com/usegalaxy-eu/vgcn-infrastructure). I am
-not certain what we should do about this. Terraform has a [open
-bug](https://github.com/hashicorp/terraform/issues/13549) bug for
-`create_before_destory` which would allow maintaining a minimum number of instances.
-There is additionally a
-[closed/wontfix](https://github.com/hashicorp/terraform/issues/2896) but for
-rolling re-deployments.
-
-We will need to solve this at *some point* but that point is not now. We could
-do weird stuff like having an `-a` and `-b` version of the file and slowly
-increasing count in one and decreasing it in the other and running `terraform
-apply` each time. But none of the solutions are optimal. We might go back to the
-vgcn-infrastructure code, albeit once I get it working with the openstack CLI
-since that is more stable than the python code.
-
-### Training Nodes
-
-There is a script for adding the appropriate stanzas for a training instance:
-
-```console
-$ ./add-training.sh
-
-Usage:
-  ./add-training.sh <training-identifier> <vm-size> <vm-count>
-```
-
-which will output a file named `instance_training-<identifier>.tf`. You should
-commit this.
-
-### Remove Compute Nodes
-
-Instead of simply deleting the TF file for the instance, first set `count = 0`
-in order to tell terraform to safely remove the resources using the proper
-ssh/condor_drain code. If you just remove the tf file, it will just remove the
-servers uncleanly.
-
-
 ## Commands
 
 All infra IPs (without going to openstack.)
@@ -203,3 +103,4 @@ All infra IPs (without going to openstack.)
 ```console
 $ ./bin/tfinfo-to-json.sh | jq -r '.openstack_compute_instance_v2 | keys[] as $k | [$k, .[$k]."network.0.fixed_ip_v4"] | @tsv'
 ```
+
