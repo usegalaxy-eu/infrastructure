@@ -109,3 +109,11 @@ resource "aws_route53_record" "subdomain-internal" {
   ttl     = "7200"
   records = ["proxy.internal.galaxyproject.eu"]
 }
+
+resource "aws_route53_record" "ftp" {
+  zone_id = "${var.zone_usegalaxy_eu}"
+  name    = "ftp.usegalaxy.eu"
+  type    = "A"
+  ttl     = "7200"
+  records = ["132.230.68.85"]
+}
