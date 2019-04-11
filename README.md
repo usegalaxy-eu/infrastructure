@@ -1,4 +1,4 @@
-# UseGalaxy.eu Infrastructure
+# UseGalaxy.eu Infrastructure [![Build Status](https://build.galaxyproject.eu/buildStatus/icon?job=usegalaxy-eu%2Finfrastructure)](https://build.galaxyproject.eu/job/usegalaxy-eu/job/infrastructure/)
 
 **ACHTUNG** **ACHTUNG** **ACHTUNG**
 
