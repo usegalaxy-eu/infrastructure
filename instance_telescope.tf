@@ -23,7 +23,7 @@ resource "openstack_compute_volume_attach_v2" "telescope-va" {
 
 resource "aws_route53_record" "telescope" {
   zone_id = "${var.zone_galaxyproject_eu}"
-  name    = "${openstack_compute_instance_v2.telescope.name}"
+  name    = "telescope.internal.galaxyproject.eu"
   type    = "A"
   ttl     = "7200"
   records = ["${openstack_compute_instance_v2.telescope.access_ip_v4}"]
