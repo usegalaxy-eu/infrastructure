@@ -96,6 +96,7 @@ variable "subdomain-internal" {
   default = [
     # Please place new subdomains at the end of the list
     "cvmfs1-ufr0.galaxyproject.eu",
+
     "telescope.galaxyproject.eu",
   ]
 }
