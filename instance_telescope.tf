@@ -6,7 +6,7 @@ resource "openstack_compute_instance_v2" "telescope" {
   security_groups = "${var.sg_webservice-pubssh}"
 
   network {
-    name = "public"
+    name = "bioinf"
   }
 }
 
