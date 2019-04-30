@@ -55,13 +55,14 @@ variable "subdomain" {
     "cheminformatics.usegalaxy.eu",
     "imaging.usegalaxy.eu",
     "singlecell.usegalaxy.eu",
+    "telescope.galaxyproject.eu",
   ]
 }
 
 resource "aws_route53_record" "subdomains" {
   zone_id = "${var.zone_usegalaxy_eu}"
 
-  count = 16
+  count = 17
   name  = "${element(var.subdomain, count.index)}"
 
   type    = "CNAME"
@@ -96,15 +97,13 @@ variable "subdomain-internal" {
   default = [
     # Please place new subdomains at the end of the list
     "cvmfs1-ufr0.galaxyproject.eu",
-
-    "telescope.galaxyproject.eu",
   ]
 }
 
 resource "aws_route53_record" "subdomain-internal" {
   zone_id = "${var.zone_galaxyproject_eu}"
 
-  count = 2
+  count = 1
   name  = "${element(var.subdomain-internal, count.index)}"
 
   type    = "CNAME"
