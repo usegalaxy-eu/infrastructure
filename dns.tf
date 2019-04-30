@@ -55,14 +55,13 @@ variable "subdomain" {
     "cheminformatics.usegalaxy.eu",
     "imaging.usegalaxy.eu",
     "singlecell.usegalaxy.eu",
-    "telescope.galaxyproject.eu",
   ]
 }
 
 resource "aws_route53_record" "subdomains" {
   zone_id = "${var.zone_usegalaxy_eu}"
 
-  count = 17
+  count = 16
   name  = "${element(var.subdomain, count.index)}"
 
   type    = "CNAME"
@@ -76,13 +75,14 @@ variable "subdomain-project" {
 
   default = [
     "status.galaxyproject.eu",
+    "telescope.galaxyproject.eu",
   ]
 }
 
 resource "aws_route53_record" "subdomains-project" {
   zone_id = "${var.zone_galaxyproject_eu}"
 
-  count = 1
+  count = 2
   name  = "${element(var.subdomain-project, count.index)}"
 
   type    = "CNAME"
