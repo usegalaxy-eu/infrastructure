@@ -1,7 +1,7 @@
 # Apex domains must point at the IP address
 
 variable "sn04" {
-	default = "132.230.68.5"
+  default = "132.230.68.5"
 }
 
 resource "aws_route53_record" "usegalaxy-eu" {
