@@ -1,27 +1,15 @@
 # Apex domains must point at the IP address
 
+variable "sn04" {
+	default = "132.230.68.5"
+}
+
 resource "aws_route53_record" "usegalaxy-eu" {
   zone_id = "${var.zone_usegalaxy_eu}"
   name    = "usegalaxy.eu"
   type    = "A"
   ttl     = "7200"
-  records = ["${openstack_compute_instance_v2.proxy.access_ip_v4}"]
-}
-
-resource "aws_route53_record" "proxy-usegalaxy-eu" {
-  zone_id = "${var.zone_usegalaxy_eu}"
-  name    = "proxy.usegalaxy.eu"
-  type    = "CNAME"
-  ttl     = "7200"
-  records = ["sn04.bi.uni-freiburg.de"]
-}
-
-resource "aws_route53_record" "usegalaxy-de" {
-  zone_id = "${var.zone_usegalaxy_de}"
-  name    = "usegalaxy.de"
-  type    = "A"
-  ttl     = "7200"
-  records = ["${openstack_compute_instance_v2.proxy.access_ip_v4}"]
+  records = ["${var.sn04}"]
 }
 
 resource "aws_route53_record" "galaxyproject-eu" {
@@ -29,7 +17,7 @@ resource "aws_route53_record" "galaxyproject-eu" {
   name    = "galaxyproject.eu"
   type    = "A"
   ttl     = "7200"
-  records = ["${openstack_compute_instance_v2.proxy.access_ip_v4}"]
+  records = ["${var.sn04}"]
 }
 
 # Subdomains are all just CNAMEs for galaxyproject.eu → proxy-external
@@ -66,7 +54,7 @@ resource "aws_route53_record" "subdomains" {
 
   type    = "CNAME"
   ttl     = "7200"
-  records = ["sn04.bi.uni-freiburg.de"]
+  records = ["usegalaxy.eu"]
 }
 
 # Subdomains for Project → proxy-external
@@ -87,7 +75,7 @@ resource "aws_route53_record" "subdomains-project" {
 
   type    = "CNAME"
   ttl     = "7200"
-  records = ["sn04.bi.uni-freiburg.de"]
+  records = ["galaxyproject.eu"]
 }
 
 # Subdomains for Project → proxy-internal
