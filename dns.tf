@@ -13,7 +13,7 @@ resource "aws_route53_record" "proxy-usegalaxy-eu" {
   name    = "proxy.usegalaxy.eu"
   type    = "CNAME"
   ttl     = "7200"
-  records = ["proxy.galaxyproject.eu"]
+  records = ["sn04.bi.uni-freiburg.de"]
 }
 
 resource "aws_route53_record" "usegalaxy-de" {
@@ -66,7 +66,7 @@ resource "aws_route53_record" "subdomains" {
 
   type    = "CNAME"
   ttl     = "7200"
-  records = ["proxy.galaxyproject.eu"]
+  records = ["sn04.bi.uni-freiburg.de"]
 }
 
 # Subdomains for Project → proxy-external
@@ -87,7 +87,7 @@ resource "aws_route53_record" "subdomains-project" {
 
   type    = "CNAME"
   ttl     = "7200"
-  records = ["proxy.galaxyproject.eu"]
+  records = ["sn04.bi.uni-freiburg.de"]
 }
 
 # Subdomains for Project → proxy-internal
