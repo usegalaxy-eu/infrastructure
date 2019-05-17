@@ -43,6 +43,7 @@ variable "subdomain" {
     "cheminformatics.usegalaxy.eu",
     "imaging.usegalaxy.eu",
     "singlecell.usegalaxy.eu",
+    "climate.usegalaxy.eu",
   ]
 }
 
