@@ -8,14 +8,6 @@ resource "openstack_compute_instance_v2" "nfs-server" {
   network {
     name = "bioinf"
   }
-
-  block_device {
-    uuid                  = "${openstack_blockstorage_volume_v2.volume_nfs_data.id}"
-    source_type           = "volume"
-    destination_type      = "volume"
-    boot_index            = -1
-    delete_on_termination = true
-  }
 }
 
 resource "aws_route53_record" "nfs-server" {
