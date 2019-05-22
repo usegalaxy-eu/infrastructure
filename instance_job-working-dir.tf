@@ -1,6 +1,6 @@
 resource "openstack_compute_instance_v2" "nfs-server" {
   name            = "job-working-dir.internal.galaxyproject.eu"
-  image_id        = "vggp-v31-j122-1a432e1e6448-master"
+  image_id        = "generic-centos7-v31-j18-2deef7cb2572-master"
   flavor_name     = "m1.large"
   key_pair        = "cloud2"
   security_groups = ["public"]
