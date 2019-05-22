@@ -16,8 +16,6 @@ resource "openstack_compute_instance_v2" "nfs-server" {
     boot_index            = -1
     delete_on_termination = true
   }
-
-  user_data = "${data.template_cloudinit_config.nfs-share.rendered}"
 }
 
 resource "aws_route53_record" "nfs-server" {
@@ -38,4 +36,3 @@ resource "openstack_compute_volume_attach_v2" "nfs-data-va" {
   instance_id = "${openstack_compute_instance_v2.nfs-server.id}"
   volume_id   = "${openstack_blockstorage_volume_v2.nfs-server.id}"
 }
-
