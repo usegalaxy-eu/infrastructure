@@ -10,14 +10,6 @@ resource "openstack_compute_instance_v2" "nfs-server" {
   }
 }
 
-resource "aws_route53_record" "nfs-server" {
-  zone_id = "${var.zone_usegalaxy_eu}"
-  name    = "job-working-dir.internal.galaxyproject.eu"
-  type    = "A"
-  ttl     = "3600"
-  records = ["${openstack_compute_instance_v2.nfs-server.access_ip_v4}"]
-}
-
 resource "openstack_blockstorage_volume_v2" "nfs-server" {
   name        = "job-working-dir"
   description = "Data volume for job-working-dir"
