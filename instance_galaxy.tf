@@ -3,7 +3,7 @@ resource "openstack_compute_instance_v2" "test-galaxy" {
   image_name      = "${var.centos_image_new}"
   flavor_name     = "m1.large"
   key_pair        = "cloud2"
-  security_groups = "${var.sg_webservice-pubssh}"
+  security_groups = ["egress", "public-web2", "ufr-ingress", "public-ping"]
 
   network {
     name = "bioinf"
