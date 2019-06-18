@@ -4,7 +4,7 @@ resource "openstack_compute_keypair_v2" "gcc2019-training" {
 }
 
 variable "count" {
-  default = 4
+  default = 1
 }
 
 resource "random_pet" "training-vm" {
@@ -19,7 +19,7 @@ resource "random_pet" "training-vm" {
 resource "openstack_compute_instance_v2" "training-vm" {
   name            = "gcc-${count.index}.training.galaxyproject.eu"
   image_name      = "Ubuntu 18.04"
-  flavor_name     = "m1.tiny"
+  flavor_name     = "m1.medium"
   security_groups = ["public", "public-ping", "egress"]
 
   key_pair = "cloud2"
