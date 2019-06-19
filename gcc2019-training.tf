@@ -20,7 +20,7 @@ resource "openstack_compute_instance_v2" "training-vm" {
   name            = "gcc-${count.index}.training.galaxyproject.eu"
   image_name      = "Ubuntu 18.04"
   flavor_name     = "m1.medium"
-  security_groups = ["public", "public-ping", "egress"]
+  security_groups = ["public", "public-ping", "public-web2", "egress"]
 
   key_pair = "cloud2"
 
