@@ -4,7 +4,7 @@ resource "openstack_compute_keypair_v2" "gcc2019-training" {
 }
 
 variable "count" {
-  default = 1
+  default = 2
 }
 
 resource "random_pet" "training-vm" {
