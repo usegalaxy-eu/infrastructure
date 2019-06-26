@@ -25,7 +25,7 @@ variable "subdomain" {
   type = "list"
 
   default = [
-    # Please place new subdomains at the end of the list
+    # Please place new subdomains at the end of the list and increase the counter `count` below
     "ecology.usegalaxy.eu",
 
     "hicexplorer.usegalaxy.eu",
@@ -46,13 +46,14 @@ variable "subdomain" {
     "climate.usegalaxy.eu",
     "nanopore.usegalaxy.eu",
     "metabolomics.usegalaxy.eu",
+    "humancellatlas.usegalaxy.eu",
   ]
 }
 
 resource "aws_route53_record" "subdomains" {
   zone_id = "${var.zone_usegalaxy_eu}"
 
-  count = 19
+  count = 20
   name  = "${element(var.subdomain, count.index)}"
 
   type    = "CNAME"
