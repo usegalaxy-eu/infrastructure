@@ -109,3 +109,11 @@ resource "aws_route53_record" "ftp" {
   ttl     = "7200"
   records = ["132.230.68.85"]
 }
+
+resource "aws_route53_record" "freiburg.pulsar" {
+  zone_id = "${var.zone_galaxyproject_eu}"
+  name    = "freiburg.pulsar.galaxyproject.eu"
+  type    = "A"
+  ttl     = "7200"
+  records = ["192.52.34.134"]
+}
