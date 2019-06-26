@@ -46,6 +46,7 @@ variable "subdomain" {
     "climate.usegalaxy.eu",
     "nanopore.usegalaxy.eu",
     "metabolomics.usegalaxy.eu",
+    "humancellatlas.usegalaxy.eu",
   ]
 }
 
