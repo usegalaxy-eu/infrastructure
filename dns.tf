@@ -25,7 +25,7 @@ variable "subdomain" {
   type = "list"
 
   default = [
-    # Please place new subdomains at the end of the list
+    # Please place new subdomains at the end of the list and increase the counter `count` below
     "ecology.usegalaxy.eu",
 
     "hicexplorer.usegalaxy.eu",
