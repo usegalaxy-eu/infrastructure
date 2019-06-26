@@ -118,3 +118,11 @@ resource "aws_route53_record" "freiburg-pulsar" {
   ttl     = "7200"
   records = ["192.52.34.134"]
 }
+
+resource "aws_route53_record" "tuebingen-pulsar" {
+  zone_id = "${var.zone_galaxyproject_eu}"
+  name    = "de02.pulsar.galaxyproject.eu"
+  type    = "A"
+  ttl     = "7200"
+  records = ["193.196.20.125"]
+}
