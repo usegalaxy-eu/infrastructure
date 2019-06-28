@@ -10,10 +10,10 @@ resource "openstack_compute_instance_v2" "apollo-main" {
   }
 }
 
-resource "aws_route53_record" "apollo-usegalaxy" {
+resource "aws_route53_record" "apollo-main" {
   zone_id = "${var.zone_usegalaxy_eu}"
   name    = "apollo.internal.galaxyproject.eu"
   type    = "A"
   ttl     = "7200"
-  records = ["${openstack_compute_instance_v2.apollo-usegalaxy.access_ip_v4}"]
+  records = ["${openstack_compute_instance_v2.apollo-main.access_ip_v4}"]
 }
