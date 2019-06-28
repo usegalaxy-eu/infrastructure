@@ -11,7 +11,7 @@ resource "openstack_compute_instance_v2" "apollo-main" {
 }
 
 resource "aws_route53_record" "apollo-main" {
-  zone_id = "${var.zone_usegalaxy_eu}"
+  zone_id = "${var.zone_galaxyproject_eu}"
   name    = "apollo.internal.galaxyproject.eu"
   type    = "A"
   ttl     = "7200"
