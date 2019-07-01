@@ -8,11 +8,12 @@ resource "aws_route53_record" "gcc-%s-training-galaxyproject-eu" {
   ttl     = "7200"
   records = ["%s"]
 }
+
 """
 
 
-start = 75
+start = 180
 for idx, row in enumerate(sys.stdin):
     row = row.strip()
-    print "gcc-%s.training.galaxyproject.eu" % (start + idx)
-    # print(tpl % (start + idx, start + idx, row))
+    sys.stderr.write("gcc-%s.training.galaxyproject.eu\n" % (start + idx))
+    sys.stdout.write(tpl % (start + idx, start + idx, row))
