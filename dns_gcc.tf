@@ -726,7 +726,6 @@ resource "aws_route53_record" "gcc-180-training-galaxyproject-eu" {
   records = ["43.240.96.238"]
 }
 
-
 resource "aws_route53_record" "gcc-181-training-galaxyproject-eu" {
   zone_id = "${var.zone_galaxyproject_eu}"
   name    = "gcc-181.training.galaxyproject.eu"
@@ -734,7 +733,6 @@ resource "aws_route53_record" "gcc-181-training-galaxyproject-eu" {
   ttl     = "7200"
   records = ["43.240.98.109"]
 }
-
 
 resource "aws_route53_record" "gcc-182-training-galaxyproject-eu" {
   zone_id = "${var.zone_galaxyproject_eu}"
@@ -744,7 +742,6 @@ resource "aws_route53_record" "gcc-182-training-galaxyproject-eu" {
   records = ["43.240.96.220"]
 }
 
-
 resource "aws_route53_record" "gcc-183-training-galaxyproject-eu" {
   zone_id = "${var.zone_galaxyproject_eu}"
   name    = "gcc-183.training.galaxyproject.eu"
@@ -752,7 +749,6 @@ resource "aws_route53_record" "gcc-183-training-galaxyproject-eu" {
   ttl     = "7200"
   records = ["43.240.98.4"]
 }
-
 
 resource "aws_route53_record" "gcc-184-training-galaxyproject-eu" {
   zone_id = "${var.zone_galaxyproject_eu}"
@@ -762,7 +758,6 @@ resource "aws_route53_record" "gcc-184-training-galaxyproject-eu" {
   records = ["43.240.96.189"]
 }
 
-
 resource "aws_route53_record" "gcc-185-training-galaxyproject-eu" {
   zone_id = "${var.zone_galaxyproject_eu}"
   name    = "gcc-185.training.galaxyproject.eu"
@@ -770,7 +765,6 @@ resource "aws_route53_record" "gcc-185-training-galaxyproject-eu" {
   ttl     = "7200"
   records = ["43.240.98.7"]
 }
-
 
 resource "aws_route53_record" "gcc-186-training-galaxyproject-eu" {
   zone_id = "${var.zone_galaxyproject_eu}"
@@ -780,7 +774,6 @@ resource "aws_route53_record" "gcc-186-training-galaxyproject-eu" {
   records = ["43.240.97.229"]
 }
 
-
 resource "aws_route53_record" "gcc-187-training-galaxyproject-eu" {
   zone_id = "${var.zone_galaxyproject_eu}"
   name    = "gcc-187.training.galaxyproject.eu"
@@ -788,7 +781,6 @@ resource "aws_route53_record" "gcc-187-training-galaxyproject-eu" {
   ttl     = "7200"
   records = ["43.240.97.62"]
 }
-
 
 resource "aws_route53_record" "gcc-188-training-galaxyproject-eu" {
   zone_id = "${var.zone_galaxyproject_eu}"
@@ -798,7 +790,6 @@ resource "aws_route53_record" "gcc-188-training-galaxyproject-eu" {
   records = ["43.240.97.29"]
 }
 
-
 resource "aws_route53_record" "gcc-189-training-galaxyproject-eu" {
   zone_id = "${var.zone_galaxyproject_eu}"
   name    = "gcc-189.training.galaxyproject.eu"
@@ -806,7 +797,6 @@ resource "aws_route53_record" "gcc-189-training-galaxyproject-eu" {
   ttl     = "7200"
   records = ["43.240.97.180"]
 }
-
 
 resource "aws_route53_record" "gcc-190-training-galaxyproject-eu" {
   zone_id = "${var.zone_galaxyproject_eu}"
@@ -816,7 +806,6 @@ resource "aws_route53_record" "gcc-190-training-galaxyproject-eu" {
   records = ["115.146.92.38"]
 }
 
-
 resource "aws_route53_record" "gcc-191-training-galaxyproject-eu" {
   zone_id = "${var.zone_galaxyproject_eu}"
   name    = "gcc-191.training.galaxyproject.eu"
@@ -824,7 +813,6 @@ resource "aws_route53_record" "gcc-191-training-galaxyproject-eu" {
   ttl     = "7200"
   records = ["115.146.92.43"]
 }
-
 
 resource "aws_route53_record" "gcc-192-training-galaxyproject-eu" {
   zone_id = "${var.zone_galaxyproject_eu}"
@@ -834,7 +822,6 @@ resource "aws_route53_record" "gcc-192-training-galaxyproject-eu" {
   records = ["115.146.92.21"]
 }
 
-
 resource "aws_route53_record" "gcc-193-training-galaxyproject-eu" {
   zone_id = "${var.zone_galaxyproject_eu}"
   name    = "gcc-193.training.galaxyproject.eu"
@@ -842,7 +829,6 @@ resource "aws_route53_record" "gcc-193-training-galaxyproject-eu" {
   ttl     = "7200"
   records = ["115.146.92.40"]
 }
-
 
 resource "aws_route53_record" "gcc-194-training-galaxyproject-eu" {
   zone_id = "${var.zone_galaxyproject_eu}"
@@ -852,7 +838,6 @@ resource "aws_route53_record" "gcc-194-training-galaxyproject-eu" {
   records = ["115.146.92.48"]
 }
 
-
 resource "aws_route53_record" "gcc-195-training-galaxyproject-eu" {
   zone_id = "${var.zone_galaxyproject_eu}"
   name    = "gcc-195.training.galaxyproject.eu"
@@ -860,7 +845,6 @@ resource "aws_route53_record" "gcc-195-training-galaxyproject-eu" {
   ttl     = "7200"
   records = ["115.146.92.49"]
 }
-
 
 resource "aws_route53_record" "gcc-196-training-galaxyproject-eu" {
   zone_id = "${var.zone_galaxyproject_eu}"
@@ -870,7 +854,6 @@ resource "aws_route53_record" "gcc-196-training-galaxyproject-eu" {
   records = ["115.146.92.56"]
 }
 
-
 resource "aws_route53_record" "gcc-197-training-galaxyproject-eu" {
   zone_id = "${var.zone_galaxyproject_eu}"
   name    = "gcc-197.training.galaxyproject.eu"
@@ -878,7 +861,6 @@ resource "aws_route53_record" "gcc-197-training-galaxyproject-eu" {
   ttl     = "7200"
   records = ["115.146.92.28"]
 }
-
 
 resource "aws_route53_record" "gcc-198-training-galaxyproject-eu" {
   zone_id = "${var.zone_galaxyproject_eu}"
@@ -888,7 +870,6 @@ resource "aws_route53_record" "gcc-198-training-galaxyproject-eu" {
   records = ["115.146.92.26"]
 }
 
-
 resource "aws_route53_record" "gcc-199-training-galaxyproject-eu" {
   zone_id = "${var.zone_galaxyproject_eu}"
   name    = "gcc-199.training.galaxyproject.eu"
@@ -896,7 +877,6 @@ resource "aws_route53_record" "gcc-199-training-galaxyproject-eu" {
   ttl     = "7200"
   records = ["115.146.92.41"]
 }
-
 
 resource "aws_route53_record" "gcc-200-training-galaxyproject-eu" {
   zone_id = "${var.zone_galaxyproject_eu}"
@@ -906,7 +886,6 @@ resource "aws_route53_record" "gcc-200-training-galaxyproject-eu" {
   records = ["115.146.92.50"]
 }
 
-
 resource "aws_route53_record" "gcc-201-training-galaxyproject-eu" {
   zone_id = "${var.zone_galaxyproject_eu}"
   name    = "gcc-201.training.galaxyproject.eu"
@@ -914,7 +893,6 @@ resource "aws_route53_record" "gcc-201-training-galaxyproject-eu" {
   ttl     = "7200"
   records = ["115.146.92.36"]
 }
-
 
 resource "aws_route53_record" "gcc-202-training-galaxyproject-eu" {
   zone_id = "${var.zone_galaxyproject_eu}"
@@ -924,7 +902,6 @@ resource "aws_route53_record" "gcc-202-training-galaxyproject-eu" {
   records = ["115.146.92.17"]
 }
 
-
 resource "aws_route53_record" "gcc-203-training-galaxyproject-eu" {
   zone_id = "${var.zone_galaxyproject_eu}"
   name    = "gcc-203.training.galaxyproject.eu"
@@ -932,7 +909,6 @@ resource "aws_route53_record" "gcc-203-training-galaxyproject-eu" {
   ttl     = "7200"
   records = ["115.146.92.27"]
 }
-
 
 resource "aws_route53_record" "gcc-204-training-galaxyproject-eu" {
   zone_id = "${var.zone_galaxyproject_eu}"
@@ -942,7 +918,6 @@ resource "aws_route53_record" "gcc-204-training-galaxyproject-eu" {
   records = ["115.146.92.31"]
 }
 
-
 resource "aws_route53_record" "gcc-205-training-galaxyproject-eu" {
   zone_id = "${var.zone_galaxyproject_eu}"
   name    = "gcc-205.training.galaxyproject.eu"
@@ -950,7 +925,6 @@ resource "aws_route53_record" "gcc-205-training-galaxyproject-eu" {
   ttl     = "7200"
   records = ["115.146.92.24"]
 }
-
 
 resource "aws_route53_record" "gcc-206-training-galaxyproject-eu" {
   zone_id = "${var.zone_galaxyproject_eu}"
@@ -960,7 +934,6 @@ resource "aws_route53_record" "gcc-206-training-galaxyproject-eu" {
   records = ["115.146.92.14"]
 }
 
-
 resource "aws_route53_record" "gcc-207-training-galaxyproject-eu" {
   zone_id = "${var.zone_galaxyproject_eu}"
   name    = "gcc-207.training.galaxyproject.eu"
@@ -968,7 +941,6 @@ resource "aws_route53_record" "gcc-207-training-galaxyproject-eu" {
   ttl     = "7200"
   records = ["115.146.92.13"]
 }
-
 
 resource "aws_route53_record" "gcc-208-training-galaxyproject-eu" {
   zone_id = "${var.zone_galaxyproject_eu}"
@@ -978,7 +950,6 @@ resource "aws_route53_record" "gcc-208-training-galaxyproject-eu" {
   records = ["115.146.92.35"]
 }
 
-
 resource "aws_route53_record" "gcc-209-training-galaxyproject-eu" {
   zone_id = "${var.zone_galaxyproject_eu}"
   name    = "gcc-209.training.galaxyproject.eu"
@@ -986,7 +957,6 @@ resource "aws_route53_record" "gcc-209-training-galaxyproject-eu" {
   ttl     = "7200"
   records = ["115.146.92.29"]
 }
-
 
 resource "aws_route53_record" "gcc-210-training-galaxyproject-eu" {
   zone_id = "${var.zone_galaxyproject_eu}"
@@ -996,7 +966,6 @@ resource "aws_route53_record" "gcc-210-training-galaxyproject-eu" {
   records = ["130.56.248.177"]
 }
 
-
 resource "aws_route53_record" "gcc-211-training-galaxyproject-eu" {
   zone_id = "${var.zone_galaxyproject_eu}"
   name    = "gcc-211.training.galaxyproject.eu"
@@ -1004,7 +973,6 @@ resource "aws_route53_record" "gcc-211-training-galaxyproject-eu" {
   ttl     = "7200"
   records = ["130.56.248.184"]
 }
-
 
 resource "aws_route53_record" "gcc-212-training-galaxyproject-eu" {
   zone_id = "${var.zone_galaxyproject_eu}"
@@ -1014,7 +982,6 @@ resource "aws_route53_record" "gcc-212-training-galaxyproject-eu" {
   records = ["130.56.248.170"]
 }
 
-
 resource "aws_route53_record" "gcc-213-training-galaxyproject-eu" {
   zone_id = "${var.zone_galaxyproject_eu}"
   name    = "gcc-213.training.galaxyproject.eu"
@@ -1022,7 +989,6 @@ resource "aws_route53_record" "gcc-213-training-galaxyproject-eu" {
   ttl     = "7200"
   records = ["130.56.248.75"]
 }
-
 
 resource "aws_route53_record" "gcc-214-training-galaxyproject-eu" {
   zone_id = "${var.zone_galaxyproject_eu}"
@@ -1032,7 +998,6 @@ resource "aws_route53_record" "gcc-214-training-galaxyproject-eu" {
   records = ["130.56.248.98"]
 }
 
-
 resource "aws_route53_record" "gcc-215-training-galaxyproject-eu" {
   zone_id = "${var.zone_galaxyproject_eu}"
   name    = "gcc-215.training.galaxyproject.eu"
@@ -1040,7 +1005,6 @@ resource "aws_route53_record" "gcc-215-training-galaxyproject-eu" {
   ttl     = "7200"
   records = ["130.56.248.76"]
 }
-
 
 resource "aws_route53_record" "gcc-216-training-galaxyproject-eu" {
   zone_id = "${var.zone_galaxyproject_eu}"
@@ -1050,7 +1014,6 @@ resource "aws_route53_record" "gcc-216-training-galaxyproject-eu" {
   records = ["130.56.248.130"]
 }
 
-
 resource "aws_route53_record" "gcc-217-training-galaxyproject-eu" {
   zone_id = "${var.zone_galaxyproject_eu}"
   name    = "gcc-217.training.galaxyproject.eu"
@@ -1058,7 +1021,6 @@ resource "aws_route53_record" "gcc-217-training-galaxyproject-eu" {
   ttl     = "7200"
   records = ["130.56.248.116"]
 }
-
 
 resource "aws_route53_record" "gcc-218-training-galaxyproject-eu" {
   zone_id = "${var.zone_galaxyproject_eu}"
@@ -1068,7 +1030,6 @@ resource "aws_route53_record" "gcc-218-training-galaxyproject-eu" {
   records = ["130.56.248.14"]
 }
 
-
 resource "aws_route53_record" "gcc-219-training-galaxyproject-eu" {
   zone_id = "${var.zone_galaxyproject_eu}"
   name    = "gcc-219.training.galaxyproject.eu"
@@ -1076,4 +1037,3 @@ resource "aws_route53_record" "gcc-219-training-galaxyproject-eu" {
   ttl     = "7200"
   records = ["130.56.248.165"]
 }
-
