@@ -23,7 +23,7 @@ resource "openstack_compute_instance_v2" "training-vm" {
   flavor_name     = "m1.medium"
   security_groups = ["public", "public-ping", "public-web2", "egress"]
 
-  key_pair = "cloud2"
+  key_pair = "gcc2019training"
 
   network {
     name = "public"
