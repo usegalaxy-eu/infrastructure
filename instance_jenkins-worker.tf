@@ -52,7 +52,7 @@ resource "openstack_compute_volume_attach_v2" "jenkins-workers-org-va" {
 
 resource "aws_route53_record" "jenkins-workers-org" {
   zone_id = "${var.zone_galaxyproject_eu}"
-  name    = "n${var.count}.galaxyproject.eu"
+  name    = "n${count.index}.galaxyproject.eu"
   type    = "A"
   ttl     = "7200"
   records = ["${openstack_compute_instance_v2.jenkins-workers-org.*.access_ip_v4}"]
