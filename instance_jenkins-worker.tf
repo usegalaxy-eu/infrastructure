@@ -39,7 +39,7 @@ resource "openstack_compute_instance_v2" "jenkins-workers-org" {
 
 resource "openstack_blockstorage_volume_v2" "jenkins-workers-org-data" {
   name        = "jenkins-org"
-  description = "Data volume for Jenkins @ usegalaxy.org"
+  description = "Data volume for Jenkins n${count.index}.galaxyproject.org"
   size        = 200
   count       = 2
 }
