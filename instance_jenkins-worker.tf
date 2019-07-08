@@ -45,8 +45,8 @@ resource "openstack_blockstorage_volume_v2" "jenkins-workers-org-data" {
 }
 
 resource "openstack_compute_volume_attach_v2" "jenkins-workers-org-va" {
-  instance_id = "${openstack_compute_instance_v2.jenkins-workers-org.*.id}"
-  volume_id   = "${openstack_blockstorage_volume_v2.jenkins-workers-org-data.*.id}"
+  instance_id = ["${element(openstack_compute_instance_v2.jenkins-workers-org.*.id, count.index)}"]
+  volume_id   = ["${element(openstack_blockstorage_volume_v2.jenkins-workers-org-data.*.id, count.index)}"]
   count       = 2
 }
 
@@ -55,6 +55,6 @@ resource "aws_route53_record" "jenkins-workers-org" {
   name    = "n${count.index}.galaxyproject.eu"
   type    = "A"
   ttl     = "7200"
-  records = ["${openstack_compute_instance_v2.jenkins-workers-org.*.access_ip_v4}"]
+  records = ["${element(openstack_compute_instance_v2.jenkins-workers-org.*.access_ip_v4, count.index)}"]
   count   = 2
 }
