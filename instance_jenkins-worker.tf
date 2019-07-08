@@ -25,7 +25,7 @@ resource "openstack_compute_instance_v2" "jenkins-workers-internal" {
 }
 
 resource "openstack_compute_instance_v2" "jenkins-workers-org" {
-  name            = "worker-${count.index}.build.galaxyproject.eu"
+  name            = "n${count.index}.galaxyproject.org"
   image_name      = "Ubuntu 18.04"
   flavor_name     = "m1.xxlarge"
   key_pair        = "build-usegalaxy-org"
