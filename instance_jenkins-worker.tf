@@ -46,7 +46,7 @@ resource "openstack_blockstorage_volume_v2" "jenkins-workers-org-data" {
 
 resource "openstack_compute_volume_attach_v2" "jenkins-workers-org-va" {
   instance_id = "${element(openstack_compute_instance_v2.jenkins-workers-org.*.id, count.index)}"
-  volume_id   = "${element(openstack_blockstorage_volume_v2.jenkins-workers-org.*.id, count.index)}"
+  volume_id   = "${element(openstack_blockstorage_volume_v2.jenkins-workers-org-data.*.id, count.index)}"
   count       = 2
 }
 
