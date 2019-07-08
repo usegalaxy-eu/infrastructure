@@ -11,6 +11,7 @@ dns_training.tf: dns_training.txt
 
 fmt:
 	terraform fmt
+	terraform validate
 
 cleanup-images: ## Remove unused Images
 	openstack image list -c ID -c Name -f value | grep vggp | awk '{print $1}' | xargs --no-run-if-empty openstack image delete
