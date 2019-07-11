@@ -10,6 +10,17 @@ resource "openstack_compute_instance_v2" "build-usegalaxy" {
   }
 }
 
+resource "openstack_blockstorage_volume_v2" "build-data" {
+  name        = "jenkins"
+  description = "Data volume for Jenkins"
+  size        = 50
+}
+
+resource "openstack_compute_volume_attach_v2" "jenkins-va" {
+  instance_id = "${openstack_compute_instance_v2.build-usegalaxy.id}"
+  volume_id   = "${openstack_blockstorage_volume_v2.build-data.id}"
+}
+
 resource "aws_route53_record" "build-usegalaxy" {
   zone_id = "${var.zone_galaxyproject_eu}"
   name    = "build.galaxyproject.eu"
