@@ -126,3 +126,11 @@ resource "aws_route53_record" "tuebingen-pulsar" {
   ttl     = "7200"
   records = ["193.196.20.125"]
 }
+
+resource "aws_route53_record" "bari-pulsar" {
+  zone_id = "${var.zone_galaxyproject_eu}"
+  name    = "it01.pulsar.galaxyproject.eu"
+  type    = "A"
+  ttl     = "7200"
+  records = ["90.147.75.60"]
+}
