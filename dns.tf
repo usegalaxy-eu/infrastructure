@@ -134,3 +134,12 @@ resource "aws_route53_record" "bari-pulsar" {
   ttl     = "7200"
   records = ["90.147.75.60"]
 }
+
+
+resource "aws_route53_record" "brussels-pulsar" {
+  zone_id = "${var.zone_galaxyproject_eu}"
+  name    = "be01.pulsar.galaxyproject.eu"
+  type    = "A"
+  ttl     = "7200"
+  records = ["193.190.85.36"]
+}
