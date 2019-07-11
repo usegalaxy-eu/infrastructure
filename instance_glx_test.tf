@@ -29,7 +29,6 @@ resource "aws_route53_record" "test01" {
   records = ["${openstack_compute_instance_v2.test01.access_ip_v4}"]
 }
 
-
 resource "openstack_compute_instance_v2" "test02" {
   name            = "test02.galaxyproject.eu"
   image_name      = "Ubuntu 18.04"
