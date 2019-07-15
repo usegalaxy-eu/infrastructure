@@ -52,3 +52,16 @@ output "gcc2019_pws" {
   value     = ["${random_pet.training-vm.*.id}"]
   sensitive = true
 }
+
+resource "aws_route53_record" "training-vm" {
+  zone_id = "Z391FYOSFHL9U7"
+  name    = "gcc-${count.index}.training.galaxyproject.eu"
+  type    = "A"
+  ttl     = "7200"
+  records = ["${element(openstack_compute_instance_v2.training-vm.*.access_ip_v4, count.index)}"]
+  count   = "${var.count}"
+}
+
+output "gcc2019_dns" {
+  value = ["${aws_route53_record.training-vm.*.name}"]
+}
