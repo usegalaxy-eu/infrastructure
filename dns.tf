@@ -142,3 +142,11 @@ resource "aws_route53_record" "brussels-pulsar" {
   ttl     = "7200"
   records = ["193.190.85.36"]
 }
+
+resource "aws_route53_record" "lisboa-pulsar" {
+  zone_id = "${var.zone_galaxyproject_eu}"
+  name    = "pt01.pulsar.galaxyproject.eu"
+  type    = "A"
+  ttl     = "7200"
+  records = ["192.92.147.4"]
+}
