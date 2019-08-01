@@ -65,7 +65,9 @@ resource "aws_route53_record" "training-vm" {
 output "gcc2019_dns" {
   value = ["${aws_route53_record.training-vm.*.name}"]
 }
+
 #
 #
+
 
 
