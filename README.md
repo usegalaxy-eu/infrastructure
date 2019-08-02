@@ -9,10 +9,11 @@
 
 -----
 
-The plan is that this will run in Jenkins on cron, to ensure our infrastructure
+This infrastructure repo will run in Jenkins on cron, to ensure our infrastructure (Cloud VMs etc ...)
 matches exactly what it should.
 
-For pull requests I believe we will have the Jenkins bot comment on the PR with
+All changes should go through pull requests and never directly to master,
+we will have the Jenkins bot comment on the PR with
 the `terraform plan` output, allowing the admin to decide whether or not to
 merge it.
 
