@@ -152,3 +152,11 @@ resource "aws_route53_record" "lisboa-pulsar" {
   ttl     = "7200"
   records = ["192.92.147.4"]
 }
+
+resource "aws_route53_record" "vgcn-cm" {
+  zone_id = "${var.zone_galaxyproject_eu}"
+  name    = "manager.vgcn.galaxyproject.eu"
+  type    = "A"
+  ttl     = "300"
+  records = ["10.5.68.230"]
+}
