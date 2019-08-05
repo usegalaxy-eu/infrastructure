@@ -17,5 +17,5 @@ resource "aws_route53_record" "vgcn-cm" {
   name    = "manager.vgcn.galaxyproject.eu"
   type    = "A"
   ttl     = "300"
-  records = ["${openstack_compute_instance_v2.vgcn-cm.access_ip_v4}"]
+  records = ["10.5.68.230"]
 }
