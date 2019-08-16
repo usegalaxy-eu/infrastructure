@@ -1,13 +1,9 @@
 variable "zone_galaxyproject_eu" {
-  default = "Z391FYOSFHL9U7"
+  default = "Z386N8B8JBC6TQ"
 }
 
 variable "zone_usegalaxy_eu" {
-  default = "Z3BOXJYLR7ZV7D"
-}
-
-variable "zone_usegalaxy_de" {
-  default = "Z2LADCUB4BUBWX"
+  default = "Z1C7L7XFF9613J"
 }
 
 variable "netz_count" {

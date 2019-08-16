@@ -39,7 +39,7 @@ done
 
 success "Checking domains"
 
-for domain in {Z391FYOSFHL9U7,Z3BOXJYLR7ZV7D,Z2LADCUB4BUBWX}; do
+for domain in {Z386N8B8JBC6TQ,Z1C7L7XFF9613J}; do
     tmp_ids=`mktemp`
     # Find records under this domain
     aws route53 list-resource-record-sets --hosted-zone-id ${domain} | \

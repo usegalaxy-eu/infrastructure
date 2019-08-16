@@ -54,7 +54,7 @@ output "gcc2019_pws" {
 }
 
 resource "aws_route53_record" "training-vm" {
-  zone_id = "Z391FYOSFHL9U7"
+  zone_id = "${var.zone_galaxyproject_eu}"
   name    = "gcc-${count.index}.training.galaxyproject.eu"
   type    = "A"
   ttl     = "7200"
