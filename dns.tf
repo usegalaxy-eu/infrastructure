@@ -142,7 +142,7 @@ resource "aws_route53_record" "brussels-pulsar" {
   name    = "be01.pulsar.galaxyproject.eu"
   type    = "A"
   ttl     = "7200"
-  records = ["193.190.85.36"]
+  records = ["193.190.85.137"]
 }
 
 resource "aws_route53_record" "lisboa-pulsar" {
