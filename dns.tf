@@ -49,13 +49,14 @@ variable "subdomain" {
     "humancellatlas.usegalaxy.eu",
     "annotation.usegalaxy.eu",
     "erasmusmc.usegalaxy.eu",
+    "live.usegalaxy.eu",
   ]
 }
 
 resource "aws_route53_record" "subdomains" {
   zone_id = "${var.zone_usegalaxy_eu}"
 
-  count = 22
+  count = 23
   name  = "${element(var.subdomain, count.index)}"
 
   type    = "CNAME"
@@ -171,8 +172,8 @@ resource "aws_route53_record" "build-usegalaxy" {
 
 resource "aws_route53_record" "freiburg-pulsar-gpu" {
   zone_id = "${var.zone_galaxyproject_eu}"
-  name = "de03.pulsar.galaxyproject.eu"
-  type = "A"
-  ttl = "7200"
+  name    = "de03.pulsar.galaxyproject.eu"
+  type    = "A"
+  ttl     = "7200"
   records = ["192.52.35.37"]
 }
