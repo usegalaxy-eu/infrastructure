@@ -172,8 +172,8 @@ resource "aws_route53_record" "build-usegalaxy" {
 
 resource "aws_route53_record" "freiburg-pulsar-gpu" {
   zone_id = "${var.zone_galaxyproject_eu}"
-  name = "de03.pulsar.galaxyproject.eu"
-  type = "A"
-  ttl = "7200"
+  name    = "de03.pulsar.galaxyproject.eu"
+  type    = "A"
+  ttl     = "7200"
   records = ["192.52.35.37"]
 }
