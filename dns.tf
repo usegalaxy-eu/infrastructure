@@ -49,7 +49,7 @@ variable "subdomain" {
     "humancellatlas.usegalaxy.eu",
     "annotation.usegalaxy.eu",
     "erasmusmc.usegalaxy.eu",
-    "interactive.usegalaxy.eu",
+    "live.usegalaxy.eu",
   ]
 }
 
