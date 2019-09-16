@@ -161,6 +161,6 @@ resource "aws_route53_record" "it-subdomain-test" {
   zone_id = "${var.zone_usegalaxy_eu}"
   name    = "*.interactivetoolentrypoint.interactivetool.test.internal.usegalaxy.eu"
   type    = "CNAME"
-  ttl     = "7200"
+  ttl     = "600"
   records = ["test.internal.usegalaxy.eu"]
 }
