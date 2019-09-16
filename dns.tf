@@ -130,21 +130,20 @@ resource "aws_route53_record" "build-usegalaxy" {
   records = ["132.230.223.230"]
 }
 
-
 # Interactive Tools
-resource "aws_route53_record" "subdomains" {
+resource "aws_route53_record" "it-subdomain-main" {
   zone_id = "${var.zone_usegalaxy_eu}"
 
-  name  = "*.interactivetoolentrypoint.interactivetool.test.usegalaxy.eu"
+  name = "*.interactivetoolentrypoint.interactivetool.test.usegalaxy.eu"
 
   type    = "CNAME"
   ttl     = "7200"
   records = ["usegalaxy.eu"]
 }
 
-resource "aws_route53_record" "subdomains" {
+resource "aws_route53_record" "it-subdomain-test" {
   zone_id = "${var.zone_usegalaxy_eu}"
-  name  = "*.interactivetoolentrypoint.interactivetool.test.internal.usegalaxy.eu"
+  name    = "*.interactivetoolentrypoint.interactivetool.test.internal.usegalaxy.eu"
   type    = "CNAME"
   ttl     = "7200"
   records = ["${openstack_compute_instance_v2.test-galaxy.access_ip_v4}"]
