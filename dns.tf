@@ -137,7 +137,7 @@ resource "aws_route53_record" "it-subdomain-main-really" {
   zone_id = "${var.zone_usegalaxy_eu}"
 
   # Guess new domains won't get this for now, but whatever.
-  name  = "*.interactivetoolentrypoint.interactivetool.usegalaxy.eu"
+  name = "*.interactivetoolentrypoint.interactivetool.usegalaxy.eu"
 
   type    = "CNAME"
   ttl     = "7200"
