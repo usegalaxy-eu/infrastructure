@@ -162,5 +162,5 @@ resource "aws_route53_record" "it-subdomain-test" {
   name    = "*.interactivetoolentrypoint.interactivetool.test.internal.usegalaxy.eu"
   type    = "CNAME"
   ttl     = "7200"
-  records = ["${openstack_compute_instance_v2.test-galaxy.access_ip_v4}"]
+  records = ["test.internal.usegalaxy.eu"]
 }
