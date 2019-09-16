@@ -131,16 +131,21 @@ resource "aws_route53_record" "build-usegalaxy" {
 }
 
 # Interactive Tools
+# We redirect all subdomains planning for URLs like
+# https://727a121642ce1f94-3a20d7fa7b014959af58c7f6a47d1af.interactivetoolentrypoint.interactivetool.{some-subdomain}.usegalaxy.eu/
 resource "aws_route53_record" "it-subdomain-main" {
   zone_id = "${var.zone_usegalaxy_eu}"
 
-  name = "*.interactivetoolentrypoint.interactivetool.test.usegalaxy.eu"
+  # Guess new domains won't get this for now, but whatever.
+  count = 23
+  name  = "*.interactivetoolentrypoint.interactivetool.${element(var.subdomain, count.index)}"
 
   type    = "CNAME"
   ttl     = "7200"
   records = ["usegalaxy.eu"]
 }
 
+# https://727a121642ce1f94-3a20d7fa7b014959af58c7f6a47d1af.interactivetoolentrypoint.interactivetool.test.internal.usegalaxy.eu/
 resource "aws_route53_record" "it-subdomain-test" {
   zone_id = "${var.zone_usegalaxy_eu}"
   name    = "*.interactivetoolentrypoint.interactivetool.test.internal.usegalaxy.eu"
