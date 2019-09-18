@@ -157,10 +157,10 @@ resource "aws_route53_record" "it-subdomain-main" {
 }
 
 # https://727a121642ce1f94-3a20d7fa7b014959af58c7f6a47d1af.interactivetoolentrypoint.interactivetool.test.internal.usegalaxy.eu/
-resource "aws_route53_record" "it-subdomain-test" {
-  zone_id = "${var.zone_usegalaxy_eu}"
-  name    = "*.interactivetoolentrypoint.interactivetool.test.internal.usegalaxy.eu"
-  type    = "CNAME"
-  ttl     = "600"
-  records = ["test.internal.usegalaxy.eu"]
-}
+#resource "aws_route53_record" "it-subdomain-test" {
+  #zone_id = "${var.zone_usegalaxy_eu}"
+  #name    = "*.interactivetoolentrypoint.interactivetool.test.internal.usegalaxy.eu"
+  #type    = "CNAME"
+  #ttl     = "600"
+  #records = ["test.internal.usegalaxy.eu"]
+#}
