@@ -13,6 +13,36 @@ resource "openstack_compute_instance_v2" "jenkins-workers" {
   network {
     name = "public"
   }
+
+  user_data = <<-EOF
+    #cloud-config
+    disk_setup:
+        /dev/vdb:
+        table_type: mbr
+        layout: True
+        overwrite: True
+    fs_setup:
+        - device: /dev/vdb
+          partition: 1
+          filesystem: ext4
+    mounts:
+        - ["/dev/vdb", "/data", auto, "defaults,nofail"]
+    runcmd:
+        - [ chown, "centos':'centos", -R, /data ]
+  EOF
+}
+
+resource "openstack_blockstorage_volume_v2" "jenkins-workers-volume" {
+  name        = "jenkins-workers-volume"
+  description = "Data volume for Jenkins worker-${count.index}.build.galaxyproject.eu"
+  size        = 50
+  count       = "${var.workers}"
+}
+
+resource "openstack_compute_volume_attach_v2" "jenkins-workers-va" {
+  instance_id = "${element(openstack_compute_instance_v2.jenkins-workers.*.id, count.index)}"
+  volume_id   = "${element(openstack_blockstorage_volume_v2.jenkins-workers-volume.*.id, count.index)}"
+  count       = "${var.workers}"
 }
 
 resource "aws_route53_record" "jenkins-workers" {
