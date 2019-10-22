@@ -3,7 +3,7 @@ resource "aws_route53_record" "freiburg-pulsar" {
   name    = "de01.pulsar.galaxyproject.eu"
   type    = "A"
   ttl     = "7200"
-  records = ["192.52.34.116"]
+  records = ["192.52.33.118"]
 }
 
 resource "aws_route53_record" "tuebingen-pulsar" {
