@@ -19,7 +19,7 @@ resource "aws_route53_record" "bari-pulsar" {
   name    = "it01.pulsar.galaxyproject.eu"
   type    = "A"
   ttl     = "7200"
-  records = ["90.147.75.60"]
+  records = ["90.147.75.162"]
 }
 
 resource "aws_route53_record" "brussels-pulsar" {
