@@ -43,5 +43,5 @@ resource "aws_route53_record" "freiburg-pulsar-gpu" {
   name    = "de03.pulsar.galaxyproject.eu"
   type    = "A"
   ttl     = "7200"
-  records = ["192.52.34.167"]
+  records = ["192.52.35.14"]
 }
