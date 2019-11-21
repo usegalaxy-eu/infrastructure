@@ -45,3 +45,11 @@ resource "aws_route53_record" "freiburg-pulsar-gpu" {
   ttl     = "7200"
   records = ["192.52.35.14"]
 }
+
+resource "aws_route53_record" "bari-pulsar-02" {
+  zone_id = "${var.zone_galaxyproject_eu}"
+  name    = "it02.pulsar.galaxyproject.eu"
+  type    = "A"
+  ttl     = "7200"
+  records = ["90.147.170.170"]
+}
