@@ -3,6 +3,11 @@ resource "openstack_compute_keypair_v2" "gcc2019-training" {
   public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDACHiGGJ1uhnI8+Z/y3JF9BTgTT+nFo1MQqS2EZp6g6VxyLHkzEEJZIuDRk6pTXndZLAHinn1r7hU6UOm7JAYfMnjB/74veNPuvCTPFxyFVMCYbswlNj8Tj5UMFecoA4xvTU2HXwHdY25vkyIEiqlKUDhwKezDWnXuafr4jt6Bc624F3y/+fWuQcbZXRlCssKbAltoWuSNw1YjoJPGf1Xcbl9uvAIWnBLJfJZ91NZTaGVlf4R1qyQ2G+haSpeJ7O75DK+zUoXIl8MHeYOdiaA59YZFwMNhNESrWl9Pi9JcYm10kAgEs2QWJ/CqShokgAaa9mmB8XUhSXcsJvdjh/tp"
 }
 
+resource "openstack_compute_keypair_v2" "barcelona2020-training" {
+  name       = "barcelona2020-training"
+  public_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIE1N7RiBYIMZ/iqIyUCoHcKgSkw69lNJ8Xh0HmKWvvD"
+}
+
 variable "count" {
   default = 10
 }
@@ -13,7 +18,7 @@ resource "random_pet" "training-vm" {
     image = "Ubuntu 18.04"
   }
 
-  length = 2
+  length = 3
   count  = "${var.count}"
 }
 
@@ -23,7 +28,7 @@ resource "openstack_compute_instance_v2" "training-vm" {
   flavor_name     = "m1.xlarge"
   security_groups = ["public", "public-ping", "public-web2", "egress"]
 
-  key_pair = "gcc2019training"
+  key_pair = "barcelona2020-training"
 
   network {
     name = "public"
