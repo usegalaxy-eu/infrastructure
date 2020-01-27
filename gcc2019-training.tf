@@ -5,7 +5,7 @@ resource "openstack_compute_keypair_v2" "gcc2019-training" {
 
 resource "openstack_compute_keypair_v2" "barcelona2020-training" {
   name       = "barcelona2020-training"
-  public_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIE1N7RiBYIMZ/iqIyUCoHcKgSkw69lNJ8Xh0HmKWvvD"
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDO3e46pMJJsCzldoVeuki1jAU0TTmQIkzOiMSzFIhNumOcApZzFdqfTFzr5UnW2eSneGL6j6txveFbsxGaPuy7iCFlKGvWAlHHnL1pPrE424NFEuzrXq0UpTT1FdC2VQ5mR1lcUAd+aG2psGDT8YltQ/Q1dCswsBVI4YUvyPbGDJot/awQG8IAESlJP1uPkmrbsEKMSebowY2tF6o6biTnI2EHFmYqlFE5okGTqOAhCQqiIufw+aAcKi4EYsS8VmmZsWZiyKghgBtG7etdM1hQ0N7OWA+HVS/Bs92vS38U/5L5gPXGUL9RWY93RyiBxsjQf0/NxU7gEsayBY1iyUPp barecelona-admin"
 }
 
 variable "count" {
