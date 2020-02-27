@@ -67,6 +67,15 @@ resource "aws_route53_record" "training-vm" {
   count   = "${var.count}"
 }
 
+resource "aws_route53_record" "training-vm-gxit-wildcard" {
+  zone_id = "${var.zone_galaxyproject_eu}"
+  name    = "*.interactivetoolentrypoint.interactivetool.gcc-${count.index}.training.galaxyproject.eu"
+  type    = "CNAME"
+  ttl     = "7200"
+  records = ["gcc-${count.index}.training.galaxyproject.eu"]
+  count   = "${var.count}"
+}
+
 output "gcc2019_dns" {
   value = ["${aws_route53_record.training-vm.*.name}"]
 }
