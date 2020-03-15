@@ -133,6 +133,14 @@ resource "aws_route53_record" "build-usegalaxy" {
   records = ["132.230.223.230"]
 }
 
+resource "aws_route53_record" "tmpftp-galaxyproject" {
+  zone_id = "${var.zone_galaxyproject_eu}"
+  name    = "delivery.galaxyproject.eu"
+  type    = "A"
+  ttl     = "7200"
+  records = ["192.52.37.64"]
+}
+
 # Interactive Tools
 # We redirect all subdomains planning for URLs like
 # https://727a121642ce1f94-3a20d7fa7b014959af58c7f6a47d1af.interactivetoolentrypoint.interactivetool.{some-subdomain}.usegalaxy.eu/
