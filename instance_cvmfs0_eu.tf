@@ -1,5 +1,5 @@
 resource "openstack_compute_instance_v2" "cvmfs-stratum0-eu" {
-  name            = "cvmfs0.galaxyproject.eu"
+  name            = "cvmfs-stratum0.galaxyproject.eu"
   image_name      = "generic-centos7-v31-j41-4ab83d5ffde9-master"
   flavor_name     = "m1.small"
   key_pair        = "cloud2"
