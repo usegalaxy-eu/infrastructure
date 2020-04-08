@@ -17,3 +17,4 @@ resource "aws_route53_record" "mumble-usegalaxy" {
   ttl     = "7200"
   records = ["${openstack_compute_instance_v2.mumble-usegalaxy.access_ip_v4}"]
 }
+
