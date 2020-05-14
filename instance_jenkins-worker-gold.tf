@@ -31,7 +31,7 @@ resource "openstack_compute_instance_v2" "jenkins-workers-gold" {
 }
 
 resource "openstack_blockstorage_volume_v2" "jenkins-workers-gold-volume" {
-  name        = "jenkins-workers-gold-volume"
+  name        = "jenkins-workers-${count.index}-gold-volume"
   description = "Data volume for Jenkins worker-${count.index}.gold.build.galaxyproject.eu"
   size        = "${var.workers-gold-volume-size}"
   count       = "${var.workers-gold}"
