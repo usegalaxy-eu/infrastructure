@@ -3,7 +3,7 @@ variable "workers-gold" {
 }
 
 variable "workers-gold-volume-size" {
-  default = 150
+  default = 100
 }
 
 resource "openstack_compute_instance_v2" "jenkins-workers-gold" {
