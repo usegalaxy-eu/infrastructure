@@ -1,7 +1,7 @@
 resource "openstack_compute_instance_v2" "influxdb-usegalaxy" {
   name            = "influxdb.galaxyproject.eu"
   image_name      = "${var.centos_image}"
-  flavor_name     = "m1.large"
+  flavor_name     = "m1.xlarge"
   key_pair        = "cloud2"
   security_groups = ["egress", "ufr-ssh", "public-ping", "public-influxdb", "public-web2"]
 
