@@ -1,10 +1,14 @@
+variable "test-galaxy_image" {
+  default = "generic-centos7-v31-j41-4ab83d5ffde9-master"
+}
+
 variable "test-galaxy-volume-size" {
   default = 100
 }
 
 resource "openstack_compute_instance_v2" "test-galaxy" {
   name            = "test.internal.usegalaxy.eu"
-  image_name      = "${var.centos_image_new}"
+  image_name      = "${var.test-galaxy_image}"
   flavor_name     = "m1.large"
   key_pair        = "cloud2"
   security_groups = ["egress", "public-web2", "ufr-ingress", "public-ping"]
