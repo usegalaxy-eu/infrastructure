@@ -1,5 +1,5 @@
 variable "count" {
-  default = 0
+  default = 60
 }
 
 resource "random_pet" "training-vm" {
@@ -68,4 +68,31 @@ resource "aws_route53_record" "training-vm-gxit-wildcard" {
 
 output "training_dns" {
   value = ["${aws_route53_record.training-vm.*.name}"]
+}
+
+
+# Just for testing on centos as well and ensuring someone is testing.
+resource "openstack_compute_instance_v2" "training-vm-centos" {
+  name            = "c8.gat-${count.index}.training.galaxyproject.eu"
+  image_name      = "CentOS 8"
+  flavor_name     = "m1.xlarge"
+  security_groups = ["public", "public-ping", "public-web2", "egress"]
+
+  key_pair = "cloud2"
+
+  network {
+    name = "public"
+  }
+}
+resource "openstack_compute_instance_v2" "training-vm-centos" {
+  name            = "c7.gat-${count.index}.training.galaxyproject.eu"
+  image_name      = "CentOS 7"
+  flavor_name     = "m1.xlarge"
+  security_groups = ["public", "public-ping", "public-web2", "egress"]
+
+  key_pair = "cloud2"
+
+  network {
+    name = "public"
+  }
 }
