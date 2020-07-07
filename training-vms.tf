@@ -1,5 +1,5 @@
 variable "count" {
-  default = 35
+  default = 36
 }
 
 # Random passwords for the VMs, easier to type/remember for the non-ssh key
