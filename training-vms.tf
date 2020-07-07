@@ -1,5 +1,5 @@
 variable "count" {
-  default = 60
+  default = 40
 }
 
 resource "random_pet" "training-vm" {
@@ -57,14 +57,15 @@ resource "aws_route53_record" "training-vm" {
   count   = "${var.count}"
 }
 
-resource "aws_route53_record" "training-vm-gxit-wildcard" {
-  zone_id = "${var.zone_galaxyproject_eu}"
-  name    = "*.interactivetoolentrypoint.interactivetool.gat-${count.index}.training.galaxyproject.eu"
-  type    = "CNAME"
-  ttl     = "7200"
-  records = ["gat-${count.index}.training.galaxyproject.eu"]
-  count   = "${var.count}"
-}
+# Only for the REAL gat.
+#resource "aws_route53_record" "training-vm-gxit-wildcard" {
+  #zone_id = "${var.zone_galaxyproject_eu}"
+  #name    = "*.interactivetoolentrypoint.interactivetool.gat-${count.index}.training.galaxyproject.eu"
+  #type    = "CNAME"
+  #ttl     = "7200"
+  #records = ["gat-${count.index}.training.galaxyproject.eu"]
+  #count   = "${var.count}"
+#}
 
 output "training_dns" {
   value = ["${aws_route53_record.training-vm.*.name}"]
