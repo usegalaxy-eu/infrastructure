@@ -70,7 +70,6 @@ output "training_dns" {
   value = ["${aws_route53_record.training-vm.*.name}"]
 }
 
-
 # Just for testing on centos as well and ensuring someone is testing.
 resource "openstack_compute_instance_v2" "training-vm-centos" {
   name            = "c8.gat-${count.index}.training.galaxyproject.eu"
@@ -84,7 +83,8 @@ resource "openstack_compute_instance_v2" "training-vm-centos" {
     name = "public"
   }
 }
-resource "openstack_compute_instance_v2" "training-vm-centos" {
+
+resource "openstack_compute_instance_v2" "training-vm-centos7" {
   name            = "c7.gat-${count.index}.training.galaxyproject.eu"
   image_name      = "CentOS 7"
   flavor_name     = "m1.xlarge"
