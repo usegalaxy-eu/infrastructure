@@ -198,4 +198,3 @@ resource "aws_route53_record" "training-vm-oz-24" {
   ttl     = "7200"
   records = ["203.101.228.98"]
 }
-
