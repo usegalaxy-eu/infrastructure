@@ -198,3 +198,83 @@ resource "aws_route53_record" "training-vm-oz-24" {
   ttl     = "7200"
   records = ["203.101.228.98"]
 }
+
+resource "aws_route53_record" "training-vm-oz-25" {
+  zone_id = "${var.zone_galaxyproject_eu}"
+  name    = "gat-oz-25.training.galaxyproject.eu"
+  type    = "A"
+  ttl     = "7200"
+  records = ["203.101.228.0"]
+}
+
+resource "aws_route53_record" "training-vm-oz-26" {
+  zone_id = "${var.zone_galaxyproject_eu}"
+  name    = "gat-oz-26.training.galaxyproject.eu"
+  type    = "A"
+  ttl     = "7200"
+  records = ["115.146.86.209"]
+}
+
+resource "aws_route53_record" "training-vm-oz-27" {
+  zone_id = "${var.zone_galaxyproject_eu}"
+  name    = "gat-oz-27.training.galaxyproject.eu"
+  type    = "A"
+  ttl     = "7200"
+  records = ["130.216.216.234"]
+}
+
+resource "aws_route53_record" "training-vm-oz-28" {
+  zone_id = "${var.zone_galaxyproject_eu}"
+  name    = "gat-oz-28.training.galaxyproject.eu"
+  type    = "A"
+  ttl     = "7200"
+  records = ["144.6.228.38"]
+}
+
+resource "aws_route53_record" "training-vm-oz-29" {
+  zone_id = "${var.zone_galaxyproject_eu}"
+  name    = "gat-oz-29.training.galaxyproject.eu"
+  type    = "A"
+  ttl     = "7200"
+  records = ["144.6.227.186"]
+}
+
+resource "aws_route53_record" "training-vm-oz-30" {
+  zone_id = "${var.zone_galaxyproject_eu}"
+  name    = "gat-oz-30.training.galaxyproject.eu"
+  type    = "A"
+  ttl     = "7200"
+  records = ["144.6.230.66"]
+}
+
+resource "aws_route53_record" "training-vm-oz-31" {
+  zone_id = "${var.zone_galaxyproject_eu}"
+  name    = "gat-oz-31.training.galaxyproject.eu"
+  type    = "A"
+  ttl     = "7200"
+  records = ["144.6.230.193"]
+}
+
+resource "aws_route53_record" "training-vm-oz-32" {
+  zone_id = "${var.zone_galaxyproject_eu}"
+  name    = "gat-oz-32.training.galaxyproject.eu"
+  type    = "A"
+  ttl     = "7200"
+  records = ["115.146.87.180"]
+}
+
+resource "aws_route53_record" "training-vm-oz-33" {
+  zone_id = "${var.zone_galaxyproject_eu}"
+  name    = "gat-oz-33.training.galaxyproject.eu"
+  type    = "A"
+  ttl     = "7200"
+  records = ["115.146.87.213"]
+}
+
+resource "aws_route53_record" "training-vm-oz-34" {
+  zone_id = "${var.zone_galaxyproject_eu}"
+  name    = "gat-oz-34.training.galaxyproject.eu"
+  type    = "A"
+  ttl     = "7200"
+  records = ["115.146.85.183"]
+}
