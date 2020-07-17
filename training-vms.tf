@@ -47,7 +47,7 @@ resource "aws_route53_record" "training-vm" {
   zone_id = "${var.zone_galaxyproject_eu}"
   name    = "gat-${count.index}.training.galaxyproject.eu"
   type    = "A"
-  ttl     = "7200"
+  ttl     = "900"
   records = ["${element(openstack_compute_instance_v2.training-vm.*.access_ip_v4, count.index)}"]
   count   = "${var.count}"
 }
@@ -57,7 +57,7 @@ resource "aws_route53_record" "training-vm" {
 #zone_id = "${var.zone_galaxyproject_eu}"
 #name    = "*.interactivetoolentrypoint.interactivetool.gat-${count.index}.training.galaxyproject.eu"
 #type    = "CNAME"
-#ttl     = "7200"
+#ttl     = "900"
 #records = ["gat-${count.index}.training.galaxyproject.eu"]
 #count   = "${var.count}"
 #}
