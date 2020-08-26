@@ -1,5 +1,5 @@
 variable "test-galaxy_image" {
-  default = "generic-centos7-v31-j41-4ab83d5ffde9-master"
+  default = "CentOS 8"
 }
 
 variable "test-galaxy-volume-size" {
