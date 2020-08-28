@@ -135,6 +135,14 @@ resource "aws_route53_record" "build-usegalaxy" {
   records = ["132.230.223.230"]
 }
 
+resource "aws_route53_record" "sn06-galaxyproject" {
+  zone_id = "${var.zone_galaxyproject_eu}"
+  name    = "sn06.galaxyproject.eu"
+  type    = "A"
+  ttl     = "7200"
+  records = ["132.230.223.239"]
+}
+
 resource "aws_route53_record" "tmpftp-galaxyproject" {
   zone_id = "${var.zone_galaxyproject_eu}"
   name    = "delivery.galaxyproject.eu"
