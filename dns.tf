@@ -151,6 +151,14 @@ resource "aws_route53_record" "sn06-galaxyproject" {
   records = ["132.230.223.239"]
 }
 
+resource "aws_route53_record" "sn05-galaxyproject" {
+  zone_id = "${var.zone_galaxyproject_eu}"
+  name    = "sn05.galaxyproject.eu"
+  type    = "A"
+  ttl     = "7200"
+  records = ["10.5.68.4"]
+}
+
 resource "aws_route53_record" "tmpftp-galaxyproject" {
   zone_id = "${var.zone_galaxyproject_eu}"
   name    = "delivery.galaxyproject.eu"
