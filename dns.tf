@@ -127,14 +127,6 @@ resource "aws_route53_record" "vgcn-cm" {
   records = ["10.5.68.230"]
 }
 
-resource "aws_route53_record" "cm-galaxyproject" {
-  zone_id = "${var.zone_galaxyproject_eu}"
-  name    = "central-manager.galaxyproject.eu"
-  type    = "A"
-  ttl     = "300"
-  records = ["10.5.68.172"]
-}
-
 resource "aws_route53_record" "build-usegalaxy" {
   zone_id = "${var.zone_galaxyproject_eu}"
   name    = "build.galaxyproject.eu"
@@ -157,6 +149,14 @@ resource "aws_route53_record" "sn05-galaxyproject" {
   type    = "A"
   ttl     = "7200"
   records = ["10.5.68.4"]
+}
+
+resource "aws_route53_record" "cm-galaxyproject" {
+  zone_id = "${var.zone_galaxyproject_eu}"
+  name    = "condor-cm.galaxyproject.eu"
+  type    = "CNAME"
+  ttl     = "86400"
+  records = ["sn05.galaxyproject.eu"]
 }
 
 resource "aws_route53_record" "tmpftp-galaxyproject" {
