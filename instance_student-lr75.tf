@@ -43,13 +43,13 @@ resource "openstack_compute_instance_v2" "student-lr75" {
         overwrite: True
     fs_setup:
      - label: None
-       filesystem: xfs
+       filesystem: ext4
        device: /dev/vdb
        partition: auto
     runcmd:
      - mkdir /scratch
     mounts:
-     - [ /dev/vdb1, /scratch, xfs, "defaults", "0", "2" ]
+     - [ /dev/vdb1, /scratch, ext4, "defaults", "0", "2" ]
   EOF
 
 }
