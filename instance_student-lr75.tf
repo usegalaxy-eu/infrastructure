@@ -9,7 +9,7 @@ resource "openstack_compute_keypair_v2" "student-lr75-keypair" {
 
 resource "openstack_compute_instance_v2" "student-lr75" {
   name            = "student-lr75"
-  image_name      = "${data.openstack_images_image_v2.student-lr75-image.id}"
+  image_id      = "${data.openstack_images_image_v2.student-lr75-image.id}"
   flavor_name     = "m1.medium"
   key_pair        = "student-lr75"
   security_groups = ["default", "public-ssh"]
