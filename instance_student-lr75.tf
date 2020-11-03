@@ -41,10 +41,11 @@ resource "openstack_compute_instance_v2" "student-lr75" {
        filesystem: ext4
        device: /dev/vdb
        partition: none
-    runcmd:
-     - mkdir /scratch
     mounts:
      - [ /dev/vdb, /scratch, ext4, "defaults", "0", "2" ]
+    runcmd:
+     - mkdir -p /scratch/users
+     - chmod 0777 /scratch/users
     package_update: true
     package_upgrade: true
     users:
