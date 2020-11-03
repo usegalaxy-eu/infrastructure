@@ -48,6 +48,7 @@ resource "openstack_compute_instance_v2" "student-lr75" {
     package_update: true
     package_upgrade: true
     users:
+     - default
      - name: user
        primary_group: user
        lock_passwd: true
