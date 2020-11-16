@@ -17,7 +17,7 @@ resource "random_pet" "training-vm" {
 # The VMs themselves.
 resource "openstack_compute_instance_v2" "training-vm" {
   name            = "gat-${count.index}.training.galaxyproject.eu"
-  image_name      = "Ubuntu 18.04"
+  image_name      = "Ubuntu 20.04"
   flavor_name     = "m1.xlarge"
   security_groups = ["public", "public-ping", "public-web2", "egress", "public-gat"]
 
