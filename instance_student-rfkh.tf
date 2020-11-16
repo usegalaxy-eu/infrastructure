@@ -31,6 +31,9 @@ resource "openstack_compute_instance_v2" "student-rfkh" {
 
   user_data = <<-EOF
     #cloud-config
+    packages:
+     - cuda-10-1
+     - nvidia-container-toolkit
     disk_setup:
       /dev/vdb:
         table_type: mbr
@@ -65,5 +68,5 @@ resource "random_id" "student-rfkh-volume_name_unique" {
 
 resource "openstack_blockstorage_volume_v2" "student-rfkh-vol" {
   name = "student-rfkh-scratch-vol-${random_id.student-rfkh-volume_name_unique.hex}"
-  size = 100
+  size = 500
 }
