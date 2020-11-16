@@ -1,5 +1,5 @@
 variable "count" {
-  default = 0
+  default = 10
 }
 
 # Random passwords for the VMs, easier to type/remember for the non-ssh key
@@ -7,7 +7,7 @@ variable "count" {
 resource "random_pet" "training-vm" {
   keepers = {
     count = "${count.index}"
-    image = "Ubuntu 18.04"
+    image = "Ubuntu 20.04"
   }
 
   length = 2
