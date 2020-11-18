@@ -10,8 +10,8 @@ variable "image" {
 # users.
 resource "random_pet" "training-vm-fr" {
   keepers = {
-    count = "${count.index}"
-    image = "${var.image}"
+    count  = "${count.index}"
+    image  = "${var.image}"
     region = "fr"
   }
 
