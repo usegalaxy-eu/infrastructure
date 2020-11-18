@@ -2,12 +2,16 @@ variable "count" {
   default = 10
 }
 
+variable "image" {
+  default = "Ubuntu 20.04"
+}
+
 # Random passwords for the VMs, easier to type/remember for the non-ssh key
 # users.
 resource "random_pet" "training-vm" {
   keepers = {
     count = "${count.index}"
-    image = "Ubuntu 20.04"
+    image = "${var.image}"
   }
 
   length = 2
@@ -17,7 +21,7 @@ resource "random_pet" "training-vm" {
 # The VMs themselves.
 resource "openstack_compute_instance_v2" "training-vm" {
   name            = "gat-${count.index}.training.galaxyproject.eu"
-  image_name      = "Ubuntu 20.04"
+  image_name      = "${var.image}"
   flavor_name     = "m1.xlarge"
   security_groups = ["public", "public-ping", "public-web2", "egress", "public-gat"]
 
@@ -54,12 +58,12 @@ resource "aws_route53_record" "training-vm" {
 
 # Only for the REAL gat.
 #resource "aws_route53_record" "training-vm-gxit-wildcard" {
-#zone_id = "${var.zone_galaxyproject_eu}"
-#name    = "*.interactivetoolentrypoint.interactivetool.gat-${count.index}.training.galaxyproject.eu"
-#type    = "CNAME"
-#ttl     = "900"
-#records = ["gat-${count.index}.training.galaxyproject.eu"]
-#count   = "${var.count}"
+#  zone_id = "${var.zone_galaxyproject_eu}"
+#  name    = "*.interactivetoolentrypoint.interactivetool.gat-${count.index}.training.galaxyproject.eu"
+#  type    = "CNAME"
+#  ttl     = "900"
+#  records = ["gat-${count.index}.training.galaxyproject.eu"]
+#  count   = "${var.count}"
 #}
 
 # Outputs to be consumed by admins
