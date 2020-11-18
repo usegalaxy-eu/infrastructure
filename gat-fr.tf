@@ -53,7 +53,7 @@ resource "aws_route53_record" "training-vm-fr" {
   name    = "gat-${count.index}.fr.training.galaxyproject.eu"
   type    = "A"
   ttl     = "900"
-  records = ["${element(openstack_compute_instance_v2.training-vm.*.access_ip_v4, count.index)}"]
+  records = ["${element(openstack_compute_instance_v2.training-vm-fr.*.access_ip_v4, count.index)}"]
   count   = "${var.count-fr}"
 }
 
