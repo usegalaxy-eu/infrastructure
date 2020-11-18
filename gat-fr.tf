@@ -2,7 +2,7 @@ variable "count-fr" {
   default = 25
 }
 
-variable "image" {
+variable "gat-image-fr" {
   default = "Ubuntu 20.04"
 }
 
@@ -11,7 +11,7 @@ variable "image" {
 resource "random_pet" "training-vm-fr" {
   keepers = {
     count  = "${count.index}"
-    image  = "${var.image}"
+    image  = "${var.gat-image-fr}"
     region = "fr"
   }
 
@@ -22,7 +22,7 @@ resource "random_pet" "training-vm-fr" {
 # The VMs themselves.
 resource "openstack_compute_instance_v2" "training-vm-fr" {
   name            = "gat-${count.index}.fr.training.galaxyproject.eu"
-  image_name      = "${var.image}"
+  image_name      = "${var.gat-image-fr}"
   flavor_name     = "m1.xlarge"
   security_groups = ["public", "public-ping", "public-web2", "egress", "public-gat"]
 
