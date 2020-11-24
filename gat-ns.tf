@@ -31,6 +31,7 @@ output "gat-iam-key-access" {
   value     = ["${aws_iam_access_key.training-gxp-eu.*.id}"]
   sensitive = true
 }
+
 output "gat-iam-key-secret" {
   value     = ["${aws_iam_access_key.training-gxp-eu.*.secret}"]
   sensitive = true
@@ -79,6 +80,7 @@ EOF
 
 # Attach policy to user
 resource "aws_iam_user_policy_attachment" "training-subdomain-access-gxp-eu" {
-  user       = "${aws_iam_user.training-gxp-eu.name}"
+  user       = "${element(aws_iam_user.training-gxp-eu.*.name, count.index)}"
   policy_arn = "${aws_iam_policy.training-subdomain-access.arn}"
+  count      = "${var.count-iam-tokens}"
 }
