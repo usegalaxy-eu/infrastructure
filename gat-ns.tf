@@ -26,6 +26,11 @@ resource "aws_iam_access_key" "training-gxp-eu" {
 count = "${var.count-iam-tokens}"
 }
 
+# Output
+output "gat-iam-keys" {
+  value = "${aws_iam_access_key.training-gxp-eu.id} ${aws_iam_access_key.training-gxp-eu.secret}"
+}
+
 # And the user
 resource "aws_iam_user" "training-gxp-eu" {
   name = "training.galaxyproject.eu@${count.index}"
