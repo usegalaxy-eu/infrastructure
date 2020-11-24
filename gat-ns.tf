@@ -1,5 +1,5 @@
 data "aws_route53_zone" "gxp-eu" {
-  name         = "galaxyproject.eu."
+  zone_id = "${var.zone_galaxyproject_eu}"
 }
 
 resource "aws_route53_zone" "training-gxp-eu" {
@@ -11,5 +11,5 @@ resource "aws_route53_record" "ns-training-gxp-eu" {
   name    = "training.galaxyproject.eu"
   type    = "NS"
   ttl     = "3600"
-  records = "${aws_route53_zone.training-gxp-eu.name_servers}"
+  records = ["${aws_route53_zone.training-gxp-eu.name_servers}"]
 }
