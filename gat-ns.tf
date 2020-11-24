@@ -16,15 +16,21 @@ resource "aws_route53_record" "ns-training-gxp-eu" {
   records = ["${aws_route53_zone.training-gxp-eu.name_servers}"]
 }
 
+variable "count-iam-tokens" {
+  default = 2
+}
+
 # Setup an IAM key
 resource "aws_iam_access_key" "training-gxp-eu" {
   user = "${aws_iam_user.training-gxp-eu.name}"
+count = "${var.count-iam-tokens}"
 }
 
 # And the user
 resource "aws_iam_user" "training-gxp-eu" {
-  name = "training.galaxyproject.eu"
+  name = "training.galaxyproject.eu@${count.index}"
   path = "/"
+count = "${var.count-iam-tokens}"
 }
 
 # And setup their policy
