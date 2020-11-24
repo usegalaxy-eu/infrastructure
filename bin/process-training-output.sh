@@ -9,4 +9,4 @@ dns="$(terraform output -json | jq -r '."training_dns'$DOMAIN'".value[]')"
 lines=$(echo "$ips" | wc -l)
 user="$(yes ubuntu | head -n $lines)"
 
-paste <(echo "$user") <(echo "$dns") <(echo "$passwords")
+paste <(echo "$user") <(echo "$ips") <(echo "$dns") <(echo "$passwords")
