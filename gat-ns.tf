@@ -22,20 +22,21 @@ variable "count-iam-tokens" {
 
 # Setup an IAM key
 resource "aws_iam_access_key" "training-gxp-eu" {
-  user = "${aws_iam_user.training-gxp-eu.name}"
-count = "${var.count-iam-tokens}"
+  user  = "${aws_iam_user.training-gxp-eu.name}"
+  count = "${var.count-iam-tokens}"
 }
 
 # Output
 output "gat-iam-keys" {
-  value = "${aws_iam_access_key.training-gxp-eu.id} ${aws_iam_access_key.training-gxp-eu.secret}"
+  value     = ["${aws_iam_access_key.training-gxp-eu.*.id} ${aws_iam_access_key.training-gxp-eu.*.secret}"]
+  sensitive = true
 }
 
 # And the user
 resource "aws_iam_user" "training-gxp-eu" {
-  name = "training.galaxyproject.eu@${count.index}"
-  path = "/"
-count = "${var.count-iam-tokens}"
+  name  = "training.galaxyproject.eu@${count.index}"
+  path  = "/"
+  count = "${var.count-iam-tokens}"
 }
 
 # And setup their policy
