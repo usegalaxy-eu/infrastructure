@@ -52,7 +52,7 @@ resource "aws_iam_user_policy" "training-subdomain-access" {
                 "route53:ChangeResourceRecordSets"
             ],
             "Resource": [
-                "arn:aws:route53:::hostedzone/${aws_route53_zone.training-gxp-eu.zone_id}",
+                "arn:aws:route53:::hostedzone/${aws_route53_zone.training-gxp-eu.zone_id}"
             ]
         }
     ]
