@@ -49,7 +49,7 @@ resource "openstack_compute_instance_v2" "training-vm-fr" {
 
 # Setup a DNS record for the VMs to make access easier (and https possible.)
 resource "aws_route53_record" "training-vm-fr" {
-  zone_id = "${var.zone_galaxyproject_eu}"
+  zone_id = "${aws_route53_zone.training-gxp-eu.zone_id}"
   name    = "gat-${count.index}.fr.training.galaxyproject.eu"
   type    = "A"
   ttl     = "900"
@@ -59,7 +59,7 @@ resource "aws_route53_record" "training-vm-fr" {
 
 # Only for the REAL gat.
 resource "aws_route53_record" "training-vm-gxit-wildcard" {
-  zone_id = "${var.zone_galaxyproject_eu}"
+  zone_id = "${aws_route53_zone.training-gxp-eu.zone_id}"
   name    = "*.interactivetoolentrypoint.interactivetool.gat-${count.index}.fr.training.galaxyproject.eu"
   type    = "CNAME"
   ttl     = "900"
