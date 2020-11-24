@@ -22,8 +22,9 @@ variable "count-iam-tokens" {
 
 # Setup an IAM key
 resource "aws_iam_access_key" "training-gxp-eu" {
-  user  = "${element(aws_iam_user.training-gxp-eu.*.name, count.index)}"
-  count = "${var.count-iam-tokens}"
+  user    = "${element(aws_iam_user.training-gxp-eu.*.name, count.index)}"
+  count   = "${var.count-iam-tokens}"
+  pgp_key = "${file("gpg.pubkey")}"
 }
 
 # Output
