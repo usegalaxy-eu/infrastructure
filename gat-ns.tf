@@ -34,7 +34,7 @@ output "gat-iam-key-access" {
 }
 
 output "gat-iam-key-secret" {
-  value     = ["${aws_iam_access_key.training-gxp-eu.*.secret}"]
+  value     = ["${aws_iam_access_key.training-gxp-eu.*.encrypted_secret}"]
   sensitive = true
 }
 
