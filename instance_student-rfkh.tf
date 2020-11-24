@@ -4,7 +4,7 @@ data "openstack_images_image_v2" "student-rfkh-image" {
 
 resource "openstack_compute_instance_v2" "student-rfkh" {
   name            = "student-rfkh"
-  image_id      = "${data.openstack_images_image_v2.student-rfkh-image.id}"
+  image_id        = "${data.openstack_images_image_v2.student-rfkh-image.id}"
   flavor_name     = "g1.n46_g1c8m20"
   key_pair        = "cloud2"
   security_groups = ["default", "public-ssh"]
@@ -59,7 +59,6 @@ resource "openstack_compute_instance_v2" "student-rfkh" {
        ssh_authorized_keys:
          - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC5ZMgq9AQgVOQDqQGJn/PYtUC08IAYxjl81i77xCyVeiJO2s6+rPLCFMhEC00xK/eo6E/VEXw4LOAA/ubzN0Et08ablvPl7+hYU+AvqECRlLmq43sPdN9Mk52kHFUFw0Zex8b7T8ZG4mUeqgQggUZre+k9TD5xu3n3mywcThGK5h+bFRVtpU+2pKPwG+XA0D2iKJkf0A5eV1zdzFmKpfzwnHQuV1TNvxl+uBi3WFC6koss4Q7ozlmIFq5J6V1GtFMpnMXAvwDQqLKdPWbOwU9slSdute9/4UPSnVy7hzGIeioKkepi/y9kYjaiiQoOzhaaru0o7gFBT+S90ZS02OYcCsBBt+rASDLRhCny6ZA0QAfBwNo6rD3ek5Ys0x1CC70JJ11QbeGWheRrRCuUvfI3GzXHC5+bWTBT6X+ndusKfPvCYjCwvIbT1NUb76T4Cxnbb/rwKtZIcnRnmF4ecr/jTfMiYi7YAgkOHggTI+K6KI9g7N8h/h7iSNPCXEOb2BYfeeVT81q2nyNI0AcV3NvQr8RGriFCXgi58f/ReujvxVkDFzLUE1JjV5FKSvUlZfBEYvXmoroCLZ9NkIKIf69mojnVbhXdStrYa4vOvuNY1jnzIAbWIW4OpQ/X+xfPHo1pyLZ+7Mjo60HCm+rV5izdsXRjtcvE4VbySgV2KNJl1w=="
   EOF
-
 }
 
 resource "random_id" "student-rfkh-volume_name_unique" {

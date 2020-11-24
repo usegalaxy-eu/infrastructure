@@ -18,7 +18,7 @@ resource "aws_route53_record" "ns-training-gxp-eu" {
 
 # Setup an IAM key
 resource "aws_iam_access_key" "training-gxp-eu" {
-  user    = "${aws_iam_user.training-gxp-eu.name}"
+  user = "${aws_iam_user.training-gxp-eu.name}"
 }
 
 # And the user
@@ -28,9 +28,10 @@ resource "aws_iam_user" "training-gxp-eu" {
 }
 
 # And setup their policy
-resource "aws_iam_user_policy" "training-subdomain-access" {
-  name = "training-subdomain-access"
-  user = "${aws_iam_user.training-gxp-eu.name}"
+resource "aws_iam_policy" "training-subdomain-access" {
+  name        = "training-subdomain-access"
+  path        = "/"
+  description = "Permit training keys to access the training.galaxyproject.eu subdomain"
 
   policy = <<EOF
 {
@@ -58,4 +59,10 @@ resource "aws_iam_user_policy" "training-subdomain-access" {
     ]
 }
 EOF
+}
+
+# Attach policy to user
+resource "aws_iam_user_policy_attachment" "training-subdomain-access-gxp-eu" {
+  user       = "${aws_iam_user.training-gxp-eu.name}"
+  policy_arn = "${aws_iam_policy.training-subdomain-access.arn}"
 }
