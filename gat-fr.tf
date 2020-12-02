@@ -1,5 +1,5 @@
 variable "count-fr" {
-  default = 25
+  default = 28
 }
 
 variable "gat-image-fr" {
