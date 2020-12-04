@@ -17,11 +17,11 @@ resource "openstack_compute_instance_v2" "plausible" {
     #cloud-config
     bootcmd:
         - test -z "$(blkid /dev/vdb)" && mkfs -t ext4 /dev/vdb
-        - mkdir -p /opt/galaxy
+        - mkdir -p /data
     mounts:
-        - ["/dev/vdb", "/opt/galaxy", auto, "defaults,nofail", "0", "2"]
+        - ["/dev/vdb", "/data", auto, "defaults,nofail", "0", "2"]
     runcmd:
-        - [ chown, "centos.centos", -R, /opt/galaxy ]
+        - [ chown, "centos.centos", -R, /data ]
   EOF
 }
 
