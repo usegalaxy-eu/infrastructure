@@ -7,10 +7,10 @@ resource "openstack_compute_instance_v2" "plausible" {
   image_name      = "CentOS 8"
   flavor_name     = "m1.large"
   key_pair        = "cloud2"
-  security_groups = ["egress", "public-web2", "ufr-ingress", "public-ping"]
+  security_groups = "${var.sg_webservice-pubssh}"
 
   network {
-    name = "bioinf"
+    name = "public"
   }
 
   user_data = <<-EOF
