@@ -37,7 +37,7 @@ resource "openstack_compute_volume_attach_v2" "plausible-internal-va" {
 }
 
 resource "aws_route53_record" "plausible" {
-  zone_id = "${var.zone_usegalaxy_eu}"
+  zone_id = "${var.zone_galaxyproject_eu}"
   name    = "${var.plausible-dns}"
   type    = "A"
   ttl     = "600"
