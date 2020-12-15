@@ -46,7 +46,6 @@ variable "subdomain" {
     "climate.usegalaxy.eu",
     "nanopore.usegalaxy.eu",
     "metabolomics.usegalaxy.eu",
-    "microbiome.usegalaxy.eu",
     "humancellatlas.usegalaxy.eu",
     "annotation.usegalaxy.eu",
     "erasmusmc.usegalaxy.eu",
@@ -57,6 +56,7 @@ variable "subdomain" {
     "virology.usegalaxy.eu",
     "covid19.usegalaxy.eu",
     "africa.usegalaxy.eu",
+    "microbiome.usegalaxy.eu"
   ]
 }
 
