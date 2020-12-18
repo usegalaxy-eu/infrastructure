@@ -23,7 +23,7 @@ resource "openstack_compute_instance_v2" "training-vm" {
   name            = "gat-${count.index}.training.galaxyproject.eu"
   image_name      = "${var.image}"
   flavor_name     = "m1.xlarge"
-  security_groups = ["public", "public-ping", "public-web2", "egress", "public-gat"]
+  security_groups = ["public", "public-ping", "public-web2", "egress", "public-gat", "public-amqp"]
 
   key_pair = "cloud2"
 
