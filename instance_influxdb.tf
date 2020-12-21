@@ -6,7 +6,7 @@ resource "openstack_compute_instance_v2" "influxdb-usegalaxy" {
   security_groups = ["egress", "ufr-ssh", "public-ping", "public-influxdb", "public-web2"]
 
   network {
-    name = "public"
+    name = "public-extended"
   }
 }
 
