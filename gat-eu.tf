@@ -22,7 +22,8 @@ resource "random_pet" "training-vm-eu" {
 # The VMs themselves.
 resource "openstack_compute_instance_v2" "training-vm-eu" {
   name            = "gat-${count.index}.eu.training.galaxyproject.eu"
-  image_id        = "${data.openstack_images_image_v2.gat-image-eu.id}"
+  # Not required when booting from volume
+  # image_id        = "${data.openstack_images_image_v2.gat-image-eu.id}"
   flavor_name     = "m1.xlarge"
   security_groups = ["public", "public-ping", "public-web2", "egress", "public-gat", "public-amqp"]
 
