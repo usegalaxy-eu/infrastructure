@@ -1,9 +1,9 @@
-variable "count-eu" {
+variable "gat-count-eu" {
   default = 1
 }
 
-variable "gat-image-eu" {
-  default = "Ubuntu 20.04"
+data "openstack_images_image_v2" "gat-image-eu" {
+  name = "Ubuntu 20.04"
 }
 
 # Random passwords for the VMs, easier to type/remember for the non-ssh key
@@ -16,13 +16,20 @@ resource "random_pet" "training-vm-eu" {
   }
 
   length = 2
-  count  = "${var.count-eu}"
+  count  = "${var.gat-count-eu}"
+}
+
+# A Volume for extra storage
+resource "openstack_blockstorage_volume_v2" "gat-eu" {
+  name  = "gat-eu-${count.index}"
+  size  = 50
+  count = "${var.gat-count-eu}"
 }
 
 # The VMs themselves.
 resource "openstack_compute_instance_v2" "training-vm-eu" {
   name            = "gat-${count.index}.eu.training.galaxyproject.eu"
-  image_name      = "${var.gat-image-eu}"
+  image_id        = "${data.openstack_images_image_v2.gat-image-eu.id}"
   flavor_name     = "m1.xlarge"
   security_groups = ["public", "public-ping", "public-web2", "egress", "public-gat"]
 
@@ -30,6 +37,22 @@ resource "openstack_compute_instance_v2" "training-vm-eu" {
 
   network {
     name = "public"
+  }
+
+  block_device {
+    uuid                  = "${data.openstack_images_image_v2.gat-image-eu.id}"
+    source_type           = "image"
+    destination_type      = "local"
+    boot_index            = 0
+    delete_on_termination = true
+  }
+
+  block_device {
+    uuid                  = "${openstack_blockstorage_volume_v2.student-lr75-vol.id}"
+    source_type           = "volume"
+    destination_type      = "volume"
+    boot_index            = -1
+    delete_on_termination = true
   }
 
   # Update user password
@@ -44,7 +67,7 @@ resource "openstack_compute_instance_v2" "training-vm-eu" {
      - [ systemctl, restart, ssh ]
   EOF
 
-  count = "${var.count-eu}"
+  count = "${var.gat-count-eu}"
 }
 
 # Setup a DNS record for the VMs to make access easier (and https possible.)
@@ -54,7 +77,7 @@ resource "aws_route53_record" "training-vm-eu" {
   type    = "A"
   ttl     = "900"
   records = ["${element(openstack_compute_instance_v2.training-vm-eu.*.access_ip_v4, count.index)}"]
-  count   = "${var.count-eu}"
+  count   = "${var.gat-count-eu}"
 }
 
 # # Only for the REAL gat.
@@ -64,7 +87,7 @@ resource "aws_route53_record" "training-vm-eu" {
 #   type    = "CNAME"
 #   ttl     = "900"
 #   records = ["gat-${count.index}.eu.training.galaxyproject.eu"]
-#   count   = "${var.count-eu}"
+#   count   = "${var.gat-count-eu}"
 # }
 
 # Outputs to be consumed by admins
