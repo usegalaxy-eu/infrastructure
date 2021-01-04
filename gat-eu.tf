@@ -33,7 +33,7 @@ resource "openstack_compute_instance_v2" "training-vm-eu" {
   }
 
   block_device {
-    uuid                  = "${data.openstack_images_image_v2.gat-image.id}"
+    uuid                  = "${data.openstack_images_image_v2.gat-image-eu.id}"
     source_type           = "image"
     volume_size           = 40
     destination_type      = "volume"
