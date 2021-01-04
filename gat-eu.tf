@@ -10,7 +10,6 @@ data "openstack_images_image_v2" "gat-image-eu" {
 # users.
 resource "random_pet" "training-vm-eu" {
   keepers = {
-    count  = "${count.index}"
     image  = "${data.openstack_images_image_v2.gat-image-eu.id}"
     region = "eu"
   }
