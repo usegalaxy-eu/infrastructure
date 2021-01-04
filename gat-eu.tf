@@ -1,0 +1,82 @@
+variable "count-eu" {
+  default = 1
+}
+
+variable "gat-image-eu" {
+  default = "Ubuntu 20.04"
+}
+
+# Random passwords for the VMs, easier to type/remember for the non-ssh key
+# users.
+resource "random_pet" "training-vm-eu" {
+  keepers = {
+    count  = "${count.index}"
+    image  = "${var.gat-image-eu}"
+    region = "eu"
+  }
+
+  length = 2
+  count  = "${var.count-eu}"
+}
+
+# The VMs themselves.
+resource "openstack_compute_instance_v2" "training-vm-eu" {
+  name            = "gat-${count.index}.eu.training.galaxyproject.eu"
+  image_name      = "${var.gat-image-eu}"
+  flavor_name     = "m1.xlarge"
+  security_groups = ["public", "public-ping", "public-web2", "egress", "public-gat"]
+
+  key_pair = "cloud2"
+
+  network {
+    name = "public"
+  }
+
+  # Update user password
+  user_data = <<-EOF
+    #cloud-config
+    chpasswd:
+      list: |
+        ubuntu:${element(random_pet.training-vm-eu.*.id, count.index)}
+      expire: False
+    runcmd:
+     - [ sed, -i, s/PasswordAuthentication no/PasswordAuthentication yes/, /etc/ssh/sshd_config ]
+     - [ systemctl, restart, ssh ]
+  EOF
+
+  count = "${var.count-eu}"
+}
+
+# Setup a DNS record for the VMs to make access easier (and https possible.)
+resource "aws_route53_record" "training-vm-eu" {
+  zone_id = "${aws_route53_zone.training-gxp-eu.zone_id}"
+  name    = "gat-${count.index}.eu.training.galaxyproject.eu"
+  type    = "A"
+  ttl     = "900"
+  records = ["${element(openstack_compute_instance_v2.training-vm-eu.*.access_ip_v4, count.index)}"]
+  count   = "${var.count-eu}"
+}
+
+# # Only for the REAL gat.
+# resource "aws_route53_record" "training-vm-gxit-wildcard" {
+#   zone_id = "${aws_route53_zone.training-gxp-eu.zone_id}"
+#   name    = "*.interactivetoolentrypoint.interactivetool.gat-${count.index}.eu.training.galaxyproject.eu"
+#   type    = "CNAME"
+#   ttl     = "900"
+#   records = ["gat-${count.index}.eu.training.galaxyproject.eu"]
+#   count   = "${var.count-eu}"
+# }
+
+# Outputs to be consumed by admins
+output "training_ips-eu" {
+  value = ["${openstack_compute_instance_v2.training-vm-eu.*.access_ip_v4}"]
+}
+
+output "training_pws-eu" {
+  value     = ["${random_pet.training-vm-eu.*.id}"]
+  sensitive = true
+}
+
+output "training_dns-eu" {
+  value = ["${aws_route53_record.training-vm-eu.*.name}"]
+}
