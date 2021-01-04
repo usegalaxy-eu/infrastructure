@@ -19,13 +19,6 @@ resource "random_pet" "training-vm-eu" {
   count  = "${var.gat-count-eu}"
 }
 
-# A Volume for extra storage
-resource "openstack_blockstorage_volume_v2" "gat-eu" {
-  name  = "gat-eu-${count.index}"
-  size  = 50
-  count = "${var.gat-count-eu}"
-}
-
 # The VMs themselves.
 resource "openstack_compute_instance_v2" "training-vm-eu" {
   name            = "gat-${count.index}.eu.training.galaxyproject.eu"
@@ -40,18 +33,11 @@ resource "openstack_compute_instance_v2" "training-vm-eu" {
   }
 
   block_device {
-    uuid                  = "${data.openstack_images_image_v2.gat-image-eu.id}"
+    uuid                  = "${data.openstack_images_image_v2.gat-image.id}"
     source_type           = "image"
-    destination_type      = "local"
-    boot_index            = 0
-    delete_on_termination = true
-  }
-
-  block_device {
-    uuid                  = "${openstack_blockstorage_volume_v2.student-lr75-vol.id}"
-    source_type           = "volume"
+    volume_size           = 40
     destination_type      = "volume"
-    boot_index            = -1
+    boot_index            = 0
     delete_on_termination = true
   }
 
