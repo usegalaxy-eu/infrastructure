@@ -8,7 +8,7 @@ for ip in $(cat "$ips"); do
 	cat <<-EOF
 		resource "aws_route53_record" "training-vm-oz-$idx" {
 		  zone_id = "\${var.zone_galaxyproject_eu}"
-		  name    = "gat-oz-${idx}.training.galaxyproject.eu"
+		  name    = "gat-${idx}.oz.training.galaxyproject.eu"
 		  type    = "A"
 		  ttl     = "7200"
 		  records = ["${ip}"]
