@@ -159,3 +159,11 @@ resource "aws_route53_record" "training-vm-oz-19" {
   records = ["115.146.85.98"]
 }
 
+resource "aws_route53_record" "training-vm-oz-gxit-wildcard" {
+  zone_id = "${aws_route53_zone.training-gxp-eu.zone_id}"
+  name    = "*.interactivetoolentrypoint.interactivetool.gat-${count.index}.oz.training.galaxyproject.eu"
+  type    = "CNAME"
+  ttl     = "7200"
+  records = ["gat-${count.index}.oz.training.galaxyproject.eu"]
+  count   = "20"
+}

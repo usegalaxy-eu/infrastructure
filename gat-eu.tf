@@ -67,7 +67,7 @@ resource "aws_route53_record" "training-vm-eu" {
 }
 
 # # Only for the REAL gat.
-# resource "aws_route53_record" "training-vm-gxit-wildcard" {
+# resource "aws_route53_record" "training-vm-eu-gxit-wildcard" {
 #   zone_id = "${aws_route53_zone.training-gxp-eu.zone_id}"
 #   name    = "*.interactivetoolentrypoint.interactivetool.gat-${count.index}.eu.training.galaxyproject.eu"
 #   type    = "CNAME"
