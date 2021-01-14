@@ -80,3 +80,4 @@ output "training_pws-eu" {
 output "training_dns-eu" {
   value = ["${aws_route53_record.training-vm-eu.*.name}"]
 }
+
