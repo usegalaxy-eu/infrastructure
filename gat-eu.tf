@@ -1,5 +1,5 @@
 variable "gat-count-eu" {
-  default = 0
+  default = 40
 }
 
 data "openstack_images_image_v2" "gat-image-eu" {
@@ -22,23 +22,14 @@ resource "random_pet" "training-vm-eu" {
 resource "openstack_compute_instance_v2" "training-vm-eu" {
   name            = "gat-${count.index}.eu.training.galaxyproject.eu"
   # Not required when booting from volume
-  # image_id        = "${data.openstack_images_image_v2.gat-image-eu.id}"
-  flavor_name     = "m1.xlarge"
+  image_id        = "${data.openstack_images_image_v2.gat-image-eu.id}"
+  flavor_name     = "c1.galaxy_admin_training_c8m16d50"
   security_groups = ["public", "public-ping", "public-web2", "egress", "public-gat", "public-amqp"]
 
   key_pair = "cloud2"
 
   network {
     name = "public"
-  }
-
-  block_device {
-    uuid                  = "${data.openstack_images_image_v2.gat-image-eu.id}"
-    source_type           = "image"
-    volume_size           = 40
-    destination_type      = "volume"
-    boot_index            = 0
-    delete_on_termination = true
   }
 
   # Update user password
