@@ -20,7 +20,7 @@ resource "random_pet" "training-vm-pulsar" {
 
 # The VMs themselves.
 resource "openstack_compute_instance_v2" "training-vm-pulsar" {
-  name            = "gat-${count.index + $var.gat-count-eu}.eu.training.galaxyproject.eu"
+  name            = "gat-${count.index + var.gat-count-eu}.eu.training.galaxyproject.eu"
   image_id        = "${data.openstack_images_image_v2.gat-image-pulsar.id}"
   flavor_name     = "m1.small"
   security_groups = ["public", "public-ping", "public-web2", "egress", "public-gat", "public-amqp"]
