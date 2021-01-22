@@ -5,6 +5,14 @@ all: ## Sync resources
 	terraform apply
 
 
+encrypt: ## Encrypt the state file
+	ansible-vault encrypt terraform.tfstate        --vault-password-file .vault_password
+	ansible-vault encrypt terraform.tfstate.backup --vault-password-file .vault_password
+
+decrypt: ## Decrypt the state file
+	ansible-vault decrypt terraform.tfstate        --vault-password-file .vault_password
+	ansible-vault decrypt terraform.tfstate.backup --vault-password-file .vault_password
+
 dns_training.tf: dns_training.txt
 	python process.py < dns_training.txt > dns_training.tf
 
