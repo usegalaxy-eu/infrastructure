@@ -4,7 +4,6 @@ all: ## Sync resources
 	terraform validate
 	terraform apply
 
-
 encrypt: ## Encrypt the state file
 	ansible-vault encrypt terraform.tfstate        --vault-password-file .vault_password
 	ansible-vault encrypt terraform.tfstate.backup --vault-password-file .vault_password
