@@ -439,3 +439,12 @@ resource "aws_route53_record" "training-vm-us-54" {
   records = ["149.165.170.167"]
 }
 
+# Only for the REAL gat.
+resource "aws_route53_record" "training-vm-us-gxit-wildcard" {
+  zone_id = "${aws_route53_zone.training-gxp-eu.zone_id}"
+  name    = "*.interactivetoolentrypoint.interactivetool.gat-${count.index}.us.training.galaxyproject.eu"
+  type    = "CNAME"
+  ttl     = "3600"
+  records = ["gat-${count.index}.us.training.galaxyproject.eu"]
+  count   = "44"
+}
