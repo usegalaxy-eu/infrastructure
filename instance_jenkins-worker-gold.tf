@@ -2,6 +2,10 @@ variable "workers-gold" {
   default = 1
 }
 
+variable "workers-gold-volume-size" {
+  default = 100
+}
+
 resource "openstack_compute_instance_v2" "jenkins-workers-gold" {
   name            = "worker-${count.index}.gold.build.galaxyproject.eu"
   image_name      = "${var.jenkins_image}"
@@ -17,10 +21,26 @@ resource "openstack_compute_instance_v2" "jenkins-workers-gold" {
   user_data = <<-EOF
     #cloud-config
     bootcmd:
+        - test -z "$(blkid /dev/vdb)" && mkfs -t ext4 -L jenkins /dev/vdb
         - mkdir -p /data
+    mounts:
+        - ["/dev/vdb", "/data", auto, "defaults,nofail", "0", "2"]
     runcmd:
         - [ chown, "centos.centos", -R, /data ]
   EOF
+}
+
+resource "openstack_blockstorage_volume_v2" "jenkins-workers-gold-volume" {
+  name        = "jenkins-workers-${count.index}-gold-volume"
+  description = "Data volume for Jenkins worker-${count.index}.gold.build.galaxyproject.eu"
+  size        = "${var.workers-gold-volume-size}"
+  count       = "${var.workers-gold}"
+}
+
+resource "openstack_compute_volume_attach_v2" "jenkins-workers-gold-va" {
+  instance_id = "${element(openstack_compute_instance_v2.jenkins-workers-gold.*.id, count.index)}"
+  volume_id   = "${element(openstack_blockstorage_volume_v2.jenkins-workers-gold-volume.*.id, count.index)}"
+  count       = "${var.workers-gold}"
 }
 
 resource "aws_route53_record" "jenkins-workers-gold" {
