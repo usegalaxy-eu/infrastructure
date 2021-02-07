@@ -8,7 +8,7 @@ resource "aws_route53_record" "usegalaxy-eu" {
   zone_id = "${var.zone_usegalaxy_eu}"
   name    = "usegalaxy.eu"
   type    = "A"
-  ttl     = "7200"
+  ttl     = "600"
   records = ["${var.sn04}"]
 }
 
@@ -16,7 +16,7 @@ resource "aws_route53_record" "galaxyproject-eu" {
   zone_id = "${var.zone_galaxyproject_eu}"
   name    = "galaxyproject.eu"
   type    = "A"
-  ttl     = "7200"
+  ttl     = "600"
   records = ["${var.sn04}"]
 }
 
