@@ -4,6 +4,10 @@ variable "sn04" {
   default = "132.230.68.5"
 }
 
+variable "sn06" {
+  default = "132.230.223.239"
+}
+
 resource "aws_route53_record" "usegalaxy-eu" {
   zone_id = "${var.zone_usegalaxy_eu}"
   name    = "usegalaxy.eu"
@@ -142,7 +146,7 @@ resource "aws_route53_record" "sn06-galaxyproject" {
   name    = "sn06.galaxyproject.eu"
   type    = "A"
   ttl     = "7200"
-  records = ["132.230.223.239"]
+  records = ["${var.sn06}"]
 }
 
 resource "aws_route53_record" "sn05-galaxyproject" {
