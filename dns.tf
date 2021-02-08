@@ -13,7 +13,7 @@ resource "aws_route53_record" "usegalaxy-eu" {
   name    = "usegalaxy.eu"
   type    = "A"
   ttl     = "600"
-  records = ["${var.sn04}"]
+  records = ["${var.sn06}"]
 }
 
 resource "aws_route53_record" "galaxyproject-eu" {
@@ -21,7 +21,7 @@ resource "aws_route53_record" "galaxyproject-eu" {
   name    = "galaxyproject.eu"
   type    = "A"
   ttl     = "600"
-  records = ["${var.sn04}"]
+  records = ["${var.sn06}"]
 }
 
 # Subdomains are all just CNAMEs for galaxyproject.eu → proxy-external
