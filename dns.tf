@@ -4,12 +4,16 @@ variable "sn04" {
   default = "132.230.68.5"
 }
 
+variable "sn06" {
+  default = "132.230.223.239"
+}
+
 resource "aws_route53_record" "usegalaxy-eu" {
   zone_id = "${var.zone_usegalaxy_eu}"
   name    = "usegalaxy.eu"
   type    = "A"
   ttl     = "600"
-  records = ["${var.sn04}"]
+  records = ["${var.sn06}"]
 }
 
 resource "aws_route53_record" "galaxyproject-eu" {
@@ -17,7 +21,7 @@ resource "aws_route53_record" "galaxyproject-eu" {
   name    = "galaxyproject.eu"
   type    = "A"
   ttl     = "600"
-  records = ["${var.sn04}"]
+  records = ["${var.sn06}"]
 }
 
 # Subdomains are all just CNAMEs for galaxyproject.eu → proxy-external
@@ -142,7 +146,7 @@ resource "aws_route53_record" "sn06-galaxyproject" {
   name    = "sn06.galaxyproject.eu"
   type    = "A"
   ttl     = "7200"
-  records = ["132.230.223.239"]
+  records = ["${var.sn06}"]
 }
 
 resource "aws_route53_record" "sn05-galaxyproject" {
