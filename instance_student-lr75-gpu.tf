@@ -1,5 +1,5 @@
 data "openstack_images_image_v2" "student-lr75-gpu-image" {
-  name = "Ubuntu 20.04"
+  name = "vggp-v31-j152-89d64435da4a-master"
 }
 
 resource "openstack_compute_instance_v2" "student-lr75-gpu" {
