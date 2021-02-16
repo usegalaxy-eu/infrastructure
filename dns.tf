@@ -12,7 +12,7 @@ resource "aws_route53_record" "usegalaxy-eu" {
   zone_id = "${var.zone_usegalaxy_eu}"
   name    = "usegalaxy.eu"
   type    = "A"
-  ttl     = "600"
+  ttl     = "7200"
   records = ["${var.sn06}"]
 }
 
@@ -20,7 +20,7 @@ resource "aws_route53_record" "galaxyproject-eu" {
   zone_id = "${var.zone_galaxyproject_eu}"
   name    = "galaxyproject.eu"
   type    = "A"
-  ttl     = "600"
+  ttl     = "7200"
   records = ["${var.sn06}"]
 }
 
@@ -163,6 +163,22 @@ resource "aws_route53_record" "cm-galaxyproject" {
   type    = "CNAME"
   ttl     = "86400"
   records = ["sn05.galaxyproject.eu"]
+}
+
+resource "aws_route53_record" "dss01-galaxyproject" {
+  zone_id = "${var.zone_galaxyproject_eu}"
+  name    = "dss01.galaxyproject.eu"
+  type    = "A"
+  ttl     = "7200"
+  records = ["10.5.68.3"]
+}
+
+resource "aws_route53_record" "dss02-galaxyproject" {
+  zone_id = "${var.zone_galaxyproject_eu}"
+  name    = "dss02.galaxyproject.eu"
+  type    = "A"
+  ttl     = "7200"
+  records = ["10.5.68.241"]
 }
 
 resource "aws_route53_record" "tmpftp-galaxyproject" {
