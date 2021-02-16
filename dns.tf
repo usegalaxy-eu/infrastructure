@@ -165,6 +165,22 @@ resource "aws_route53_record" "cm-galaxyproject" {
   records = ["sn05.galaxyproject.eu"]
 }
 
+resource "aws_route53_record" "dss01-galaxyproject" {
+  zone_id = "${var.zone_galaxyproject_eu}"
+  name    = "dss01.galaxyproject.eu"
+  type    = "A"
+  ttl     = "7200"
+  records = ["10.5.68.3"]
+}
+
+resource "aws_route53_record" "dss02-galaxyproject" {
+  zone_id = "${var.zone_galaxyproject_eu}"
+  name    = "dss02.galaxyproject.eu"
+  type    = "A"
+  ttl     = "7200"
+  records = ["10.5.68.241"]
+}
+
 resource "aws_route53_record" "tmpftp-galaxyproject" {
   zone_id = "${var.zone_galaxyproject_eu}"
   name    = "delivery.galaxyproject.eu"
