@@ -32,6 +32,7 @@ resource "openstack_compute_instance_v2" "test-galaxy" {
 resource "openstack_blockstorage_volume_v2" "test-galaxy-volume" {
   name        = "test-galaxy-volume"
   description = "Data volume for test.usegalaxy.eu"
+  volume_type = "netapp"
   size        = "${var.test-galaxy-volume-size}"
 }
 
