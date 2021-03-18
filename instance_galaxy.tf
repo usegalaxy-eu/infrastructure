@@ -20,12 +20,11 @@ resource "openstack_compute_instance_v2" "test-galaxy" {
   user_data = <<-EOF
     #cloud-config
     bootcmd:
-        - test -z "$(blkid /dev/vdb)" && mkfs -t ext4 /dev/vdb
-        - mkdir -p /opt/galaxy
+        - test -z "$(blkid /dev/vdb)" && mkfs -t ext4 /dev/vdb && mkdir -p /opt/galaxy
+        - test -z "$(blkid /dev/vdc)" && mkfs -t ext4 /dev/vdc && mkdir -p /var/lib/cvmfs && chown -R cvmfs.cvmfs /var/lib/cvmfs
     mounts:
         - ["/dev/vdb", "/opt/galaxy", auto, "defaults,nofail", "0", "2"]
-    runcmd:
-        - [ chown, "centos.centos", -R, /opt/galaxy ]
+        - ["/dev/vdc", "/var/lib/cvmfs", auto, "defaults,nofail", "0", "2"]
   EOF
 }
 
@@ -39,6 +38,18 @@ resource "openstack_blockstorage_volume_v2" "test-galaxy-volume" {
 resource "openstack_compute_volume_attach_v2" "test-galaxy-internal-va" {
   instance_id = "${openstack_compute_instance_v2.test-galaxy.id}"
   volume_id   = "${openstack_blockstorage_volume_v2.test-galaxy-volume.id}"
+}
+
+resource "openstack_blockstorage_volume_v2" "test-galaxy-cvmfs-cache-volume" {
+  name        = "test-galaxy-cvmfs-cache-volume"
+  description = "CVMFS cache volume for test.usegalaxy.eu"
+  volume_type = "netapp"
+  size        = "10"
+}
+
+resource "openstack_compute_volume_attach_v2" "test-galaxy-internal-va" {
+  instance_id = "${openstack_compute_instance_v2.test-galaxy.id}"
+  volume_id   = "${openstack_blockstorage_volume_v2.test-galaxy-cvmfs-cache-volume.id}"
 }
 
 resource "aws_route53_record" "test-galaxy" {
