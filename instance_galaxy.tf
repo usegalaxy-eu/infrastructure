@@ -31,7 +31,7 @@ resource "openstack_compute_instance_v2" "test-galaxy" {
 resource "openstack_blockstorage_volume_v2" "test-galaxy-volume" {
   name        = "test-galaxy-volume"
   description = "Data volume for test.usegalaxy.eu"
-  volume_type = "netapp"
+  volume_type = "default"
   size        = "${var.test-galaxy-volume-size}"
 }
 
@@ -43,7 +43,7 @@ resource "openstack_compute_volume_attach_v2" "test-galaxy-internal-va" {
 resource "openstack_blockstorage_volume_v2" "test-galaxy-cvmfs-cache-volume" {
   name        = "test-galaxy-cvmfs-cache-volume"
   description = "CVMFS cache volume for test.usegalaxy.eu"
-  volume_type = "netapp"
+  volume_type = "default"
   size        = "10"
 }
 
