@@ -33,7 +33,7 @@ resource "openstack_compute_instance_v2" "jenkins-workers-silver" {
 resource "openstack_blockstorage_volume_v2" "jenkins-workers-silver-volume" {
   name        = "jenkins-workers-silver-volume"
   description = "Data volume for Jenkins worker-${count.index}.silver.build.galaxyproject.eu"
-  volume_type = "netapp"
+  volume_type = "default"
   size        = "${var.workers-silver-volume-size}"
   count       = "${var.workers-silver}"
 }
