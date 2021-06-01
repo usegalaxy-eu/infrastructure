@@ -76,6 +76,6 @@ resource "aws_route53_record" "training-vm-oz-9" {
   name    = "gat-9.oz.training.galaxyproject.eu"
   type    = "A"
   ttl     = "7200"
-  records = ["115.146.84.22"]
+  records = ["115.146.85.247"]
 }
 
