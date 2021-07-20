@@ -22,13 +22,6 @@ resource "openstack_compute_instance_v2" "gpu-node-alpha" {
     delete_on_termination = true
   }
 
-  block_device {
-    uuid                  = "${openstack_blockstorage_volume_v2.gpu-node-alpha-vol.id}"
-    source_type           = "blank"
-    destination_type      = "volume"
-    boot_index            = -1
-  }
-
   user_data = <<-EOF
     #cloud-config
     bootcmd:
@@ -55,7 +48,13 @@ resource "random_id" "gpu-node-alpha-volume_name_unique" {
 }
 
 resource "openstack_blockstorage_volume_v2" "gpu-node-alpha-vol" {
-  name = "gpu-node-alpha-data-vol-${random_id.gpu-node-alpha-volume_name_unique.hex}"
+  name        = "gpu-node-alpha-data-vol-${random_id.gpu-node-alpha-volume_name_unique.hex}"
   volume_type = "default"
-  size = 500
+  description = "Data volume for gpu-node-alpha"
+  size        = 500
+}
+
+resource "openstack_compute_volume_attach_v2" "gpu-node-alpha-internal-va" {
+  instance_id = "${openstack_compute_instance_v2.gpu-node-alpha.id}"
+  volume_id   = "${openstack_blockstorage_volume_v2.gpu-node-alpha-vol.id}"
 }
