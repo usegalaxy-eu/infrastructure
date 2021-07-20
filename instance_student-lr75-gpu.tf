@@ -64,6 +64,6 @@ resource "random_id" "student-lr75-gpu-volume_name_unique" {
 
 resource "openstack_blockstorage_volume_v2" "student-lr75-gpu-vol" {
   name = "student-lr75-gpu-scratch-vol-${random_id.student-lr75-gpu-volume_name_unique.hex}"
-  volume_type = "netapp"
+  volume_type = "default"
   size = 100
 }
