@@ -17,7 +17,7 @@ resource "openstack_compute_instance_v2" "gpu-node-alpha" {
     uuid                  = "${data.openstack_images_image_v2.gpu-node-alpha-image.id}"
     source_type           = "image"
     volume_size           = 200
-    destination_type      = "local"
+    destination_type      = "volume"
     boot_index            = 0
     delete_on_termination = true
   }
