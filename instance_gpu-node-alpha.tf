@@ -1,9 +1,13 @@
+variable "gpu-node-alpha-dns" {
+  default = "gpu-node-alpha.galaxyproject.eu"
+}
+
 data "openstack_images_image_v2" "gpu-node-alpha-image" {
   name = "vggp-v40-j238-9b9c0ecd5697-master"
 }
 
 resource "openstack_compute_instance_v2" "gpu-node-alpha" {
-  name            = "gpu-node-alpha"
+  name            = "${var.gpu-node-alpha-dns}"
   image_id        = "${data.openstack_images_image_v2.gpu-node-alpha-image.id}"
   flavor_name     = "g1.g1c40m110"
   key_pair        = "cloud2"
@@ -53,4 +57,12 @@ resource "openstack_blockstorage_volume_v2" "gpu-node-alpha-vol" {
 resource "openstack_compute_volume_attach_v2" "gpu-node-alpha-internal-va" {
   instance_id = "${openstack_compute_instance_v2.gpu-node-alpha.id}"
   volume_id   = "${openstack_blockstorage_volume_v2.gpu-node-alpha-vol.id}"
+}
+
+resource "aws_route53_record" "gpunodealpha" {
+  zone_id = "${var.zone_galaxyproject_eu}"
+  name    = "${var.gpu-node-alpha-dns}"
+  type    = "A"
+  ttl     = "600"
+  records = ["${openstack_compute_instance_v2.gpu-node-alpha.access_ip_v4}"]
 }
