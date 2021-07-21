@@ -36,10 +36,6 @@ resource "openstack_compute_instance_v2" "gpu-node-alpha" {
     packages:
     - cuda-11-4
     - nvidia-container-toolkit
-    users:
-     - name: centos
-       ssh_authorized_keys:
-         - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCisQ2VSqWfffO9BPfbhL/EycG7EBbSGD4dm7NFEn6sW4WWwvMFdn/YsOK09VdpGA1ryh6xnYOXW+fVx1u0r/ql4tyKlpq5bCwzHiLLkcvIkoSVs5tjrmHwnASBcr1SUNbIHGUFEEIiYD/GjfNslflc2NcMzWtVrExQdCcwFcKsyElMmEG3HNz0uwp91wfArqx8YTRWs5iDXkhjeu0jJsnKQkjjLQDHXmUR5pNZcmYMWJcZhZ4X5w5U1scm2WM/SWSoEjkwP6rZQxsfWD7h5L3V0Ms1nWsoLmIJhVPvLv3o6SKWMoHz62uXeOp9NavOg4pd1fMCak4jMYCHT0TNeU2f"
   EOF
 }
 
