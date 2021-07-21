@@ -37,9 +37,10 @@ resource "openstack_compute_instance_v2" "gpu-node-alpha" {
     - cuda-11-4
     - nvidia-container-toolkit
     users:
-     - name: centos
-       ssh_authorized_keys:
-         - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCisQ2VSqWfffO9BPfbhL/EycG7EBbSGD4dm7NFEn6sW4WWwvMFdn/YsOK09VdpGA1ryh6xnYOXW+fVx1u0r/ql4tyKlpq5bCwzHiLLkcvIkoSVs5tjrmHwnASBcr1SUNbIHGUFEEIiYD/GjfNslflc2NcMzWtVrExQdCcwFcKsyElMmEG3HNz0uwp91wfArqx8YTRWs5iDXkhjeu0jJsnKQkjjLQDHXmUR5pNZcmYMWJcZhZ4X5w5U1scm2WM/SWSoEjkwP6rZQxsfWD7h5L3V0Ms1nWsoLmIJhVPvLv3o6SKWMoHz62uXeOp9NavOg4pd1fMCak4jMYCHT0TNeU2f"
+      - name: centos
+        ssh_authorized_keys:
+          - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDV7gfNbNN5O8vH6/tM/iOFXKBP2YKRHXOmdfV8ogvu9BdVV0IPmDzk2EooVpThDE1VMv1hz3811tvBhHRJ6IgNhVIV/61w/+RazQD/AU27X8bX+Hb9EQ/bP4DW+6ySd/z5vdDLzpH5dbiMhzPEDkXVsylUT+hkQnas6cHspDhHmtKQ5MWOgDe3D/IEudTDJQe8hxxaU4TaZUmFzn7eYp9HvuK8qW0yCy4NWOxJJHA+G5wSCyLuKnaKo4AitUIzSKF1AB94oq7b96KONhPxgRptAk4OYIUTdNFbrI5HDaSNzHLnF5FbjQvG+Eu6m5nY5yvJMogE+jiuWeIXCZTCFljg287FUo0ohmbZpd802L6VXun14VumRC+rRgPrvBALo/CsyCsPIoBSTKhVElxKVOcRjmTLNfrUZM0GQxqJhIvah8BV+JTExkipPwkrKTdMAWIXvCoehxV+WMpBWqtEEzAzEoqJpaiec7HfriwsHTGESZWAPYEbFjzbHXQZtqBkbOvtokPMRmTWfWKxaplCMN6ddJeeY6faorD0w/e6lszWES1Q1ieajiPKDy37UvybKKvPTk4o3MzyzYOS4c8HQj+jnGeR5Q3ETuyz4psLyOfuBtIrfOeuxV42rFDmkYM3IrrRR+F9oklFG6Ig8DVfgQEzSG36NkgvpF4OdFvigYqXvw=="
+          - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCisQ2VSqWfffO9BPfbhL/EycG7EBbSGD4dm7NFEn6sW4WWwvMFdn/YsOK09VdpGA1ryh6xnYOXW+fVx1u0r/ql4tyKlpq5bCwzHiLLkcvIkoSVs5tjrmHwnASBcr1SUNbIHGUFEEIiYD/GjfNslflc2NcMzWtVrExQdCcwFcKsyElMmEG3HNz0uwp91wfArqx8YTRWs5iDXkhjeu0jJsnKQkjjLQDHXmUR5pNZcmYMWJcZhZ4X5w5U1scm2WM/SWSoEjkwP6rZQxsfWD7h5L3V0Ms1nWsoLmIJhVPvLv3o6SKWMoHz62uXeOp9NavOg4pd1fMCak4jMYCHT0TNeU2f"
   EOF
 }
 
