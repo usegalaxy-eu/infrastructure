@@ -54,7 +54,7 @@ resource "openstack_blockstorage_volume_v2" "gpu-node-beta-vol" {
   size        = 500
 }
 
-resource "openstack_compute_volume_attach_v2" "gpu-node-beta-internal-va" {
+resource "openstack_compute_volume_attach_v2" "gpunodebeta-internal-va" {
   instance_id = "${openstack_compute_instance_v2.gpu-node-beta.id}"
   volume_id   = "${openstack_blockstorage_volume_v2.gpu-node-beta-vol.id}"
 }
