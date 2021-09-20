@@ -43,12 +43,8 @@ resource "openstack_compute_instance_v2" "gpu-node-beta" {
   EOF
 }
 
-resource "random_id" "gpu-node-beta-volume_name_unique" {
-  byte_length = 8
-}
-
 resource "openstack_blockstorage_volume_v2" "gpu-node-beta-vol" {
-  name        = "gpu-node-beta-data-vol-${random_id.gpu-node-beta-volume_name_unique.hex}"
+  name        = "gpu-node-beta-data-vol"
   volume_type = "default"
   description = "Data volume for gpu-node-beta"
   size        = 500
