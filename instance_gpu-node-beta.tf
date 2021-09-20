@@ -7,7 +7,7 @@ resource "aws_route53_record" "gpunodebeta" {
   name    = "${var.gpu_node_beta_dns}"
   type    = "A"
   ttl     = "600"
-  records = ["${openstack_compute_instance_v2.gpu-node-beta.access_ip_v4}"]
+  records = ["${openstack_compute_instance_v2.gpu_node_beta.access_ip_v4}"]
 }
 
 data "openstack_images_image_v2" "gpu_node_beta_image" {
@@ -26,7 +26,7 @@ resource "openstack_compute_instance_v2" "gpu_node_beta" {
   }
 
   block_device {
-    uuid                  = "${data.openstack_images_image_v2.gpu_node_beta-image.id}"
+    uuid                  = "${data.openstack_images_image_v2.gpu_node_beta_image.id}"
     source_type           = "image"
     volume_size           = 200
     destination_type      = "volume"
