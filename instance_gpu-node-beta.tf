@@ -58,11 +58,3 @@ resource "openstack_compute_volume_attach_v2" "gpunodebeta-internal-va" {
   instance_id = "${openstack_compute_instance_v2.gpu-node-beta.id}"
   volume_id   = "${openstack_blockstorage_volume_v2.gpu-node-beta-vol.id}"
 }
-
-resource "aws_route53_record" "gpunodebeta" {
-  zone_id = "${var.zone_galaxyproject_eu}"
-  name    = "${var.gpu-node-beta-dns}"
-  type    = "A"
-  ttl     = "600"
-  records = ["${openstack_compute_instance_v2.gpu-node-beta.access_ip_v4}"]
-}
