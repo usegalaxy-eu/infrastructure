@@ -43,7 +43,7 @@ resource "openstack_compute_instance_v2" "gpu-node-alpha" {
   EOF
 
   lifecycle {
-        ignore_changes = [image_id]
+    ignore_changes = [image_id]
   }
 }
 
