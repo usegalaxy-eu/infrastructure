@@ -8,7 +8,6 @@ data "openstack_images_image_v2" "gpu-node-alpha-image" {
 
 resource "openstack_compute_instance_v2" "gpu-node-alpha" {
   name            = "${var.gpu-node-alpha-dns}"
-  image_id        = "${data.openstack_images_image_v2.gpu-node-alpha-image.id}"
   flavor_name     = "g1.g1c40m110"
   key_pair        = "cloud2"
   security_groups = ["default", "public-ssh"]
