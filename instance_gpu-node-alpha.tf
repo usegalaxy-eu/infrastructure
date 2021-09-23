@@ -41,6 +41,10 @@ resource "openstack_compute_instance_v2" "gpu-node-alpha" {
     - cuda-11-4
     - nvidia-container-toolkit
   EOF
+
+  lifecycle {
+        ignore_changes = [image_id]
+  }
 }
 
 resource "random_id" "gpu-node-alpha-volume_name_unique" {
