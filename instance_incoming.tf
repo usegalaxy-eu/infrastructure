@@ -4,7 +4,7 @@ variable "incoming-dns" {
 
 resource "openstack_compute_instance_v2" "incoming" {
   name        = "${var.incoming-dns}"
-  image_name  = "CentOS Stream 8"
+  image_name  = "CentOS 8.3"
   flavor_name = "m1.small"
   key_pair    = "cloud2"
 
