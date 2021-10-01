@@ -62,14 +62,15 @@ variable "subdomain" {
     "microbiome.usegalaxy.eu",
     "cancer.usegalaxy.eu",
     "assembly.usegalaxy.eu",
-    "india.usegalaxy.eu"
+    "india.usegalaxy.eu",
+    "microgalaxy.usegalaxy.eu"
   ]
 }
 
 resource "aws_route53_record" "subdomains" {
   zone_id = "${var.zone_usegalaxy_eu}"
 
-  count = 33
+  count = 34
   name  = "${element(var.subdomain, count.index)}"
 
   type    = "CNAME"
