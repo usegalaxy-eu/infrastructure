@@ -9,7 +9,7 @@ resource "openstack_compute_instance_v2" "incoming" {
   key_pair    = "cloud2"
 
   # TODO: tighten up secgroups
-  security_groups = ["egress", "public"]
+  security_groups = ["egress", "public-ssh", "public-web2", "public-ftp"]
 
   network {
     name = "public-extended"
