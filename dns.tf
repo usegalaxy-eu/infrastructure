@@ -125,7 +125,7 @@ resource "aws_route53_record" "ftp" {
   name    = "ftp.usegalaxy.eu"
   type    = "A"
   ttl     = "7200"
-  records = ["132.230.68.85"]
+  records = ["132.230.223.103"]
 }
 
 resource "aws_route53_record" "vgcn-cm" {
