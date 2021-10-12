@@ -4,6 +4,25 @@ resource "openstack_networking_secgroup_v2" "public-ftp" {
   delete_default_rules = "true"
 }
 
+resource "openstack_networking_secgroup_rule_v2" "6a8b62c8-dd88-4252-b2cf-47c61992f559" {
+  direction         = "egress"
+  ethertype         = "IPv4"
+  protocol          = "tcp"
+  port_range_min    = "20"
+  port_range_max    = "20"
+  security_group_id = "${openstack_networking_secgroup_v2.public-ftp.id}"
+}
+
+resource "openstack_networking_secgroup_rule_v2" "aced33fb-667f-479b-9da2-d57f90916aae" {
+  direction         = "egress"
+  ethertype         = "IPv6"
+  protocol          = "tcp"
+  port_range_min    = "20"
+  port_range_max    = "20"
+  security_group_id = "${openstack_networking_secgroup_v2.public-ftp.id}"
+}
+
+
 resource "openstack_networking_secgroup_rule_v2" "819746cb-c9af-4850-89fa-e16bd7758bae" {
   direction         = "ingress"
   ethertype         = "IPv4"
