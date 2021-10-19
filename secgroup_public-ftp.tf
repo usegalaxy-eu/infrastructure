@@ -45,8 +45,8 @@ resource "openstack_networking_secgroup_rule_v2" "e6416ca5-fc87-462d-936e-79bb5d
   direction         = "ingress"
   ethertype         = "IPv4"
   protocol          = "tcp"
-  port_range_min    = "56000"
-  port_range_max    = "60000"
+  port_range_min    = "49152"
+  port_range_max    = "65534"
   security_group_id = "${openstack_networking_secgroup_v2.public-ftp.id}"
 }
 
@@ -54,7 +54,7 @@ resource "openstack_networking_secgroup_rule_v2" "35023d8c-e7a5-4000-88bd-0ab620
   direction         = "ingress"
   ethertype         = "IPv6"
   protocol          = "tcp"
-  port_range_min    = "56000"
-  port_range_max    = "60000"
+  port_range_min    = "49152"
+  port_range_max    = "65534"
   security_group_id = "${openstack_networking_secgroup_v2.public-ftp.id}"
 }
