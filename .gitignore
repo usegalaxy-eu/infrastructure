@@ -3,6 +3,7 @@
 # Edit at https://www.gitignore.io/?templates=terraform
 
 ### Terraform ###
+.terraform.lock.hcl
 # Local .terraform directories
 **/.terraform/*
 
