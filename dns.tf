@@ -184,6 +184,14 @@ resource "aws_route53_record" "dss02-galaxyproject" {
   records = ["10.5.68.241"]
 }
 
+resource "aws_route53_record" "upload-galaxyproject" {
+  zone_id = "${var.zone_galaxyproject_eu}"
+  name    = "upload.galaxyproject.eu"
+  type    = "A"
+  ttl     = "7200"
+  records = ["10.5.68.181"]
+}
+
 resource "aws_route53_record" "tmpftp-galaxyproject" {
   zone_id = "${var.zone_galaxyproject_eu}"
   name    = "delivery.galaxyproject.eu"
