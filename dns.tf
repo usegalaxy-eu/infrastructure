@@ -190,6 +190,7 @@ resource "aws_route53_record" "upload-galaxyproject" {
   type    = "A"
   ttl     = "7200"
   records = ["10.5.68.181"]
+}
 
 resource "aws_route53_record" "tmpftp-galaxyproject" {
   zone_id = "${var.zone_galaxyproject_eu}"
