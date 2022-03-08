@@ -11,13 +11,8 @@ resource "openstack_compute_instance_v2" "incoming" {
   security_groups = ["egress", "public-ssh", "public-web2", "public-ftp"]
 
   network {
-    name = "internal-extended"
+    name = "public-extended"
   }
-}
-
-resource "openstack_compute_floatingip_associate_v2" "fipa_incoming" {
-  floating_ip = openstack_networking_floatingip_v2.fip_1.address
-  instance_id = openstack_compute_instance_v2.incoming.id
 }
 
 resource "aws_route53_record" "incoming" {
