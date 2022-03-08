@@ -22,6 +22,7 @@ resource "openstack_compute_instance_v2" "incoming" {
 resource "openstack_compute_floatingip_associate_v2" "fipa_incoming" {
   floating_ip = openstack_networking_floatingip_v2.fip_1.address
   instance_id = openstack_compute_instance_v2.incoming.id
+  fixed_ip    = openstack_compute_instance_v2.incoming.network.1.fixed_ip_v4
 }
 
 resource "aws_route53_record" "incoming" {
