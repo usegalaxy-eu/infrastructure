@@ -11,7 +11,11 @@ resource "openstack_compute_instance_v2" "incoming" {
   security_groups = ["egress", "public-ssh", "public-web2", "public-ftp"]
 
   network {
-    name = "public-extended"
+    name = "public"
+  }
+
+  network {
+    name = "bioinf"
   }
 }
 
@@ -21,9 +25,10 @@ resource "openstack_compute_floatingip_associate_v2" "fipa_incoming" {
 }
 
 resource "aws_route53_record" "incoming" {
-  zone_id = var.zone_galaxyproject_eu
-  name    = var.incoming-dns
-  type    = "A"
-  ttl     = "600"
-  records = ["${openstack_compute_instance_v2.incoming.access_ip_v4}"]
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = var.incoming-dns
+  type            = "A"
+  ttl             = "600"
+  records         = ["${openstack_compute_instance_v2.incoming.access_ip_v4}"]
 }
