@@ -18,6 +18,10 @@ resource "openstack_compute_instance_v2" "jenkins-workers-gold" {
     name = "public"
   }
 
+  network {
+    name = "internal-extended"
+  }
+
   user_data = <<-EOF
     #cloud-config
     bootcmd:
@@ -42,13 +46,4 @@ resource "openstack_compute_volume_attach_v2" "jenkins-workers-gold-va" {
   instance_id = element(openstack_compute_instance_v2.jenkins-workers-gold.*.id, count.index)
   volume_id   = element(openstack_blockstorage_volume_v2.jenkins-workers-gold-volume.*.id, count.index)
   count       = var.workers-gold
-}
-
-resource "aws_route53_record" "jenkins-workers-gold" {
-  zone_id = var.zone_galaxyproject_eu
-  name    = "worker-${count.index}.gold.build.galaxyproject.eu"
-  type    = "A"
-  ttl     = "7200"
-  records = ["${element(openstack_compute_instance_v2.jenkins-workers-gold.*.access_ip_v4, count.index)}"]
-  count   = var.workers-gold
 }
