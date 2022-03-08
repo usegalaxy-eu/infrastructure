@@ -11,7 +11,7 @@ resource "openstack_compute_instance_v2" "jenkins-workers-gold" {
   image_name      = var.jenkins_image
   flavor_name     = "m1.xlarge"
   key_pair        = "jenkins2"
-  security_groups = ["public"]
+  security_groups = ["default"]
   count           = var.workers-gold
 
   network {
