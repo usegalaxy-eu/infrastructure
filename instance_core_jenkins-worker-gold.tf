@@ -19,7 +19,7 @@ resource "openstack_compute_instance_v2" "jenkins-workers-gold" {
   }
 
   network {
-    name = "internal-extended"
+    name = "bioinf"
   }
 
   user_data = <<-EOF
