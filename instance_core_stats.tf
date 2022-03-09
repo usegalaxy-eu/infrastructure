@@ -3,7 +3,7 @@ resource "openstack_compute_instance_v2" "grafana" {
   image_name      = "generic-rockylinux8-v60-j167-5f3adb0e100c-main"
   flavor_name     = "m1.small"
   key_pair        = "cloud2"
-  security_groups = ["egress", "public-ssh", "public-ping", "public-web2"]
+  security_groups = ["default", "public-web2"]
 
   network {
     name = "public"
