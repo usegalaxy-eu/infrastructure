@@ -29,3 +29,4 @@ resource "aws_route53_record" "grafana-usegalaxy" {
   ttl             = "7200"
   records         = ["${openstack_compute_instance_v2.grafana.access_ip_v4}"]
 }
+
