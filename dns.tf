@@ -15,3 +15,11 @@ resource "aws_route53_record" "apollo-main" {
   ttl             = "600"
   records         = ["10.5.68.7"]
 }
+
+resource "aws_route53_record" "ftp" {
+  zone_id = var.zone_usegalaxy_eu
+  name    = "ftp.usegalaxy.eu"
+  type    = "A"
+  ttl     = "600"
+  records = ["132.230.223.213"]
+}
