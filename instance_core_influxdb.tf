@@ -26,6 +26,6 @@ resource "aws_route53_record" "influxdb-usegalaxy-internal" {
   zone_id         = var.zone_galaxyproject_eu
   name            = "influxdb.galaxyproject.eu"
   type            = "A"
-  ttl             = "7200"
+  ttl             = "600"
   records         = ["${openstack_compute_instance_v2.influxdb-usegalaxy.access_ip_v4}"]
 }
