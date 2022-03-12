@@ -17,9 +17,10 @@ resource "aws_route53_record" "apollo-main" {
 }
 
 resource "aws_route53_record" "ftp" {
-  zone_id = var.zone_usegalaxy_eu
-  name    = "ftp.usegalaxy.eu"
-  type    = "A"
-  ttl     = "600"
-  records = ["132.230.223.213"]
+  allow_overwrite = true
+  zone_id         = var.zone_usegalaxy_eu
+  name            = "ftp.usegalaxy.eu"
+  type            = "A"
+  ttl             = "600"
+  records         = ["132.230.223.213"]
 }
