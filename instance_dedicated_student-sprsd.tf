@@ -8,7 +8,7 @@ variable "student-sprsd-volume-size" {
 
 resource "openstack_compute_instance_v2" "student-sprsd-instance" {
   name            = var.student-sprsd-dns
-  flavor_name     = "m1.xlarge"
+  flavor_name     = "c1.c36m100"
   image_name      = "Ubuntu 20.04"
   key_pair        = "cloud2"
   security_groups = ["default", "public-ssh"]
@@ -31,7 +31,7 @@ resource "openstack_compute_instance_v2" "student-sprsd-instance" {
     mounts:
         - ["/dev/vdb", "/scratch", auto, "defaults,nofail", "0", "2"]
     runcmd:
-        - [ chown, "centos.centos", -R, /scratch ]
+        - [ chown, "ubuntu.ubuntu", -R, /scratch ]
         - [ chmod, "a+rw", /scratch ]
   EOF
 }
