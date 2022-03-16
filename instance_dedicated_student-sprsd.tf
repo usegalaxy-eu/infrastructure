@@ -2,10 +2,6 @@ variable "student-sprsd-dns" {
   default = "student-sprsd-vm"
 }
 
-data "openstack_images_image_v2" "student-sprsd-image" {
-  name = "Ubuntu 20.04"
-}
-
 variable "student-sprsd-volume-size" {
   default = 200
 }
@@ -13,6 +9,7 @@ variable "student-sprsd-volume-size" {
 resource "openstack_compute_instance_v2" "student-sprsd-instance" {
   name            = var.student-sprsd-dns
   flavor_name     = "m1.xlarge"
+  image_name      = "Ubuntu 20.04"
   key_pair        = "cloud2"
   security_groups = ["default", "public-ssh"]
 
