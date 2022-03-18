@@ -22,7 +22,7 @@ resource "openstack_compute_instance_v2" "jenkins-workers-silver" {
     #cloud-config
     bootcmd:
         - test -z "$(blkid /dev/vdb)" && mkfs -t ext4 -L jenkins /dev/vdb
-        - mkdir -p /data
+        - mkdir -p /scratch
     mounts:
         - ["/dev/vdb", "/scratch", auto, "defaults,nofail", "0", "2"]
     runcmd:
