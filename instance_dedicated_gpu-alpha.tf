@@ -9,12 +9,20 @@ data "openstack_images_image_v2" "gpu-node-alpha-image" {
 resource "openstack_compute_instance_v2" "gpu-node-alpha" {
   name            = var.gpu-node-alpha-dns
   flavor_name     = "g1.c36m100g1"
-  image_name      = data.openstack_images_image_v2.gpu-node-alpha-image.name
   key_pair        = "cloud2"
   security_groups = ["default", "public-ssh"]
 
   network {
     name = "public"
+  }
+
+  block_device {
+    uuid                  = data.openstack_images_image_v2.gpu-node-alpha-image.id
+    source_type           = "image"
+    volume_size           = 200
+    destination_type      = "volume"
+    boot_index            = 0
+    delete_on_termination = true
   }
 
   user_data = <<-EOF
