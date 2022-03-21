@@ -56,9 +56,10 @@ resource "openstack_compute_volume_attach_v2" "gpu-node-alpha-internal-va" {
 }
 
 resource "aws_route53_record" "gpunodealpha" {
-  zone_id = var.zone_galaxyproject_eu
-  name    = var.gpu-node-alpha-dns
-  type    = "A"
-  ttl     = "600"
-  records = ["${openstack_compute_instance_v2.gpu-node-alpha.access_ip_v4}"]
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = var.gpu-node-alpha-dns
+  type            = "A"
+  ttl             = "600"
+  records         = ["${openstack_compute_instance_v2.gpu-node-alpha.access_ip_v4}"]
 }
