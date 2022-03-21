@@ -9,9 +9,9 @@ data "openstack_images_image_v2" "student-smoe-image" {
 resource "openstack_compute_instance_v2" "student-smoe" {
   name            = var.student-smoe-dns
   image_id        = data.openstack_images_image_v2.student-smoe-image.id
-  flavor_name     = "m1.medium"
+  flavor_name     = "m1.xlarge"
   key_pair        = "cloud2"
-  security_groups = ["default", "public-ssh", "public-web2", "public-irods"]
+  security_groups = ["default", "public-ssh", "public-web2", "public-irods", "public-onedata"]
 
   network {
     name = "public-extended"

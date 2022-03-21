@@ -7,7 +7,7 @@ resource "openstack_networking_secgroup_v2" "public-onedata" {
 variable "onedata-ports" {
   description = "ONEDATA ports"
   type        = list(string)
-  default     = ["53", "80", "443", "9443"]
+  default     = ["53", "80", "443", "6665", "9443"]
 }
 
 resource "openstack_networking_secgroup_rule_v2" "public-onedata-ports4" {
