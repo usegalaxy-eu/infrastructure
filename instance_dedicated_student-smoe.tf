@@ -11,7 +11,7 @@ resource "openstack_compute_instance_v2" "student-smoe" {
   image_id        = data.openstack_images_image_v2.student-smoe-image.id
   flavor_name     = "m1.xlarge"
   key_pair        = "cloud2"
-  security_groups = ["default", "public-ssh", "public-web2", "public-irods", "public-onedata"]
+  security_groups = ["default", "public-ssh", "public-web2", "public-irods", "public-onedata", "public-onedata2"]
 
   network {
     name = "public-extended"
