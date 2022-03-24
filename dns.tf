@@ -9,14 +9,15 @@ variable "sn06" {
 #  ttl     = "7200"
 #  records = ["${var.sn06}"]
 #}
-#
-#resource "aws_route53_record" "galaxyproject-eu" {
-#  zone_id = var.zone_galaxyproject_eu
-#  name    = "galaxyproject.eu"
-#  type    = "A"
-#  ttl     = "7200"
-#  records = ["${var.sn06}"]
-#}
+
+resource "aws_route53_record" "galaxyproject-eu" {
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "galaxyproject.eu"
+  type            = "A"
+  ttl             = "7200"
+  records         = ["${var.sn06}"]
+}
 
 ## Subdomains are all just CNAMEs for galaxyproject.eu → proxy-external
 #variable "subdomain" {
@@ -73,21 +74,23 @@ variable "sn06" {
 #}
 
 # Bare metals
-#resource "aws_route53_record" "sn06-galaxyproject" {
-#  zone_id = var.zone_galaxyproject_eu
-#  name    = "sn06.galaxyproject.eu"
-#  type    = "A"
-#  ttl     = "7200"
-#  records = ["${var.sn06}"]
-#}
-#
-#resource "aws_route53_record" "sn05-galaxyproject" {
-#  zone_id = var.zone_galaxyproject_eu
-#  name    = "sn05.galaxyproject.eu"
-#  type    = "A"
-#  ttl     = "7200"
-#  records = ["10.5.68.4"]
-#}
+resource "aws_route53_record" "sn06-galaxyproject" {
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "sn06.galaxyproject.eu"
+  type            = "A"
+  ttl             = "7200"
+  records         = ["${var.sn06}"]
+}
+
+resource "aws_route53_record" "sn05-galaxyproject" {
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "sn05.galaxyproject.eu"
+  type            = "A"
+  ttl             = "7200"
+  records         = ["10.5.68.4"]
+}
 
 resource "aws_route53_record" "cm-galaxyproject" {
   allow_overwrite = true
@@ -98,13 +101,14 @@ resource "aws_route53_record" "cm-galaxyproject" {
   records         = ["sn05.galaxyproject.eu"]
 }
 
-#resource "aws_route53_record" "build-usegalaxy" {
-#  zone_id = var.zone_galaxyproject_eu
-#  name    = "build.galaxyproject.eu"
-#  type    = "A"
-#  ttl     = "7200"
-#  records = ["132.230.223.230"]
-#}
+resource "aws_route53_record" "build-usegalaxy" {
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "build.galaxyproject.eu"
+  type            = "A"
+  ttl             = "7200"
+  records         = ["132.230.223.230"]
+}
 
 ### SSD tank
 #resource "aws_route53_record" "dss01-galaxyproject" {
