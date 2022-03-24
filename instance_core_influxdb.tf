@@ -3,7 +3,7 @@ resource "openstack_compute_instance_v2" "influxdb-usegalaxy" {
   image_name      = "generic-rockylinux8-v60-j168-5333625af7b2-main"
   flavor_name     = "m1.xlarge"
   key_pair        = "cloud2"
-  security_groups = ["egress", "public-ssh", "public-ping", "public-influxdb", "public-web2",]
+  security_groups = ["egress", "public-ssh", "public-ping", "public-influxdb", "public-web2"]
 
   network {
     name = "public"
