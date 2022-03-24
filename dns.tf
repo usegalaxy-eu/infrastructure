@@ -72,6 +72,7 @@ resource "aws_route53_record" "subdomains" {
   records = ["usegalaxy.eu"]
 }
 
+# Bare metals
 resource "aws_route53_record" "sn06-galaxyproject" {
   zone_id = var.zone_galaxyproject_eu
   name    = "sn06.galaxyproject.eu"
@@ -88,6 +89,41 @@ resource "aws_route53_record" "sn05-galaxyproject" {
   records = ["10.5.68.4"]
 }
 
+resource "aws_route53_record" "cm-galaxyproject" {
+  zone_id = var.zone_galaxyproject_eu
+  name    = "condor-cm.galaxyproject.eu"
+  type    = "CNAME"
+  ttl     = "86400"
+  records = ["sn05.galaxyproject.eu"]
+}
+
+resource "aws_route53_record" "build-usegalaxy" {
+  zone_id = var.zone_galaxyproject_eu
+  name    = "build.galaxyproject.eu"
+  type    = "A"
+  ttl     = "7200"
+  records = ["132.230.223.230"]
+}
+
+### SSD tank
+#resource "aws_route53_record" "dss01-galaxyproject" {
+#  zone_id = var.zone_galaxyproject_eu
+#  name    = "dss01.galaxyproject.eu"
+#  type    = "A"
+#  ttl     = "7200"
+#  records = ["10.5.68.3"]
+#}
+#
+### SSD tank
+#resource "aws_route53_record" "dss02-galaxyproject" {
+#  zone_id = var.zone_galaxyproject_eu
+#  name    = "dss02.galaxyproject.eu"
+#  type    = "A"
+#  ttl     = "7200"
+#  records = ["10.5.68.241"]
+#}
+
+# VMs
 resource "aws_route53_record" "plausible" {
   allow_overwrite = true
   zone_id         = var.zone_galaxyproject_eu
@@ -114,3 +150,44 @@ resource "aws_route53_record" "ftp" {
   ttl             = "600"
   records         = ["132.230.223.213"]
 }
+
+resource "aws_route53_record" "upload-galaxyproject" {
+  zone_id = var.zone_galaxyproject_eu
+  name    = "upload.galaxyproject.eu"
+  type    = "A"
+  ttl     = "7200"
+  records = ["10.5.68.181"]
+}
+
+# Interactive Tools
+# We redirect all subdomains planning for URLs like
+# https://727a121642ce1f94-3a20d7fa7b014959af58c7f6a47d1af.interactivetoolentrypoint.interactivetool.{some-subdomain}.usegalaxy.eu/
+resource "aws_route53_record" "it-subdomain-main-really" {
+  zone_id = var.zone_usegalaxy_eu
+
+  # Guess new domains won't get this for now, but whatever.
+  name = "*.interactivetoolentrypoint.interactivetool.usegalaxy.eu"
+  type    = "CNAME"
+  ttl     = "7200"
+  records = ["usegalaxy.eu"]
+}
+
+resource "aws_route53_record" "it-subdomain-main" {
+  zone_id = var.zone_usegalaxy_eu
+
+  # Guess new domains won't get this for now, but whatever.
+  count = 23
+  name  = "*.interactivetoolentrypoint.interactivetool.${element(var.subdomain, count.index)}"
+  type    = "CNAME"
+  ttl     = "7200"
+  records = ["usegalaxy.eu"]
+}
+
+# https://727a121642ce1f94-3a20d7fa7b014959af58c7f6a47d1af.interactivetoolentrypoint.interactivetool.test.internal.usegalaxy.eu/
+#resource "aws_route53_record" "it-subdomain-test" {
+#zone_id = "${var.zone_usegalaxy_eu}"
+#name    = "*.interactivetoolentrypoint.interactivetool.test.internal.usegalaxy.eu"
+#type    = "CNAME"
+#ttl     = "600"
+#records = ["test.internal.usegalaxy.eu"]
+#}
