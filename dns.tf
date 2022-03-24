@@ -159,6 +159,14 @@ resource "aws_route53_record" "upload-galaxyproject" {
   records = ["10.5.68.181"]
 }
 
+resource "aws_route53_record" "vgcn-cm" {
+  zone_id = var.zone_galaxyproject_eu
+  name    = "manager.vgcn.galaxyproject.eu"
+  type    = "A"
+  ttl     = "300"
+  records = ["10.5.68.230"]
+}
+
 # Interactive Tools
 # We redirect all subdomains planning for URLs like
 # https://727a121642ce1f94-3a20d7fa7b014959af58c7f6a47d1af.interactivetoolentrypoint.interactivetool.{some-subdomain}.usegalaxy.eu/
@@ -166,7 +174,7 @@ resource "aws_route53_record" "it-subdomain-main-really" {
   zone_id = var.zone_usegalaxy_eu
 
   # Guess new domains won't get this for now, but whatever.
-  name = "*.interactivetoolentrypoint.interactivetool.usegalaxy.eu"
+  name    = "*.interactivetoolentrypoint.interactivetool.usegalaxy.eu"
   type    = "CNAME"
   ttl     = "7200"
   records = ["usegalaxy.eu"]
@@ -176,8 +184,8 @@ resource "aws_route53_record" "it-subdomain-main" {
   zone_id = var.zone_usegalaxy_eu
 
   # Guess new domains won't get this for now, but whatever.
-  count = 23
-  name  = "*.interactivetoolentrypoint.interactivetool.${element(var.subdomain, count.index)}"
+  count   = 23
+  name    = "*.interactivetoolentrypoint.interactivetool.${element(var.subdomain, count.index)}"
   type    = "CNAME"
   ttl     = "7200"
   records = ["usegalaxy.eu"]
