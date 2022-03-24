@@ -161,32 +161,6 @@ resource "aws_route53_record" "upload-galaxyproject" {
   records         = ["10.5.68.181"]
 }
 
-resource "aws_route53_record" "vgcn-cm" {
-  allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
-  name            = "manager.vgcn.galaxyproject.eu"
-  type            = "A"
-  ttl             = "300"
-  records         = ["10.5.68.230"]
-}
-
-resource "aws_route53_record" "tmpftp-galaxyproject" {
-  allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
-  name            = "delivery.galaxyproject.eu"
-  type            = "A"
-  ttl             = "7200"
-  records         = ["192.52.37.64"]
-}
-
-resource "aws_route53_record" "gpu-node-02" {
-  allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
-  name            = "gpu-node-02.galaxyproject.eu"
-  type            = "A"
-  ttl             = "7200"
-  records         = ["192.52.36.41"]
-}
 
 ## Interactive Tools
 ## We redirect all subdomains planning for URLs like
