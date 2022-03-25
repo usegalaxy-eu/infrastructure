@@ -22,6 +22,17 @@ resource "openstack_compute_instance_v2" "cvmfs-stratum0-eu" {
   EOF
 }
 
+resource "openstack_blockstorage_volume_v2" "cvmfs-data-eu" {
+  name        = "cvmfs stratum 0 EU"
+  description = "spool space for cvmfs"
+  size        = 500
+}
+
+resource "openstack_compute_volume_attach_v2" "cvmfs-va-eu" {
+  instance_id = "${openstack_compute_instance_v2.cvmfs-stratum0-eu.id}"
+  volume_id   = "${openstack_blockstorage_volume_v2.cvmfs-data-eu.id}"
+}
+
 resource "aws_route53_record" "cvmfs-stratum0-eu" {
   allow_overwrite = true
   zone_id         = var.zone_galaxyproject_eu
