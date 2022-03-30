@@ -24,7 +24,7 @@ resource "openstack_compute_instance_v2" "student-sambhav-instance" {
     users:
      - default
     ssh_authorized_keys:
-     - "AAAAC3NzaC1lZDI1NTE5AAAAIK4K5z6HSF0w49yAw/DwPrdZ1mDuE9x0jrc3I2wJN1Ci"
+     - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK4K5z6HSF0w49yAw/DwPrdZ1mDuE9x0jrc3I2wJN1Ci ed25519-key-20210608"
     bootcmd:
         - test -z "$(blkid /dev/vdb)" && mkfs -t xfs /dev/vdb
         - mkdir -p /scratch
