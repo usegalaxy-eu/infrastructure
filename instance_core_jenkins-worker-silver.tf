@@ -15,7 +15,7 @@ resource "openstack_compute_instance_v2" "jenkins-workers-silver" {
   count           = var.workers-silver
 
   network {
-    name = "public-extended"
+    name = "bioinf"
   }
 
   user_data = <<-EOF
