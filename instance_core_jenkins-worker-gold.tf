@@ -15,7 +15,7 @@ resource "openstack_compute_instance_v2" "jenkins-workers-gold" {
   count           = var.workers-gold
 
   network {
-    name = "public-extended"
+    name = "bioinf"
   }
 
   user_data = <<-EOF
@@ -49,7 +49,7 @@ resource "aws_route53_record" "jenkins-workers-gold" {
   zone_id         = var.zone_galaxyproject_eu
   name            = "worker-${count.index}.gold.build.galaxyproject.eu"
   type            = "A"
-  ttl             = "7200"
+  ttl             = "600"
   records         = ["${element(openstack_compute_instance_v2.jenkins-workers-gold.*.access_ip_v4, count.index)}"]
   count           = var.workers-gold
 }
