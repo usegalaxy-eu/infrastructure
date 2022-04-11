@@ -31,6 +31,7 @@ resource "openstack_compute_instance_v2" "pavan" {
   EOF
 }
 
+
 resource "random_id" "pavan-volume_name_unique" {
   byte_length = 8
 }
