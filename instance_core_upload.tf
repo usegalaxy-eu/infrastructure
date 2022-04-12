@@ -3,7 +3,7 @@ variable "upload-dns" {
 }
 
 data "openstack_images_image_v2" "upload-image" {
-  name = "CentOS Stream 8"
+  name = "generic-rockylinux8-v60-j168-5333625af7b2-main"
 }
 
 resource "openstack_compute_instance_v2" "upload" {
