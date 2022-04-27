@@ -5,7 +5,7 @@ resource "openstack_compute_instance_v2" "test-galaxy" {
   security_groups = ["egress", "public-web2", "ufr-ingress", "public-ping"]
 
   block_device {
-    uuid                  = "594658a4-68c0-49ea-84bc-a973a6f5ffc7"
+    uuid                  = "682994d3-a0f4-4452-831c-9666a717e2ac"
     source_type           = "image"
     volume_size           = 200
     boot_index            = 0
@@ -22,6 +22,6 @@ resource "aws_route53_record" "test-galaxy" {
   zone_id = var.zone_usegalaxy_eu
   name    = "test.internal.usegalaxy.eu"
   type    = "A"
-  ttl     = "600"
+  ttl     = "300"
   records = ["${openstack_compute_instance_v2.test-galaxy.access_ip_v4}"]
 }
