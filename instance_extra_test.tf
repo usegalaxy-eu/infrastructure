@@ -19,9 +19,10 @@ resource "openstack_compute_instance_v2" "test-galaxy" {
 }
 
 resource "aws_route53_record" "test-galaxy" {
-  zone_id = var.zone_usegalaxy_eu
-  name    = "test.internal.usegalaxy.eu"
-  type    = "A"
-  ttl     = "300"
-  records = ["${openstack_compute_instance_v2.test-galaxy.access_ip_v4}"]
+  allow_overwrite = true
+  zone_id         = var.zone_usegalaxy_eu
+  name            = "test.internal.usegalaxy.eu"
+  type            = "A"
+  ttl             = "300"
+  records         = ["${openstack_compute_instance_v2.test-galaxy.access_ip_v4}"]
 }
