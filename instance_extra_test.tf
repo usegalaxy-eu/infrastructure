@@ -5,7 +5,7 @@ resource "openstack_compute_instance_v2" "test-galaxy" {
   security_groups = ["egress", "public-web2", "ufr-ingress", "public-ping"]
 
   block_device {
-    uuid                  = "682994d3-a0f4-4452-831c-9666a717e2ac"
+    uuid                  = "878a687a-fe52-41eb-9012-45010314c790"
     source_type           = "image"
     volume_size           = 200
     boot_index            = 0
