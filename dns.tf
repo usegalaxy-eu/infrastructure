@@ -76,6 +76,28 @@ resource "aws_route53_record" "subdomains" {
   records = ["usegalaxy.eu"]
 }
 
+# Subdomains for Project redirected by the proxy to internal services
+variable "subdomain-internal" {
+  type = list(string)
+
+  default = [
+    # Please place new subdomains at the end of the list
+    "cvmfs1-ufr0.galaxyproject.eu",
+  ]
+}
+
+resource "aws_route53_record" "subdomain-internal" {
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+
+  count = 1
+  name  = element(var.subdomain-internal, count.index)
+
+  type    = "CNAME"
+  ttl     = "7200"
+  records = ["proxy.galaxyproject.eu"]
+}
+
 # Bare metals
 resource "aws_route53_record" "sn06-galaxyproject" {
   allow_overwrite = true
