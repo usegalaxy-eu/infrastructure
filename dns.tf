@@ -181,15 +181,6 @@ resource "aws_route53_record" "ftp" {
   records         = ["132.230.223.213"]
 }
 
-resource "aws_route53_record" "upload-galaxyproject" {
-  allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
-  name            = "upload.galaxyproject.eu"
-  type            = "A"
-  ttl             = "7200"
-  records         = ["10.5.68.181"]
-}
-
 
 ## Interactive Tools
 ## We redirect all subdomains planning for URLs like

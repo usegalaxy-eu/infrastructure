@@ -23,3 +23,12 @@ resource "openstack_compute_instance_v2" "upload" {
     package_upgrade: true
   EOF
 }
+
+resource "aws_route53_record" "upload-galaxyproject" {
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = var.upload-dns
+  type            = "A"
+  ttl             = "600"
+  records         = ["${openstack_compute_instance_v2.upload.access_ip_v4}"]
+}
