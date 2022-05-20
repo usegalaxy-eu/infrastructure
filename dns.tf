@@ -60,7 +60,8 @@ variable "subdomain" {
     "assembly.usegalaxy.eu",
     "india.usegalaxy.eu",
     "microgalaxy.usegalaxy.eu",
-    "spatialomics.usegalaxy.eu"
+    "spatialomics.usegalaxy.eu",
+    "materials.usegalaxy.eu"
   ]
 }
 
