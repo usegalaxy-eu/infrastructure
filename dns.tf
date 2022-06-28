@@ -136,15 +136,15 @@ resource "aws_route53_record" "build-usegalaxy" {
   records         = ["132.230.223.230"]
 }
 
-### SSD tank
-#resource "aws_route53_record" "dss01-galaxyproject" {
-#  zone_id = var.zone_galaxyproject_eu
-#  name    = "dss01.galaxyproject.eu"
-#  type    = "A"
-#  ttl     = "7200"
-#  records = ["10.5.68.3"]
-#}
-#
+## SSD tank
+resource "aws_route53_record" "ssds1-galaxyproject" {
+  zone_id = var.zone_galaxyproject_eu
+  name    = "ssds1.galaxyproject.eu"
+  type    = "A"
+  ttl     = "7200"
+  records = ["10.5.68.239"]
+}
+
 ### SSD tank
 #resource "aws_route53_record" "dss02-galaxyproject" {
 #  zone_id = var.zone_galaxyproject_eu
