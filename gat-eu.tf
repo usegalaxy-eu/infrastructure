@@ -22,7 +22,7 @@ resource "openstack_compute_instance_v2" "training-vm-eu" {
   name            = "gat-${count.index}.eu.training.galaxyproject.eu"
   flavor_name     = "m1.xlarge"
   key_pair        = "cloud2"
-  security_groups = ["public", "public-ping", "public-web2", "egress", "public-amqp"]
+  security_groups = ["default", "public-ping", "public-web2", "egress", "public-amqp"]
 
   network {
     name = "public"
