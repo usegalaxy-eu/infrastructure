@@ -1,5 +1,5 @@
 variable "gat-count-eu" {
-  default = 2
+  default = 4
 }
 
 data "openstack_images_image_v2" "gat-image-eu" {
@@ -52,16 +52,16 @@ resource "openstack_compute_instance_v2" "training-vm-eu" {
   count = var.gat-count-eu
 }
 
-## Setup a DNS record for the VMs to make access easier (and https possible.)
-#resource "aws_route53_record" "training-vm-eu" {
-#  zone_id = aws_route53_zone.training-gxp-eu.zone_id
-#  name    = "gat-${count.index}.eu.training.galaxyproject.eu"
-#  type    = "A"
-#  ttl     = "3600"
-#  records = ["${element(openstack_compute_instance_v2.training-vm-eu.*.access_ip_v4, count.index)}"]
-#  count   = var.gat-count-eu
-#}
-#
+# Setup a DNS record for the VMs to make access easier (and https possible.)
+resource "aws_route53_record" "training-vm-eu" {
+  zone_id = "Z05016927AMHTHGB1IS2"
+  name    = "gat-${count.index}.eu.training.galaxyproject.eu"
+  type    = "A"
+  ttl     = "3600"
+  records = ["${element(openstack_compute_instance_v2.training-vm-eu.*.access_ip_v4, count.index)}"]
+  count   = var.gat-count-eu
+}
+
 ## Only for the REAL gat.
 #resource "aws_route53_record" "training-vm-eu-gxit-wildcard" {
 #  zone_id = aws_route53_zone.training-gxp-eu.zone_id
@@ -81,8 +81,8 @@ output "training_pws-eu" {
   value     = ["${random_pet.training-vm-eu.*.id}"]
   sensitive = true
 }
-#
-#output "training_dns-eu" {
-#  value = ["${aws_route53_record.training-vm-eu.*.name}"]
-#}
+
+output "training_dns-eu" {
+  value = ["${aws_route53_record.training-vm-eu.*.name}"]
+}
 
