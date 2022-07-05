@@ -145,6 +145,15 @@ resource "aws_route53_record" "ssds1-galaxyproject" {
   records = ["10.5.68.239"]
 }
 
+## ZFS tank
+resource "aws_route53_record" "zfs1-galaxyproject" {
+  zone_id = var.zone_galaxyproject_eu
+  name    = "zfs1.galaxyproject.eu"
+  type    = "A"
+  ttl     = "7200"
+  records = ["10.5.68.238"]
+}
+
 ### SSD tank
 #resource "aws_route53_record" "dss02-galaxyproject" {
 #  zone_id = var.zone_galaxyproject_eu
