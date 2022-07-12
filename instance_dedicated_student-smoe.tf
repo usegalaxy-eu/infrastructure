@@ -2,6 +2,10 @@ variable "student-smoe-dns" {
   default = "student-smoe-vm"
 }
 
+variable "student-smoe-volume-size" {
+  default = 100
+}
+
 data "openstack_images_image_v2" "student-smoe-image" {
   name = "Ubuntu 20.04"
 }
@@ -26,4 +30,16 @@ resource "openstack_compute_instance_v2" "student-smoe" {
     ssh_authorized_keys:
      - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFaDO2gPp78zX4VQahUxklW5hYvvOVO5SH9Lj9Pit+4q"
   EOF
+}
+
+resource "openstack_blockstorage_volume_v2" "student-smoe-volume" {
+  name        = "student-smoe-volume"
+  description = "Data volume for student-smoe instance"
+  volume_type = "default"
+  size        = var.student-smoe-volume-size
+}
+
+resource "openstack_compute_volume_attach_v2" "student-smoe-va" {
+  instance_id = openstack_compute_instance_v2.student-smoe.id
+  volume_id   = openstack_blockstorage_volume_v2.student-smoe-volume.id
 }
