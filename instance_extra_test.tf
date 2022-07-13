@@ -24,6 +24,6 @@ resource "aws_route53_record" "test-galaxy" {
   name            = "test.internal.usegalaxy.eu"
   type            = "A"
   ttl             = "300"
-  records         = ['10.5.68.154']
+  records         = ["10.5.68.154"]
 #  records         = ["${openstack_compute_instance_v2.test-galaxy.access_ip_v4}"]
 }
