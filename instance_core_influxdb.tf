@@ -5,6 +5,10 @@ resource "openstack_compute_instance_v2" "influxdb-usegalaxy" {
   key_pair        = "cloud2"
   security_groups = ["egress", "public-ssh", "public-ping", "public-influxdb", "public-web2"]
 
+  lifecycle {
+        ignore_changes = [power]
+  }
+
   network {
     name = "public"
   }
