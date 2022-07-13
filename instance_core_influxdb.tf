@@ -6,7 +6,7 @@ resource "openstack_compute_instance_v2" "influxdb-usegalaxy" {
   security_groups = ["egress", "public-ssh", "public-ping", "public-influxdb", "public-web2"]
 
   lifecycle {
-        ignore_changes = [power]
+        ignore_changes = [power_state]
   }
 
   network {
