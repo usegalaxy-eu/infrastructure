@@ -154,14 +154,15 @@ resource "aws_route53_record" "zfs1-galaxyproject" {
   records = ["10.5.68.238"]
 }
 
-### SSD tank
-#resource "aws_route53_record" "dss02-galaxyproject" {
-#  zone_id = var.zone_galaxyproject_eu
-#  name    = "dss02.galaxyproject.eu"
+## Previous central-manager
+#resource "aws_route53_record" "vgcn-cm" {
+#  zone_id = "${var.zone_galaxyproject_eu}"
+#  name    = "manager.vgcn.galaxyproject.eu"
 #  type    = "A"
-#  ttl     = "7200"
-#  records = ["10.5.68.241"]
+#  ttl     = "300"
+#  records = ["10.5.68.230"]
 #}
+
 
 # VMs
 resource "aws_route53_record" "plausible" {
