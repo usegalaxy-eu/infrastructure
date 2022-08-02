@@ -1,4 +1,3 @@
-
 variable "celery-count" {
   default = 1
 }
