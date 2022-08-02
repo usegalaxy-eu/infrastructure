@@ -33,6 +33,6 @@ resource "aws_route53_record" "celery-galaxyproject" {
   name            = "celery-${count.index}.galaxyproject.eu"
   type            = "A"
   ttl             = "600"
-  records         = ["${element(openstack_compute_instance_v2.celery.access_ip_v4, count.index)}"]
+  records         = ["${element(openstack_compute_instance_v2.celery.*.access_ip_v4, count.index)}"]
   count           = var.celery-count
 }
