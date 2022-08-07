@@ -53,3 +53,4 @@ resource "aws_route53_record" "jenkins-workers-bronze" {
   records         = ["${element(openstack_compute_instance_v2.jenkins-workers-bronze.*.access_ip_v4, count.index)}"]
   count           = var.workers-bronze
 }
+
