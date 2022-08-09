@@ -17,5 +17,5 @@ variable "netz" {
 }
 
 variable "jenkins_image" {
-  default = "jenkins-worker-v60-j66-5f3adb0e100c-main"
+  default = "jenkins-worker-v60-j105-d1dfcf46c4cd-main"
 }
