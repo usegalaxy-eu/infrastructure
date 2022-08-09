@@ -8,7 +8,7 @@ variable "workers-bronze-volume-size" {
 
 resource "openstack_compute_instance_v2" "jenkins-workers-bronze" {
   name            = "worker-${count.index}.bronze.build.galaxyproject.eu"
-  image_name      = "jenkins-worker-v60-j77-d1dfcf46c4cd-dev"
+  image_name      = "jenkins-worker-v60-j105-d1dfcf46c4cd-main"
   flavor_name     = "m1.xlarge"
   key_pair        = "jenkins2"
   security_groups = ["default"]
