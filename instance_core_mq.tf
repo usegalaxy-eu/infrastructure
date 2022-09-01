@@ -1,7 +1,7 @@
 resource "openstack_compute_instance_v2" "mq-instance" {
   name            = "mq.galaxyproject.eu"
   image_name      = "generic-rockylinux8-v60-j167-5f3adb0e100c-main"
-  flavor_name     = "m1.small"
+  flavor_name     = "m1.medium"
   key_pair        = "cloud2"
   security_groups = ["egress", "public-ssh", "public-ping", "public-web2", "public-amqp"]
 
