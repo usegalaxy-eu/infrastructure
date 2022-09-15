@@ -25,5 +25,5 @@ resource "aws_route53_record" "dokku-dns-wildcard" {
   name            = "*.apps.galaxyproject.eu"
   type            = "CNAME"
   ttl             = "3600"
-  records         = ["${openstack_compute_instance_v2.dokku.access_ip_v4}"]
+  records         = ["apps.galaxyproject.eu"]
 }
