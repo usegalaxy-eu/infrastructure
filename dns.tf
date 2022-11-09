@@ -110,6 +110,15 @@ resource "aws_route53_record" "sn06-galaxyproject" {
   records         = ["${var.sn06}"]
 }
 
+resource "aws_route53_record" "sn07-galaxyproject" {
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "sn07.galaxyproject.eu"
+  type            = "A"
+  ttl             = "7200"
+  records         = ["10.5.68.237"]
+}
+
 resource "aws_route53_record" "sn05-galaxyproject" {
   allow_overwrite = true
   zone_id         = var.zone_galaxyproject_eu
