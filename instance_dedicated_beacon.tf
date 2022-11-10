@@ -26,7 +26,7 @@ resource "openstack_compute_instance_v2" "beacon" {
     mounts:
         - ["/dev/vdb", "/data", auto, "defaults,nofail", "0", "2"]
     runcmd:
-        - [ chown, "ubuntu.ubuntu", -R, /data ]
+        - [ chown, "rocky.rocky", -R, /data ]
     package_update: true
     package_upgrade: true
   EOF
