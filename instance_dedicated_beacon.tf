@@ -20,6 +20,13 @@ resource "openstack_compute_instance_v2" "beacon" {
 
   user_data = <<-EOF
     #cloud-config
+    bootcmd:
+        - test -z "$(blkid /dev/vdb)" && mkfs -t ext4 /dev/vdb
+        - mkdir -p /data
+    mounts:
+        - ["/dev/vdb", "/data", auto, "defaults,nofail", "0", "2"]
+    runcmd:
+        - [ chown, "ubuntu.ubuntu", -R, /data ]
     package_update: true
     package_upgrade: true
   EOF
