@@ -44,6 +44,10 @@ resource "aws_route53_record" "beacon-galaxyproject" {
   count           = var.beacon-count
 }
 
+resource "random_id" "beacon-volume_name_unique" {
+  byte_length = 8
+}
+
 resource "openstack_blockstorage_volume_v2" "beacon-vol" {
   name        = "beacon-data-vol-${random_id.beacon-volume_name_unique.hex}"
   volume_type = "default"
