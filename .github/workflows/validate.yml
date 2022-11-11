@@ -9,5 +9,3 @@ jobs:
       uses: actions/checkout@v2
     - name: Validate Terraform modules
       uses: devops-infra/action-terrraform-validate@v0.3
-      with:
-        dir_filter: *.tf
