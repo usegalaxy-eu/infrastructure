@@ -1,13 +1,9 @@
-variable "beacon-count" {
-  default = 1
-}
-
 data "openstack_images_image_v2" "beacon-image" {
   name = "generic-rockylinux8-v60-j168-5333625af7b2-main"
 }
 
 resource "openstack_compute_instance_v2" "beacon" {
-  name            = "beacon-${count.index}.galaxyproject.eu"
+  name            = "beacon.galaxyproject.eu"
   image_id        = data.openstack_images_image_v2.beacon-image.id
   flavor_name     = "m1.small"
   key_pair        = "cloud2"
@@ -30,18 +26,15 @@ resource "openstack_compute_instance_v2" "beacon" {
     package_update: true
     package_upgrade: true
   EOF
-
-  count = var.beacon-count
 }
 
 resource "aws_route53_record" "beacon-galaxyproject" {
   allow_overwrite = true
   zone_id         = var.zone_galaxyproject_eu
-  name            = "beacon-${count.index}.galaxyproject.eu"
+  name            = "beacon.galaxyproject.eu"
   type            = "A"
   ttl             = "600"
-  records         = ["${element(openstack_compute_instance_v2.beacon.*.access_ip_v4, count.index)}"]
-  count           = var.beacon-count
+  records         = ["${openstack_compute_instance_v2.beacon.access_ip_v4}"]
 }
 
 resource "random_id" "beacon-volume_name_unique" {
