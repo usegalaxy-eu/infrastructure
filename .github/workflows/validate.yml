@@ -1,0 +1,13 @@
+name: Validate Terraform
+on:
+  push
+jobs:
+  terraform-validate:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Validate Terraform modules
+      uses: devops-infra/action-terrraform-validate@v0.3
+      with:
+        dir_filter: *.tf
