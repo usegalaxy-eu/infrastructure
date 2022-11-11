@@ -10,9 +10,9 @@ jobs:
       uses: actions/checkout@v2
     - name: terraform-validate
       uses: dflook/terraform-validate@v1.29.1
-      #env:
-       # TERRAFORM_PRE_RUN: |
-        #  rm *.tfstate  
+      env:
+        TERRAFORM_PRE_RUN: |
+          rm *.tfstate  
     - name: Validate failed
       if: ${{ failure() && steps.validate.outputs.failure-reason == 'validate-failed' }}
       run: echo "terraform validate failed"
