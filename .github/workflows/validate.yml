@@ -8,5 +8,11 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-    - name: GitHub Action validating Terraform modules
-      uses: devops-infra/action-terraform-validate@v0.3
+    - name: terraform-validate
+      uses: dflook/terraform-validate@v1.29.1
+      env:
+        TERRAFORM_PRE_RUN: |
+          rm *.tfstate  
+    - name: Validate failed
+      if: ${{ failure() && steps.validate.outputs.failure-reason == 'validate-failed' }}
+      run: echo "terraform validate failed"
