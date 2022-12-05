@@ -170,7 +170,7 @@ resource "aws_route53_record" "zfs2f-galaxyproject" {
   name    = "zfs2f.galaxyproject.eu"
   type    = "A"
   ttl     = "7200"
-  records = ["132.230.223.236"]
+  records = ["10.5.68.236"]
 }
 
 ## Previous central-manager
