@@ -1,6 +1,6 @@
 data "openstack_images_image_v2" "beacon-image" {
   # BW Cloud Rocky 9 basic image
-  name = "c6906a58-1e05-4be0-8f20-41f24c8320b5"
+  name = "Rocky 9.0"
 }
 
 resource "openstack_compute_instance_v2" "beacon" {
