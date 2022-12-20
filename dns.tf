@@ -171,6 +171,7 @@ resource "aws_route53_record" "zfs2f-galaxyproject" {
   type    = "A"
   ttl     = "7200"
   records = ["10.5.68.236"]
+  #comment
 }
 
 ## ZFS flash tank #2
