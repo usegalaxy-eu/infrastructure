@@ -173,6 +173,15 @@ resource "aws_route53_record" "zfs2f-galaxyproject" {
   records = ["10.5.68.236"]
 }
 
+## ZFS flash tank #2
+resource "aws_route53_record" "zfs3f-galaxyproject" {
+  zone_id = var.zone_galaxyproject_eu
+  name    = "zfs3f.galaxyproject.eu"
+  type    = "A"
+  ttl     = "7200"
+  records = ["10.5.68.235"]
+}
+
 ## Previous central-manager
 #resource "aws_route53_record" "vgcn-cm" {
 #  zone_id = "${var.zone_galaxyproject_eu}"
