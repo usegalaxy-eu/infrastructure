@@ -146,16 +146,16 @@ resource "aws_route53_record" "build-usegalaxy" {
   records         = ["132.230.223.230"]
 }
 
-## SSD tank
+## ZFS server #1 (all flash)
 resource "aws_route53_record" "ssds1-galaxyproject" {
   zone_id = var.zone_galaxyproject_eu
-  name    = "ssds1.galaxyproject.eu"
+  name    = "zfs0f.galaxyproject.eu"
   type    = "A"
   ttl     = "7200"
   records = ["10.5.68.239"]
 }
 
-## ZFS tank
+## ZFS server #2 (spinning disks w/ flash cache)
 resource "aws_route53_record" "zfs1-galaxyproject" {
   zone_id = var.zone_galaxyproject_eu
   name    = "zfs1.galaxyproject.eu"
@@ -164,7 +164,7 @@ resource "aws_route53_record" "zfs1-galaxyproject" {
   records = ["10.5.68.238"]
 }
 
-## ZFS flash tank
+## ZFS server #3 (all flash)
 resource "aws_route53_record" "zfs2f-galaxyproject" {
   zone_id = var.zone_galaxyproject_eu
   name    = "zfs2f.galaxyproject.eu"
@@ -174,7 +174,7 @@ resource "aws_route53_record" "zfs2f-galaxyproject" {
   #comment
 }
 
-## ZFS flash tank #2
+## ZFS server #4 (all flash)
 resource "aws_route53_record" "zfs3f-galaxyproject" {
   zone_id = var.zone_galaxyproject_eu
   name    = "zfs3f.galaxyproject.eu"
