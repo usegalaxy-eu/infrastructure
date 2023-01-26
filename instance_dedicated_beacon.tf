@@ -46,7 +46,7 @@ resource "openstack_blockstorage_volume_v2" "beacon-vol" {
   name        = "beacon-data-vol-${random_id.beacon-volume_name_unique.hex}"
   volume_type = "default"
   description = "Data volume for beacon VM"
-  size        = 128
+  size        = 1000
 }
 
 resource "openstack_compute_volume_attach_v2" "beacon-va" {
