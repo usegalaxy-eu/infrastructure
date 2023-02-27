@@ -4,7 +4,6 @@ data "openstack_images_image_v2" "maintenance-image" {
 
 resource "openstack_compute_instance_v2" "maintenance" {
   name            = "maintenance.galaxyproject.eu"
-  image_id        = data.openstack_images_image_v2.maintenance-image.id
   flavor_name     = "m1.xlarge"
   key_pair        = "cloud2"
   tags            = []
