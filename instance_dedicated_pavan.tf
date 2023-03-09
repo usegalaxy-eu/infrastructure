@@ -5,7 +5,7 @@ data "openstack_images_image_v2" "pavan-image" {
 resource "openstack_compute_instance_v2" "pavan" {
   name            = "Pavan dedicated VM"
   image_id        = data.openstack_images_image_v2.pavan-image.id
-  flavor_name     = "c1.c36m225"
+  flavor_name     = "c1.c36m100"
   key_pair        = "cloud2"
   security_groups = ["default"]
 
