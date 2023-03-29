@@ -1,5 +1,5 @@
 variable "gat-count-eu" {
-  default = 10
+  default = 11
 }
 
 data "openstack_images_image_v2" "gat-image-eu" {
