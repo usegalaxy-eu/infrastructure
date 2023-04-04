@@ -1,5 +1,5 @@
 variable "gat-count-eu" {
-  default = 0
+  default = 10
 }
 
 data "openstack_images_image_v2" "gat-image-eu" {
@@ -20,7 +20,7 @@ resource "random_pet" "training-vm-eu" {
 # The VMs themselves.
 resource "openstack_compute_instance_v2" "training-vm-eu" {
   name            = "gat-${count.index}.eu.training.galaxyproject.eu"
-  flavor_name     = "m1.xlarge"
+  flavor_name     = "c1.c4m16d50"
   key_pair        = "cloud2"
   security_groups = ["default", "public-ping", "public-web2", "egress", "public-amqp"]
 
