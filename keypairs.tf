@@ -12,3 +12,8 @@ resource "openstack_compute_keypair_v2" "cloud3" {
   name       = "cloud3"
   public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDD7DmOPC++GYjiNx8xc38U3dPQ5oKbtDC18cS8CXTPCWt7nYakjOPGwI0OcmBq46xvhIuBE2EUubORfMBou+RzFW/GuaqWVix3RBoAj69bcZDZGkP0/FidqU0Ar+G0gnNKSls0NpDiZ4gUJgrBwKw1q9atdYDxaZhJ9DfmOxJuJnZRi1g6fi+DNTib5jSRKjiKqHrtIrnnf66tY98lmmyEDEUthGScV0CPFujQ/fJ2flZCTi8+wpccJZ0DMFjDnrEBa8WnE8J6OuieEk8jnn+eOQ2EIZkde8jlmnbQk/fgQHxCAL0P+w4LcmTVD32j/Ao1/+G+/3cTYtXN+PwIIynOUvPFUs4wwU2Jp/7S7Zvxig3koNuoSKJHCUi+9xOkcPxRy6CVPQ+70bpZXlgqxDSIEsb7wubteQXDBSvqlJqyn70/pW+GHOronhyyX6zpRQNDhIZs1f7K+0hRfQqFawxgNT0UdlPl99YkK/aONBRax4aGJ618zlNAANBz+qd1kP6XualYyzsJL6v4DlYioILLPo1oUhlhl+zpB3R/CA6+UQ7n1US0vKS4X34zFjiNXQlvSwuIDMFcnx3o7mOcBVEquYfuVzAU5ECa/f+eLoUff5jV0DasiYpnHwFGfrd8izu+ah0wkn45SBZoMeCeGtCP0bJwTXiA2JsS2X2dak4ccw== centos@sn06"
 }
+
+resource "openstack_compute_keypair_v2" "gat" {
+  name       = "gat"
+  public_key = "ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1MjEAAACFBAH+o75mk9SSNDEjwpIrgtBfKtYFhF73qIvuc8lQbrscZFyRMzd/ZnqlAq+lqaqag2CTp3laVeHr1okuLEOQAkFxtAE/qj/+AXXXEB55zmvo5eCasPIixAtcbNF6fUrd/Y0ePoZHvFbsdproliDWwEsHnCki90IDxy4b4cElo71eDxYjFg== mk@galaxy-mira"
+}
