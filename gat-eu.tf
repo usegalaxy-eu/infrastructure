@@ -21,7 +21,7 @@ resource "random_pet" "training-vm-eu" {
 resource "openstack_compute_instance_v2" "training-vm-eu" {
   name            = "gat-${count.index}.eu.training.galaxyproject.eu"
   flavor_name     = "c1.c4m16d50"
-  key_pair        = "cloud2"
+  key_pair        = "gat"
   security_groups = ["default", "public-ping", "public-web2", "egress", "public-amqp"]
 
   network {
