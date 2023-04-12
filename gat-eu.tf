@@ -6,6 +6,7 @@ data "openstack_images_image_v2" "gat-image-eu" {
   name = "Ubuntu 22.04"
 }
 
+
 # Random passwords for the VMs, easier to type/remember for the non-ssh key
 # users.
 resource "random_pet" "training-vm-eu" {
