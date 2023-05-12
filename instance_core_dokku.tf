@@ -10,6 +10,17 @@ resource "openstack_compute_instance_v2" "dokku" {
   }
 }
 
+resource "openstack_blockstorage_volume_v2" "dokku-data" {
+  name        = "stats"
+  description = "Data volume for dokku"
+  size        = 50
+}
+
+resource "openstack_compute_volume_attach_v2" "dokku-va" {
+  instance_id = openstack_compute_instance_v2.dokku.id
+  volume_id   = openstack_blockstorage_volume_v2.dokku-data.id
+}
+
 resource "aws_route53_record" "dokku-dns" {
   allow_overwrite = true
   zone_id         = var.zone_galaxyproject_eu
