@@ -12,7 +12,7 @@ resource "openstack_compute_instance_v2" "celery" {
   flavor_name     = "c1.c36m100"
   key_pair        = "cloud2"
   tags            = []
-  security_groups = ["default"]
+  security_groups = ["default", "ingress-from-proxy"]
 
   network {
     name = "bioinf"
