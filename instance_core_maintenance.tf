@@ -1,5 +1,5 @@
 data "openstack_images_image_v2" "maintenance-image" {
-  name = "Rocky 9.0"
+  name = "generic-rockylinux8-v60-j167-5f3adb0e100c-main"
 }
 
 resource "openstack_compute_instance_v2" "maintenance" {
@@ -16,7 +16,7 @@ resource "openstack_compute_instance_v2" "maintenance" {
   block_device {
     uuid                  = data.openstack_images_image_v2.maintenance-image.id
     source_type           = "image"
-    volume_size           = 256
+    volume_size           = 500
     destination_type      = "volume"
     boot_index            = 0
     delete_on_termination = true
