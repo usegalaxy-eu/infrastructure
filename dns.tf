@@ -134,7 +134,7 @@ resource "aws_route53_record" "cm-galaxyproject" {
   name            = "condor-cm.galaxyproject.eu"
   type            = "CNAME"
   ttl             = "86400"
-  records         = ["sn05.galaxyproject.eu"]
+  records         = ["sn06.galaxyproject.eu"]
 }
 
 resource "aws_route53_record" "build-usegalaxy" {
