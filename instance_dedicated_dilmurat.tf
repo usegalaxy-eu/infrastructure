@@ -1,11 +1,11 @@
 data "openstack_images_image_v2" "dilmurat-image" {
-  name = "vggp-gpu-v60-j310-1fad751e0150-main"
+  name = "vggp-v60-gpu-j322-692e75a7c101-main"
 }
 
 resource "openstack_compute_instance_v2" "dilmurat" {
   name            = "dilmurat dedicated VM"
   image_id        = data.openstack_images_image_v2.dilmurat-image.id
-  flavor_name     = "g1.c8m20g1"
+  flavor_name     = "g1.c8m20g1d50"
   key_pair        = "cloud2"
   security_groups = ["default", "public-ssh"]
 
