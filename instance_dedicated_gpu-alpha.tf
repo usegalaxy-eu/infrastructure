@@ -3,7 +3,7 @@ variable "gpu-node-alpha-dns" {
 }
 
 data "openstack_images_image_v2" "gpu-node-alpha-image" {
-  name = "vggp-gpu-v60-j310-1fad751e0150-main"
+  name = "vggp-v60-gpu-j322-692e75a7c101-main"
 }
 
 resource "openstack_compute_instance_v2" "gpu-node-alpha" {
