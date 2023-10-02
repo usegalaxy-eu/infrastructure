@@ -236,16 +236,50 @@ resource "aws_route53_record" "ftp" {
 #  records = ["usegalaxy.eu"]
 #}
 #
-#resource "aws_route53_record" "it-subdomain-main" {
-#  zone_id = var.zone_usegalaxy_eu
-#
-#  # Guess new domains won't get this for now, but whatever.
-#  count   = 23
-#  name    = "*.interactivetoolentrypoint.interactivetool.${element(var.subdomain, count.index)}"
-#  type    = "CNAME"
-#  ttl     = "7200"
-#  records = ["usegalaxy.eu"]
-#}
+
+# If your subdomain needs GxIT privileges please place your subdomain at the end of the list and increase the counter `count` in the `it-subdomain-main` resource
+variable "it-subdomain" {
+  type = list(string)
+
+  default = [
+    "annotation.usegalaxy.eu",
+    "aqua.usegalaxy.eu",
+    "beta.usegalaxy.eu",
+    "build.usegalaxy.eu",
+    "cheminformatics.usegalaxy.eu",
+    "climate.usegalaxy.eu",
+    "clipseq.usegalaxy.eu",
+    "ecology.usegalaxy.eu",
+    "erasmusmc.usegalaxy.eu",
+    "graphclust.usegalaxy.eu",
+    "hicexplorer.usegalaxy.eu",
+    "humancellatlas.usegalaxy.eu",
+    "imaging.usegalaxy.eu",
+    "usegalaxy.eu",
+    "test.internal.usegalaxy.eu",
+    "live.usegalaxy.eu",
+    "metabolomics.usegalaxy.eu",
+    "metagenomics.usegalaxy.eu",
+    "nanopore.usegalaxy.eu",
+    "proteomics.usegalaxy.eu",
+    "rna.usegalaxy.eu",
+    "singlecell.usegalaxy.eu",
+    "stats.usegalaxy.eu",
+    "streetscience.usegalaxy.eu",
+    "test.usegalaxy.eu"
+  ]
+}
+
+resource "aws_route53_record" "it-subdomain-main" {
+  # allow_overwrite = true
+  zone_id = var.zone_usegalaxy_eu
+  count   = 25
+  name    = "*.interactivetoolentrypoint.interactivetool.${element(var.it-subdomain, count.index)}"
+  type    = "CNAME"
+  ttl     = "7200"
+  records = ["usegalaxy.eu"]
+}
+
 #
 ## https://727a121642ce1f94-3a20d7fa7b014959af58c7f6a47d1af.interactivetoolentrypoint.interactivetool.test.internal.usegalaxy.eu/
 ##resource "aws_route53_record" "it-subdomain-test" {
