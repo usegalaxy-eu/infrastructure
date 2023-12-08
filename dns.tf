@@ -118,7 +118,7 @@ resource "aws_route53_record" "sn07-galaxyproject" {
   name            = "sn07.galaxyproject.eu"
   type            = "A"
   ttl             = "7200"
-  records         = ["10.5.68.237"]
+  records         = ["132.230.223.238"]
 }
 
 resource "aws_route53_record" "sn05-galaxyproject" {
