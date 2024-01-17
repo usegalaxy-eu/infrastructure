@@ -1,6 +1,6 @@
 data "openstack_images_image_v2" "beacon-import-image" {
-  # BW Cloud basic Rocky 9 image
-  name = "Rocky 9.0"
+  # VGCN Rocky 9.2 generic image
+  name = "vgcn~rockylinux-9.2-x86_64~+generic+internal~20231221~57137~python-script~9975044"
 }
 
 resource "openstack_compute_instance_v2" "beacon-import" {
