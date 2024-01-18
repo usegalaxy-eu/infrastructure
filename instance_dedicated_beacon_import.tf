@@ -1,6 +1,6 @@
 data "openstack_images_image_v2" "beacon-import-image" {
   # VGCN Rocky 9.2 generic image
-  name = "vgcn~rockylinux-9.2-x86_64~+generic+internal~20231221~57137~python-script~9975044"
+  name = "vgcn~rockylinux-9.2-x86_64~+generic+internal~20240102~70050~dev~6f78a5f~mira_local_build"
 }
 
 resource "openstack_compute_instance_v2" "beacon-import" {
