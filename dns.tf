@@ -274,12 +274,53 @@ variable "it-subdomain" {
 
 resource "aws_route53_record" "it-subdomain-main" {
   allow_overwrite = true
+  zone_id         = var.zone_usegalaxy_eu
+  count           = 26
+  name            = "*.interactivetoolentrypoint.interactivetool.${element(var.it-subdomain, count.index)}"
+  type            = "CNAME"
+  ttl             = "7200"
+  records         = ["usegalaxy.eu"]
+}
+
+# SPF and DMARC records
+resource "aws_route53_record" "usegalaxy_eu_dmarc_txt" {
   zone_id = var.zone_usegalaxy_eu
-  count   = 26
-  name    = "*.interactivetoolentrypoint.interactivetool.${element(var.it-subdomain, count.index)}"
-  type    = "CNAME"
-  ttl     = "7200"
-  records = ["usegalaxy.eu"]
+  name    = "_dmarc.usegalaxy.eu"
+  type    = "TXT"
+  ttl     = "300"
+  records = [
+    "v=DMARC1;p=reject;pct=100;ruf=mailto:galaxy-ops@informatik.uni-freiburg.de;aspf=r"
+  ]
+}
+
+resource "aws_route53_record" "usegalaxy_eu_spf_txt" {
+  zone_id = var.zone_usegalaxy_eu
+  name    = ""
+  type    = "TXT"
+  ttl     = "300"
+  records = [
+    "v=spf1 include:mailgun.org -all"
+  ]
+}
+
+resource "aws_route53_record" "galaxyproject_eu_dmarc_txt" {
+  zone_id = var.zone_galaxyproject_eu
+  name    = "_dmarc.galaxyproject.eu"
+  type    = "TXT"
+  ttl     = "300"
+  records = [
+    "v=DMARC1;p=reject;pct=100;ruf=mailto:galaxy-ops@informatik.uni-freiburg.de;aspf=r"
+  ]
+}
+
+resource "aws_route53_record" "galaxyproject_eu_spf_txt" {
+  zone_id = var.zone_galaxyproject_eu
+  name    = ""
+  type    = "TXT"
+  ttl     = "300"
+  records = [
+    "v=spf1 -all"
+  ]
 }
 
 #
