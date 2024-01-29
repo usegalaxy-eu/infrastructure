@@ -257,7 +257,6 @@ variable "it-subdomain" {
     "humancellatlas.usegalaxy.eu",
     "imaging.usegalaxy.eu",
     "usegalaxy.eu",
-    "test.internal.usegalaxy.eu",
     "live.usegalaxy.eu",
     "metabolomics.usegalaxy.eu",
     "metagenomics.usegalaxy.eu",
@@ -275,7 +274,7 @@ variable "it-subdomain" {
 resource "aws_route53_record" "it-subdomain-main" {
   allow_overwrite = true
   zone_id         = var.zone_usegalaxy_eu
-  count           = 26
+  count           = 25
   name            = "*.interactivetoolentrypoint.interactivetool.${element(var.it-subdomain, count.index)}"
   type            = "CNAME"
   ttl             = "7200"
