@@ -257,7 +257,6 @@ variable "it-subdomain" {
     "humancellatlas.usegalaxy.eu",
     "imaging.usegalaxy.eu",
     "usegalaxy.eu",
-    "test.internal.usegalaxy.eu",
     "live.usegalaxy.eu",
     "metabolomics.usegalaxy.eu",
     "metagenomics.usegalaxy.eu",
