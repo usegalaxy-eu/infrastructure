@@ -7,7 +7,7 @@ resource "openstack_compute_instance_v2" "maintenance" {
   flavor_name     = "m1.xlarge"
   key_pair        = "cloud2"
   tags            = []
-  security_groups = ["default", "rsyslog"]
+  security_groups = ["default", "rsyslog", "htcondor_shared_port"]
 
   network {
     name = "bioinf"
