@@ -122,6 +122,15 @@ resource "aws_route53_record" "sn07-galaxyproject" {
   records         = ["132.230.223.238"]
 }
 
+resource "aws_route53_record" "sn07-usegalaxy" {
+  allow_overwrite = true
+  zone_id         = var.zone_usegalaxy_eu
+  name            = "sn07.usegalaxy.eu"
+  type            = "A"
+  ttl             = "7200"
+  records         = ["132.230.223.238"]
+}
+
 resource "aws_route53_record" "sn05-galaxyproject" {
   allow_overwrite = true
   zone_id         = var.zone_galaxyproject_eu
