@@ -241,7 +241,7 @@ resource "aws_route53_record" "ftp" {
 #  zone_id = var.zone_usegalaxy_eu
 #
 #  # Guess new domains won't get this for now, but whatever.
-#  name    = "*.interactivetoolentrypoint.interactivetool.usegalaxy.eu"
+#  name    = "*.ep.interactivetool.usegalaxy.eu"
 #  type    = "CNAME"
 #  ttl     = "7200"
 #  records = ["usegalaxy.eu"]
