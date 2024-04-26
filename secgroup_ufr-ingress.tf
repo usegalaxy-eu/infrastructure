@@ -31,3 +31,11 @@ resource "openstack_networking_secgroup_rule_v2" "ufr-ingress-58293ee9-af20-4f46
   remote_ip_prefix  = "10.0.0.0/8"
   security_group_id = openstack_networking_secgroup_v2.ufr-ingress.id
 }
+
+# Cloud team in RZ requested this to be enabled
+resource "openstack_networking_secgroup_rule_v2" "ufr-ingress-icmp" {
+  direction         = "ingress"
+  ethertype         = "IPv4"
+  protocol          = "icmp"
+  security_group_id = openstack_networking_secgroup_v2.ufr-ingress.id
+}
