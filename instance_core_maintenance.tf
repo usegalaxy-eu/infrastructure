@@ -37,12 +37,3 @@ resource "aws_route53_record" "maintenance-galaxyproject" {
   ttl             = "600"
   records         = ["${openstack_compute_instance_v2.maintenance.access_ip_v4}"]
 }
-
-resource "aws_route53_record" "cm2-galaxyproject" {
-  allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
-  name            = "condor-cm2.galaxyproject.eu"
-  type            = "CNAME"
-  ttl             = "86400"
-  records         = ["${openstack_compute_instance_v2.maintenance.access_ip_v4}"]
-}
