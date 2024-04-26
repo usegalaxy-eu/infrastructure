@@ -23,3 +23,12 @@ resource "aws_route53_record" "incoming" {
   ttl             = "600"
   records         = ["${openstack_compute_instance_v2.incoming.access_ip_v4}"]
 }
+
+resource "aws_route53_record" "ftp" {
+  allow_overwrite = true
+  zone_id         = var.zone_usegalaxy_eu
+  name            = "ftp.usegalaxy.eu"
+  type            = "A"
+  ttl             = "600"
+  records         = ["${openstack_compute_instance_v2.incoming.access_ip_v4}"]
+}
