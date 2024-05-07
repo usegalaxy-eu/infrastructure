@@ -1,6 +1,6 @@
 resource "openstack_compute_instance_v2" "dokku" {
   name            = "apps.galaxyproject.eu"
-  image_name      = "generic-rockylinux8-v60-j168-5333625af7b2-main"
+  image_name      = "Ubuntu 22.04"
   flavor_name     = "m1.xlarge"
   key_pair        = "cloud2"
   security_groups = ["egress", "public-ssh", "public-ping", "public-web2"]
