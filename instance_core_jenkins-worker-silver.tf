@@ -18,16 +18,7 @@ resource "openstack_compute_instance_v2" "jenkins-workers-silver" {
     name = "bioinf"
   }
 
-  user_data = <<-EOF
-    #cloud-config
-    bootcmd:
-        - test -z "$(blkid /dev/vdb)" && mkfs -t ext4 -L jenkins /dev/vdb
-        - mkdir -p /scratch
-    mounts:
-        - ["/dev/vdb", "/scratch", auto, "defaults,nofail", "0", "2"]
-    runcmd:
-        - [ chown, "centos.centos", -R, /scratch ]
-  EOF
+  user_data = var.jenkins_userdata
 }
 
 resource "openstack_blockstorage_volume_v2" "jenkins-workers-silver-volume" {
