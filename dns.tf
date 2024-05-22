@@ -160,6 +160,7 @@ resource "aws_route53_record" "build-usegalaxy" {
 
 ## ZFS server #1 (all flash)
 resource "aws_route53_record" "ssds1-galaxyproject" {
+  allow_overwrite = true
   zone_id = var.zone_galaxyproject_eu
   name    = "zfs0f.galaxyproject.eu"
   type    = "A"
@@ -169,6 +170,7 @@ resource "aws_route53_record" "ssds1-galaxyproject" {
 
 ## ZFS server #2 (spinning disks w/ flash cache)
 resource "aws_route53_record" "zfs1-galaxyproject" {
+  allow_overwrite = true
   zone_id = var.zone_galaxyproject_eu
   name    = "zfs1.galaxyproject.eu"
   type    = "A"
@@ -178,6 +180,7 @@ resource "aws_route53_record" "zfs1-galaxyproject" {
 
 ## ZFS server #3 (all flash)
 resource "aws_route53_record" "zfs2f-galaxyproject" {
+  allow_overwrite = true
   zone_id = var.zone_galaxyproject_eu
   name    = "zfs2f.galaxyproject.eu"
   type    = "A"
@@ -188,6 +191,7 @@ resource "aws_route53_record" "zfs2f-galaxyproject" {
 
 ## ZFS server #4 (all flash)
 resource "aws_route53_record" "zfs3f-galaxyproject" {
+  allow_overwrite = true
   zone_id = var.zone_galaxyproject_eu
   name    = "zfs3f.galaxyproject.eu"
   type    = "A"
@@ -203,36 +207,6 @@ resource "aws_route53_record" "zfs3f-galaxyproject" {
 #  ttl     = "300"
 #  records = ["10.5.68.230"]
 #}
-
-
-# VMs
-resource "aws_route53_record" "plausible" {
-  allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
-  name            = "plausible.galaxyproject.eu"
-  type            = "A"
-  ttl             = "600"
-  records         = ["192.52.44.75"]
-}
-
-resource "aws_route53_record" "apollo-main" {
-  allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
-  name            = "apollo.internal.galaxyproject.eu"
-  type            = "A"
-  ttl             = "600"
-  records         = ["10.5.68.7"]
-}
-
-resource "aws_route53_record" "ftp" {
-  allow_overwrite = true
-  zone_id         = var.zone_usegalaxy_eu
-  name            = "ftp.usegalaxy.eu"
-  type            = "A"
-  ttl             = "600"
-  records         = ["132.230.223.213"]
-}
-
 
 ## Interactive Tools
 ## We redirect all subdomains planning for URLs like
@@ -294,6 +268,7 @@ resource "aws_route53_record" "it-subdomain-main" {
 
 # SPF and DMARC records
 resource "aws_route53_record" "usegalaxy_eu_dmarc_txt" {
+  allow_overwrite = true
   zone_id = var.zone_usegalaxy_eu
   name    = "_dmarc.usegalaxy.eu"
   type    = "TXT"
@@ -304,6 +279,7 @@ resource "aws_route53_record" "usegalaxy_eu_dmarc_txt" {
 }
 
 resource "aws_route53_record" "usegalaxy_eu_spf_txt" {
+  allow_overwrite = true
   zone_id = var.zone_usegalaxy_eu
   name    = ""
   type    = "TXT"
@@ -314,6 +290,7 @@ resource "aws_route53_record" "usegalaxy_eu_spf_txt" {
 }
 
 resource "aws_route53_record" "galaxyproject_eu_dmarc_txt" {
+  allow_overwrite = true
   zone_id = var.zone_galaxyproject_eu
   name    = "_dmarc.galaxyproject.eu"
   type    = "TXT"
@@ -324,6 +301,7 @@ resource "aws_route53_record" "galaxyproject_eu_dmarc_txt" {
 }
 
 resource "aws_route53_record" "galaxyproject_eu_spf_txt" {
+  allow_overwrite = true
   zone_id = var.zone_galaxyproject_eu
   name    = ""
   type    = "TXT"

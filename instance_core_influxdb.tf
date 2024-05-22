@@ -1,6 +1,6 @@
 resource "openstack_compute_instance_v2" "influxdb-usegalaxy" {
   name            = "influxdb.galaxyproject.eu"
-  image_name      = "generic-rockylinux8-v60-j168-5333625af7b2-main"
+  image_name      = "influxdb_15_04_2024"
   flavor_name     = "m1.xlarge"
   key_pair        = "cloud2"
   security_groups = ["egress", "public-ssh", "public-ping", "public-influxdb", "public-web2"]
@@ -15,27 +15,23 @@ resource "openstack_compute_instance_v2" "influxdb-usegalaxy" {
 
   user_data = <<-EOF
     #cloud-config
-    bootcmd:
-        - test -z "$(blkid /dev/vdb)" && mkfs -t ext4 /dev/vdb
-        - mkdir -p /data
-    mounts:
-        - ["/dev/vdb", "/data", auto, "defaults,nofail", "0", "2"]
-    runcmd:
-        - [ chown, "centos.centos", -R, /data ]
     package_update: true
     package_upgrade: true
   EOF
 }
 
-resource "openstack_blockstorage_volume_v2" "influxdb-data" {
-  name        = "influxdb"
-  description = "Data volume for InfluxDB"
-  size        = 100
-}
+# 17.4.2024: This resource creation is commented out because the volume
+# from the old cloud is being attached to the instance in the new cloud.
+# resource "openstack_blockstorage_volume_v3" "influxdb-data" {
+#   name        = "influxdb"
+#   description = "Data volume for InfluxDB"
+#   size        = 100
+# }
 
 resource "openstack_compute_volume_attach_v2" "influxdb-va" {
   instance_id = openstack_compute_instance_v2.influxdb-usegalaxy.id
-  volume_id   = openstack_blockstorage_volume_v2.influxdb-data.id
+  volume_id   = "f6e77471-9180-4055-941f-b18fe353571c"
+  device      = "/dev/vdb"
 }
 
 resource "aws_route53_record" "influxdb-usegalaxy-internal" {
