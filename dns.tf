@@ -7,7 +7,7 @@ resource "aws_route53_record" "usegalaxy-eu" {
   zone_id         = var.zone_usegalaxy_eu
   name            = "usegalaxy.eu"
   type            = "A"
-  ttl             = "7200"
+  ttl             = "300"
   records         = ["${var.sn06}"]
 }
 
@@ -161,42 +161,42 @@ resource "aws_route53_record" "build-usegalaxy" {
 ## ZFS server #1 (all flash)
 resource "aws_route53_record" "ssds1-galaxyproject" {
   allow_overwrite = true
-  zone_id = var.zone_galaxyproject_eu
-  name    = "zfs0f.galaxyproject.eu"
-  type    = "A"
-  ttl     = "7200"
-  records = ["10.5.68.239"]
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "zfs0f.galaxyproject.eu"
+  type            = "A"
+  ttl             = "7200"
+  records         = ["10.5.68.239"]
 }
 
 ## ZFS server #2 (spinning disks w/ flash cache)
 resource "aws_route53_record" "zfs1-galaxyproject" {
   allow_overwrite = true
-  zone_id = var.zone_galaxyproject_eu
-  name    = "zfs1.galaxyproject.eu"
-  type    = "A"
-  ttl     = "7200"
-  records = ["10.5.68.238"]
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "zfs1.galaxyproject.eu"
+  type            = "A"
+  ttl             = "7200"
+  records         = ["10.5.68.238"]
 }
 
 ## ZFS server #3 (all flash)
 resource "aws_route53_record" "zfs2f-galaxyproject" {
   allow_overwrite = true
-  zone_id = var.zone_galaxyproject_eu
-  name    = "zfs2f.galaxyproject.eu"
-  type    = "A"
-  ttl     = "7200"
-  records = ["10.5.68.236"]
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "zfs2f.galaxyproject.eu"
+  type            = "A"
+  ttl             = "7200"
+  records         = ["10.5.68.236"]
   #comment
 }
 
 ## ZFS server #4 (all flash)
 resource "aws_route53_record" "zfs3f-galaxyproject" {
   allow_overwrite = true
-  zone_id = var.zone_galaxyproject_eu
-  name    = "zfs3f.galaxyproject.eu"
-  type    = "A"
-  ttl     = "7200"
-  records = ["10.5.68.235"]
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "zfs3f.galaxyproject.eu"
+  type            = "A"
+  ttl             = "7200"
+  records         = ["10.5.68.235"]
 }
 
 ## Previous central-manager
@@ -269,10 +269,10 @@ resource "aws_route53_record" "it-subdomain-main" {
 # SPF and DMARC records
 resource "aws_route53_record" "usegalaxy_eu_dmarc_txt" {
   allow_overwrite = true
-  zone_id = var.zone_usegalaxy_eu
-  name    = "_dmarc.usegalaxy.eu"
-  type    = "TXT"
-  ttl     = "300"
+  zone_id         = var.zone_usegalaxy_eu
+  name            = "_dmarc.usegalaxy.eu"
+  type            = "TXT"
+  ttl             = "300"
   records = [
     "v=DMARC1;p=reject;pct=100;ruf=mailto:galaxy-ops@informatik.uni-freiburg.de;aspf=r"
   ]
@@ -280,10 +280,10 @@ resource "aws_route53_record" "usegalaxy_eu_dmarc_txt" {
 
 resource "aws_route53_record" "usegalaxy_eu_spf_txt" {
   allow_overwrite = true
-  zone_id = var.zone_usegalaxy_eu
-  name    = ""
-  type    = "TXT"
-  ttl     = "300"
+  zone_id         = var.zone_usegalaxy_eu
+  name            = ""
+  type            = "TXT"
+  ttl             = "300"
   records = [
     "v=spf1 include:mailgun.org -all"
   ]
@@ -291,10 +291,10 @@ resource "aws_route53_record" "usegalaxy_eu_spf_txt" {
 
 resource "aws_route53_record" "galaxyproject_eu_dmarc_txt" {
   allow_overwrite = true
-  zone_id = var.zone_galaxyproject_eu
-  name    = "_dmarc.galaxyproject.eu"
-  type    = "TXT"
-  ttl     = "300"
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "_dmarc.galaxyproject.eu"
+  type            = "TXT"
+  ttl             = "300"
   records = [
     "v=DMARC1;p=reject;pct=100;ruf=mailto:galaxy-ops@informatik.uni-freiburg.de;aspf=r"
   ]
@@ -302,10 +302,10 @@ resource "aws_route53_record" "galaxyproject_eu_dmarc_txt" {
 
 resource "aws_route53_record" "galaxyproject_eu_spf_txt" {
   allow_overwrite = true
-  zone_id = var.zone_galaxyproject_eu
-  name    = ""
-  type    = "TXT"
-  ttl     = "300"
+  zone_id         = var.zone_galaxyproject_eu
+  name            = ""
+  type            = "TXT"
+  ttl             = "300"
   records = [
     "v=spf1 -all"
   ]
