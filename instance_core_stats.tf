@@ -6,7 +6,7 @@ resource "openstack_compute_instance_v2" "grafana" {
   security_groups = ["default", "public-web2"]
 
   network {
-    name = "public"
+    name = "public-extended"
   }
 }
 
