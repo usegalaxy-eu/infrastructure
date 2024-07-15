@@ -2,13 +2,17 @@ variable "sn06" {
   default = "132.230.223.239"
 }
 
+variable "traefik" {
+  default = "132.230.103.37"
+}
+
 resource "aws_route53_record" "usegalaxy-eu" {
   allow_overwrite = true
   zone_id         = var.zone_usegalaxy_eu
   name            = "usegalaxy.eu"
   type            = "A"
-  ttl             = "300"
-  records         = ["${var.sn06}"]
+  ttl             = "7200"
+  records         = ["${var.traefik}"]
 }
 
 resource "aws_route53_record" "galaxyproject-eu" {
