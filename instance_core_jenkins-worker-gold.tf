@@ -21,7 +21,7 @@ resource "openstack_compute_instance_v2" "jenkins-workers-gold" {
   user_data = var.jenkins_userdata
 }
 
-resource "openstack_blockstorage_volume_v2" "jenkins-workers-gold-volume" {
+resource "openstack_blockstorage_volume_v3" "jenkins-workers-gold-volume" {
   name        = "jenkins-workers-${count.index}-gold-volume"
   description = "Data volume for Jenkins worker-${count.index}.gold.build.galaxyproject.eu"
   volume_type = "default"
@@ -31,7 +31,7 @@ resource "openstack_blockstorage_volume_v2" "jenkins-workers-gold-volume" {
 
 resource "openstack_compute_volume_attach_v2" "jenkins-workers-gold-va" {
   instance_id = element(openstack_compute_instance_v2.jenkins-workers-gold.*.id, count.index)
-  volume_id   = element(openstack_blockstorage_volume_v2.jenkins-workers-gold-volume.*.id, count.index)
+  volume_id   = element(openstack_blockstorage_volume_v3.jenkins-workers-gold-volume.*.id, count.index)
   count       = var.workers-gold
 }
 
