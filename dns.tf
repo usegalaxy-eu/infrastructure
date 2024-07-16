@@ -11,7 +11,7 @@ resource "aws_route53_record" "usegalaxy-eu" {
   zone_id         = var.zone_usegalaxy_eu
   name            = "usegalaxy.eu"
   type            = "A"
-  ttl             = "7200"
+  ttl             = "300"
   records         = ["${var.traefik}"]
 }
 
