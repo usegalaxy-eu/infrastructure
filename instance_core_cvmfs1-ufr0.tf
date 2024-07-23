@@ -4,7 +4,7 @@ variable "cvmfs1-ufr0-eu-dns" {
 
 resource "openstack_compute_instance_v2" "cvmfs1-ufr0-eu" {
   name            = var.cvmfs1-ufr0-eu-dns
-  image_name      = "generic-rockylinux8-v60-j168-5333625af7b2-main"
+  image_name      = "cvmfs1-ufr0-internal_22_04_2024"
   flavor_name     = "m1.small"
   key_pair        = "cloud2"
   security_groups = ["egress", "public-ssh", "public-ping", "public-web2"]

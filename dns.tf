@@ -2,13 +2,17 @@ variable "sn06" {
   default = "132.230.223.239"
 }
 
+variable "traefik" {
+  default = "132.230.103.37"
+}
+
 resource "aws_route53_record" "usegalaxy-eu" {
   allow_overwrite = true
   zone_id         = var.zone_usegalaxy_eu
   name            = "usegalaxy.eu"
   type            = "A"
   ttl             = "7200"
-  records         = ["${var.sn06}"]
+  records         = ["${var.traefik}"]
 }
 
 resource "aws_route53_record" "galaxyproject-eu" {
@@ -62,7 +66,10 @@ variable "subdomain" {
     "microgalaxy.usegalaxy.eu",
     "spatialomics.usegalaxy.eu",
     "materials.usegalaxy.eu",
-    "phage.usegalaxy.eu"
+    "phage.usegalaxy.eu",
+    "aqua.usegalaxy.eu",
+    "earth-system.usegalaxy.eu",
+    "eirene.usegalaxy.eu"
   ]
 }
 
@@ -70,7 +77,7 @@ resource "aws_route53_record" "subdomains" {
   allow_overwrite = true
   zone_id         = var.zone_usegalaxy_eu
 
-  count = 37
+  count = 40
   name  = element(var.subdomain, count.index)
 
   type    = "CNAME"
@@ -116,7 +123,16 @@ resource "aws_route53_record" "sn07-galaxyproject" {
   name            = "sn07.galaxyproject.eu"
   type            = "A"
   ttl             = "7200"
-  records         = ["10.5.68.237"]
+  records         = ["132.230.223.238"]
+}
+
+resource "aws_route53_record" "sn07-usegalaxy" {
+  allow_overwrite = true
+  zone_id         = var.zone_usegalaxy_eu
+  name            = "sn07.usegalaxy.eu"
+  type            = "A"
+  ttl             = "7200"
+  records         = ["132.230.223.238"]
 }
 
 resource "aws_route53_record" "sn05-galaxyproject" {
@@ -134,7 +150,7 @@ resource "aws_route53_record" "cm-galaxyproject" {
   name            = "condor-cm.galaxyproject.eu"
   type            = "CNAME"
   ttl             = "86400"
-  records         = ["sn05.galaxyproject.eu"]
+  records         = ["sn06.galaxyproject.eu"]
 }
 
 resource "aws_route53_record" "build-usegalaxy" {
@@ -148,39 +164,43 @@ resource "aws_route53_record" "build-usegalaxy" {
 
 ## ZFS server #1 (all flash)
 resource "aws_route53_record" "ssds1-galaxyproject" {
-  zone_id = var.zone_galaxyproject_eu
-  name    = "zfs0f.galaxyproject.eu"
-  type    = "A"
-  ttl     = "7200"
-  records = ["10.5.68.239"]
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "zfs0f.galaxyproject.eu"
+  type            = "A"
+  ttl             = "7200"
+  records         = ["10.5.68.239"]
 }
 
 ## ZFS server #2 (spinning disks w/ flash cache)
 resource "aws_route53_record" "zfs1-galaxyproject" {
-  zone_id = var.zone_galaxyproject_eu
-  name    = "zfs1.galaxyproject.eu"
-  type    = "A"
-  ttl     = "7200"
-  records = ["10.5.68.238"]
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "zfs1.galaxyproject.eu"
+  type            = "A"
+  ttl             = "7200"
+  records         = ["10.5.68.238"]
 }
 
 ## ZFS server #3 (all flash)
 resource "aws_route53_record" "zfs2f-galaxyproject" {
-  zone_id = var.zone_galaxyproject_eu
-  name    = "zfs2f.galaxyproject.eu"
-  type    = "A"
-  ttl     = "7200"
-  records = ["10.5.68.236"]
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "zfs2f.galaxyproject.eu"
+  type            = "A"
+  ttl             = "7200"
+  records         = ["10.5.68.236"]
   #comment
 }
 
 ## ZFS server #4 (all flash)
 resource "aws_route53_record" "zfs3f-galaxyproject" {
-  zone_id = var.zone_galaxyproject_eu
-  name    = "zfs3f.galaxyproject.eu"
-  type    = "A"
-  ttl     = "7200"
-  records = ["10.5.68.235"]
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "zfs3f.galaxyproject.eu"
+  type            = "A"
+  ttl             = "7200"
+  records         = ["10.5.68.235"]
 }
 
 ## Previous central-manager
@@ -192,36 +212,6 @@ resource "aws_route53_record" "zfs3f-galaxyproject" {
 #  records = ["10.5.68.230"]
 #}
 
-
-# VMs
-resource "aws_route53_record" "plausible" {
-  allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
-  name            = "plausible.galaxyproject.eu"
-  type            = "A"
-  ttl             = "600"
-  records         = ["192.52.44.75"]
-}
-
-resource "aws_route53_record" "apollo-main" {
-  allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
-  name            = "apollo.internal.galaxyproject.eu"
-  type            = "A"
-  ttl             = "600"
-  records         = ["10.5.68.7"]
-}
-
-resource "aws_route53_record" "ftp" {
-  allow_overwrite = true
-  zone_id         = var.zone_usegalaxy_eu
-  name            = "ftp.usegalaxy.eu"
-  type            = "A"
-  ttl             = "600"
-  records         = ["132.230.223.213"]
-}
-
-
 ## Interactive Tools
 ## We redirect all subdomains planning for URLs like
 ## https://727a121642ce1f94-3a20d7fa7b014959af58c7f6a47d1af.interactivetoolentrypoint.interactivetool.{some-subdomain}.usegalaxy.eu/
@@ -229,22 +219,102 @@ resource "aws_route53_record" "ftp" {
 #  zone_id = var.zone_usegalaxy_eu
 #
 #  # Guess new domains won't get this for now, but whatever.
-#  name    = "*.interactivetoolentrypoint.interactivetool.usegalaxy.eu"
+#  name    = "*.ep.interactivetool.usegalaxy.eu"
 #  type    = "CNAME"
 #  ttl     = "7200"
 #  records = ["usegalaxy.eu"]
 #}
 #
-#resource "aws_route53_record" "it-subdomain-main" {
-#  zone_id = var.zone_usegalaxy_eu
-#
-#  # Guess new domains won't get this for now, but whatever.
-#  count   = 23
-#  name    = "*.interactivetoolentrypoint.interactivetool.${element(var.subdomain, count.index)}"
-#  type    = "CNAME"
-#  ttl     = "7200"
-#  records = ["usegalaxy.eu"]
-#}
+
+# If your subdomain needs GxIT privileges please place your subdomain at the end of the list and increase the counter `count` in the `it-subdomain-main` resource
+variable "it-subdomain" {
+  type = list(string)
+
+  default = [
+    "annotation.usegalaxy.eu",
+    "aqua.usegalaxy.eu",
+    "beta.usegalaxy.eu",
+    "build.usegalaxy.eu",
+    "cheminformatics.usegalaxy.eu",
+    "climate.usegalaxy.eu",
+    "clipseq.usegalaxy.eu",
+    "ecology.usegalaxy.eu",
+    "erasmusmc.usegalaxy.eu",
+    "graphclust.usegalaxy.eu",
+    "hicexplorer.usegalaxy.eu",
+    "humancellatlas.usegalaxy.eu",
+    "imaging.usegalaxy.eu",
+    "usegalaxy.eu",
+    "live.usegalaxy.eu",
+    "metabolomics.usegalaxy.eu",
+    "metagenomics.usegalaxy.eu",
+    "nanopore.usegalaxy.eu",
+    "proteomics.usegalaxy.eu",
+    "rna.usegalaxy.eu",
+    "singlecell.usegalaxy.eu",
+    "stats.usegalaxy.eu",
+    "streetscience.usegalaxy.eu",
+    "test.usegalaxy.eu",
+    "earth-system.usegalaxy.eu",
+    "eirene.usegalaxy.eu"
+  ]
+}
+
+resource "aws_route53_record" "it-subdomain-main" {
+  allow_overwrite = true
+  zone_id         = var.zone_usegalaxy_eu
+  count           = 26
+  name            = "*.ep.interactivetool.${element(var.it-subdomain, count.index)}"
+  type            = "CNAME"
+  ttl             = "7200"
+  records         = ["usegalaxy.eu"]
+}
+
+# SPF and DMARC records
+resource "aws_route53_record" "usegalaxy_eu_dmarc_txt" {
+  allow_overwrite = true
+  zone_id         = var.zone_usegalaxy_eu
+  name            = "_dmarc.usegalaxy.eu"
+  type            = "TXT"
+  ttl             = "300"
+  records = [
+    "v=DMARC1;p=reject;pct=100;ruf=mailto:galaxy-ops@informatik.uni-freiburg.de;aspf=r"
+  ]
+}
+
+resource "aws_route53_record" "usegalaxy_eu_spf_txt" {
+  allow_overwrite = true
+  zone_id         = var.zone_usegalaxy_eu
+  name            = ""
+  type            = "TXT"
+  ttl             = "300"
+  records = [
+    "v=spf1 include:mailgun.org -all"
+  ]
+}
+
+resource "aws_route53_record" "galaxyproject_eu_dmarc_txt" {
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "_dmarc.galaxyproject.eu"
+  type            = "TXT"
+  ttl             = "300"
+  records = [
+    "v=DMARC1;p=reject;pct=100;ruf=mailto:galaxy-ops@informatik.uni-freiburg.de;aspf=r"
+  ]
+}
+
+resource "aws_route53_record" "galaxyproject_eu_spf_txt" {
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = ""
+  type            = "TXT"
+  ttl             = "300"
+  records = [
+    "v=spf1 -all"
+  ]
+}
+
 #
 ## https://727a121642ce1f94-3a20d7fa7b014959af58c7f6a47d1af.interactivetoolentrypoint.interactivetool.test.internal.usegalaxy.eu/
 ##resource "aws_route53_record" "it-subdomain-test" {
