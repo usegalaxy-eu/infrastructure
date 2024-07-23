@@ -4,7 +4,7 @@ variable "cvmfs-stratum0-eu-dns" {
 
 resource "openstack_compute_instance_v2" "cvmfs-stratum0-eu" {
   name            = var.cvmfs-stratum0-eu-dns
-  image_name      = "generic-rockylinux8-v60-j168-5333625af7b2-main"
+  image_name      = "cvmfs-stratum0_22_04_2024"
   flavor_name     = "m1.small"
   key_pair        = "cloud2"
   security_groups = ["egress", "public-ssh", "public-ping", "public-web2"]
@@ -22,15 +22,18 @@ resource "openstack_compute_instance_v2" "cvmfs-stratum0-eu" {
   EOF
 }
 
-resource "openstack_blockstorage_volume_v2" "cvmfs-data-eu" {
-  name        = "cvmfs stratum 0 EU"
-  description = "spool space for cvmfs"
-  size        = 500
-}
+# 22.4.2024: This resource creation is commented out because the volume
+# from the old cloud is being attached to the instance in the new cloud.
+# resource "openstack_blockstorage_volume_v2" "cvmfs-data-eu" {
+#   name        = "cvmfs stratum 0 EU"
+#   description = "spool space for cvmfs"
+#   size        = 500
+# }
 
-resource "openstack_compute_volume_attach_v2" "cvmfs-va-eu" {
-  instance_id = "${openstack_compute_instance_v2.cvmfs-stratum0-eu.id}"
-  volume_id   = "${openstack_blockstorage_volume_v2.cvmfs-data-eu.id}"
+resource "openstack_compute_volume_attach_v2" "cvmfs-stratum0-va-eu" {
+  instance_id = openstack_compute_instance_v2.cvmfs-stratum0-eu.id
+  volume_id   = "b637697c-5227-4b0c-a300-7afdd2256cc4"
+  device      = "/dev/vdb"
 }
 
 resource "aws_route53_record" "cvmfs-stratum0-eu" {
