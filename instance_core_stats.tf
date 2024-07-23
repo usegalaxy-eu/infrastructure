@@ -19,7 +19,9 @@ resource "openstack_compute_instance_v2" "grafana" {
 #   description = "Data volume for Grafana"
 #   size        = 2
 # }
-
+resource "openstack_networking_floatingip_v2" "stats-floatip" {
+  pool = "public-extended"
+}
 resource "openstack_compute_volume_attach_v2" "stats-data-vol1" {
   instance_id = openstack_compute_instance_v2.grafana.id
   volume_id   = "ad56f01f-cb21-458c-b1f9-90f937aa6525"
