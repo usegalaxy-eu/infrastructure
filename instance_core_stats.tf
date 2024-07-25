@@ -1,7 +1,7 @@
 resource "openstack_compute_instance_v2" "grafana" {
   name            = "stats.galaxyproject.eu"
   image_name      = "stats_15_04_2024"
-  flavor_name     = "m1.small"
+  flavor_name     = "m1.large"
   key_pair        = "cloud2"
   security_groups = ["default", "public-web2"]
 
