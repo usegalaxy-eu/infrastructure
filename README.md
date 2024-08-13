@@ -103,4 +103,3 @@ All infra IPs (without going to openstack.)
 ```console
 $ ./bin/tfinfo-to-json.sh | jq -r '.openstack_compute_instance_v2 | keys[] as $k | [$k, .[$k]."network.0.fixed_ip_v4"] | @tsv'
 ```
-
