@@ -1,6 +1,6 @@
 resource "openstack_compute_instance_v2" "grafana" {
   name            = "stats.galaxyproject.eu"
-  image_name      = "stats_15_04_2024"
+  image_name      = "vgcn~rockylinux-9-latest-x86_64~+generic+internal~20240820~42312~HEAD~479ec25"
   flavor_name     = "m1.large"
   key_pair        = "cloud2"
   security_groups = ["default", "public-web2"]
