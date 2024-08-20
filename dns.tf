@@ -270,6 +270,29 @@ resource "aws_route53_record" "it-subdomain-main" {
   records         = ["usegalaxy.eu"]
 }
 
+resource "aws_route53_record" "usegalaxy_eu_mx_record" {
+  allow_overwrite = true
+  zone_id = var.zone_usegalaxy_eu
+  name = ""
+  type = "MX"
+  ttl = 300
+  records = [
+    "10 mx1.forwardemail.net",
+    "10 mx2.forwardemail.net"
+  ]
+}
+
+resource "aws_route53_record" "usegalaxy_eu_mailforward_cname" {
+  allow_overwrite = true
+  zone_id = var.zone_usegalaxy_eu
+  name = "fe-bounces.usegalaxy.eu"
+  type = "CNAME"
+  ttl = 300
+  records = [
+    "forwardemail.net"
+  ]
+}
+
 # SPF and DMARC records
 resource "aws_route53_record" "usegalaxy_eu_dmarc_txt" {
   allow_overwrite = true
@@ -278,7 +301,7 @@ resource "aws_route53_record" "usegalaxy_eu_dmarc_txt" {
   type            = "TXT"
   ttl             = "300"
   records = [
-    "v=DMARC1;p=reject;pct=100;ruf=mailto:galaxy-ops@informatik.uni-freiburg.de;aspf=r"
+    "v=DMARC1; p=reject; pct=100; rua=mailto:dmarc-66c44965559d8b25a9140b95@forwardemail.net;"
   ]
 }
 
@@ -287,9 +310,9 @@ resource "aws_route53_record" "usegalaxy_eu_spf_txt" {
   zone_id         = var.zone_usegalaxy_eu
   name            = ""
   type            = "TXT"
-  ttl             = "300"
+  ttl             = "3600"
   records = [
-    "v=spf1 include:mailgun.org -all"
+    "v=spf1 a include:spf.forwardemail.net -all"
   ]
 }
 
