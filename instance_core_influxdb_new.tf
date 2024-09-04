@@ -30,7 +30,7 @@ resource "openstack_compute_instance_v2" "influxdb-usegalaxy-new" {
  resource "openstack_blockstorage_volume_v3" "influxdb-data-new" {
    name        = "influxdb-new"
    description = "Data volume for InfluxDB"
-   size        = 100
+   size        = 200
  }
 
 resource "openstack_compute_volume_attach_v2" "influxdb-va-new" {
