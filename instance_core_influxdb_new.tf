@@ -1,6 +1,6 @@
 resource "openstack_compute_instance_v2" "influxdb-usegalaxy-new" {
   name            = "influxdb.galaxyproject.eu"
-  image_name      = "2196b5f5-402c-4e2e-b426-e75bf8b55eea"
+  image_name      = "vgcn~rockylinux-9-latest-x86_64~+generic+internal~20240821~36799~HEAD~5e494c7"
   flavor_name     = "m1.xlarge"
   key_pair        = "cloud2"
   security_groups = ["egress", "public-ssh", "public-ping", "public-influxdb", "public-web2"]
