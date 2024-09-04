@@ -1,5 +1,5 @@
 resource "openstack_compute_instance_v2" "influxdb-usegalaxy-new" {
-  name            = "influxdb.galaxyproject.eu"
+  name            = "influxdb-new.galaxyproject.eu"
   image_name      = "vgcn~rockylinux-9-latest-x86_64~+generic+internal~20240821~36799~HEAD~5e494c7"
   flavor_name     = "m1.xlarge"
   key_pair        = "cloud2"
