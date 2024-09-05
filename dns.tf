@@ -312,17 +312,7 @@ resource "aws_route53_record" "usegalaxy_eu_forwardmail_validation_txt" {
   type            = "TXT"
   ttl             = "3600"
   records = [
-    "forward-email-site-verification=XS8hOkR5lO"
-  ]
-}
-
-resource "aws_route53_record" "usegalaxy_eu_spf_txt" {
-  allow_overwrite = true
-  zone_id         = var.zone_usegalaxy_eu
-  name            = "@"
-  type            = "TXT"
-  ttl             = "3600"
-  records = [
+    "forward-email-site-verification=XS8hOkR5lO",
     "v=spf1 a include:spf.forwardemail.net -all"
   ]
 }
