@@ -144,15 +144,6 @@ resource "aws_route53_record" "sn05-galaxyproject" {
   records         = ["10.5.68.4"]
 }
 
-resource "aws_route53_record" "cm-galaxyproject" {
-  allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
-  name            = "condor-cm.galaxyproject.eu"
-  type            = "CNAME"
-  ttl             = "86400"
-  records         = ["sn06.galaxyproject.eu"]
-}
-
 resource "aws_route53_record" "build-usegalaxy" {
   allow_overwrite = true
   zone_id         = var.zone_galaxyproject_eu
@@ -160,6 +151,15 @@ resource "aws_route53_record" "build-usegalaxy" {
   type            = "A"
   ttl             = "7200"
   records         = ["132.230.223.230"]
+}
+
+resource "aws_route53_record" "cm-galaxyproject" {
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "cm.galaxyproject.eu"
+  type            = "CNAME"
+  ttl             = "7200"
+  records         = ["build.galaxyproject.eu"]
 }
 
 ## ZFS server #1 (all flash)
