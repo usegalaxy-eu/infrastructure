@@ -3,7 +3,7 @@ variable "upload-dns" {
 }
 
 data "openstack_images_image_v2" "upload-image" {
-  name = "generic-internal-v60-j333-fb0029b7a329-dev"
+  name = "vgcn~rockylinux-9-latest-x86_64~+generic+internal~20240820~42312~HEAD~479ec25"
 }
 
 resource "openstack_compute_instance_v2" "upload" {
