@@ -42,7 +42,7 @@ resource "random_id" "beacon-volume_name_unique" {
   byte_length = 8
 }
 
-resource "openstack_blockstorage_volume_v2" "beacon-vol" {
+resource "openstack_blockstorage_volume_v3" "beacon-vol" {
   name        = "beacon-data-vol-${random_id.beacon-volume_name_unique.hex}"
   volume_type = "default"
   description = "Data volume for beacon VM"
@@ -51,5 +51,5 @@ resource "openstack_blockstorage_volume_v2" "beacon-vol" {
 
 resource "openstack_compute_volume_attach_v2" "beacon-va" {
   instance_id = openstack_compute_instance_v2.beacon.id
-  volume_id   = openstack_blockstorage_volume_v2.beacon-vol.id
+  volume_id   = openstack_blockstorage_volume_v3.beacon-vol.id
 }
