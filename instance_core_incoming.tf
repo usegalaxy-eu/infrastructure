@@ -8,7 +8,7 @@ resource "openstack_compute_instance_v2" "incoming" {
   flavor_name = "m1.small"
   key_pair    = "cloud2"
 
-  security_groups = ["egress", "public-ssh", "public-web2", "public-ftp"]
+  security_groups = ["egress", "public-ssh", "public-web2", "public-ftp", "public-ping"]
 
   network {
     name = "public-extended"
