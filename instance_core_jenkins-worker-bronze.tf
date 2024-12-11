@@ -1,3 +1,4 @@
+# keep until we migrate this to KVM
 variable "workers-bronze" {
   default = 1
 }
