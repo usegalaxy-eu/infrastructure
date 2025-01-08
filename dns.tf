@@ -161,6 +161,15 @@ resource "aws_route53_record" "cm-galaxyproject" {
   ttl             = "7200"
   records         = ["build.galaxyproject.eu"]
 }
+## DNBD3 Boot Infrastructure
+resource "aws_route53_record" "dnbd3-primary-galaxyproject" {
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "dnbd3-primary.galaxyproject.eu"
+  type            = "A"
+  ttl             = "7200"
+  records         = ["10.5.68.239"]
+}
 
 ## ZFS server #1 (all flash)
 resource "aws_route53_record" "ssds1-galaxyproject" {
