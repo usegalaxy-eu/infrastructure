@@ -24,6 +24,22 @@ resource "aws_route53_record" "galaxyproject-eu" {
   records         = ["${var.sn06}"]
 }
 
+resource "aws_route53_record" "mq-instance" {
+  zone_id = var.zone_galaxyproject_eu
+  name    = "mq.galaxyproject.eu"
+  type    = "A"
+  ttl     = "600"
+  records = ["${var.traefik}"]
+}
+
+resource "aws_route53_record" "mq-instance" {
+  zone_id = var.zone_galaxyproject_eu
+  name    = "mq02.galaxyproject.eu"
+  type    = "A"
+  ttl     = "600"
+  records = ["10.5.68.232"]
+}
+
 # Subdomains are all just CNAMEs for galaxyproject.eu → proxy-external
 variable "subdomain" {
   type = list(string)
