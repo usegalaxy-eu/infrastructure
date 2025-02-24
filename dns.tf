@@ -69,7 +69,8 @@ variable "subdomain" {
     "phage.usegalaxy.eu",
     "aqua.usegalaxy.eu",
     "earth-system.usegalaxy.eu",
-    "eirene.usegalaxy.eu"
+    "eirene.usegalaxy.eu",
+    "microbiology.usegalaxy.eu"
   ]
 }
 
@@ -77,7 +78,7 @@ resource "aws_route53_record" "subdomains" {
   allow_overwrite = true
   zone_id         = var.zone_usegalaxy_eu
 
-  count = 40
+  count = 41
   name  = element(var.subdomain, count.index)
 
   type    = "CNAME"
