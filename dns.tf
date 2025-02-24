@@ -69,7 +69,8 @@ variable "subdomain" {
     "phage.usegalaxy.eu",
     "aqua.usegalaxy.eu",
     "earth-system.usegalaxy.eu",
-    "eirene.usegalaxy.eu"
+    "eirene.usegalaxy.eu",
+    "microbiology.usegalaxy.eu"
   ]
 }
 
