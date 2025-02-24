@@ -24,7 +24,7 @@ resource "aws_route53_record" "galaxyproject-eu" {
   records         = ["${var.sn06}"]
 }
 
-resource "aws_route53_record" "mq-instance" {
+resource "aws_route53_record" "mq-proxy" {
   zone_id = var.zone_galaxyproject_eu
   name    = "mq.galaxyproject.eu"
   type    = "A"
@@ -32,7 +32,7 @@ resource "aws_route53_record" "mq-instance" {
   records = ["${var.traefik}"]
 }
 
-resource "aws_route53_record" "mq-instance" {
+resource "aws_route53_record" "mq02-server" {
   zone_id = var.zone_galaxyproject_eu
   name    = "mq02.galaxyproject.eu"
   type    = "A"
