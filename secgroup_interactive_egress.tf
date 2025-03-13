@@ -113,3 +113,10 @@ resource "openstack_networking_secgroup_rule_v2" "interactive-egress-embl-ebi-ft
   security_group_id = openstack_networking_secgroup_v2.interactive-egress.id
   remote_ip_prefix  = "193.62.193.138/32"
 }
+
+resource "openstack_networking_secgroup_rule_v2" "interactive-egress-internal-network" {
+  direction         = "egress"
+  ethertype         = "IPv4"
+  security_group_id = openstack_networking_secgroup_v2.interactive-egress.id
+  remote_ip_prefix  = "10.0.0.0/8"
+}
