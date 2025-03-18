@@ -6,7 +6,7 @@ resource "openstack_compute_instance_v2" "influxdb-usegalaxy-new" {
   security_groups = ["egress", "public-ssh", "public-ping", "public-influxdb", "public-web2"]
 
   lifecycle {
-        ignore_changes = [power_state]
+    ignore_changes = [power_state]
   }
 
   network {
@@ -27,11 +27,11 @@ resource "openstack_compute_instance_v2" "influxdb-usegalaxy-new" {
   EOF
 }
 
- resource "openstack_blockstorage_volume_v3" "influxdb-data-new" {
-   name        = "influxdb-new"
-   description = "Data volume for InfluxDB"
-   size        = 200
- }
+resource "openstack_blockstorage_volume_v3" "influxdb-data-new" {
+  name        = "influxdb-new"
+  description = "Data volume for InfluxDB"
+  size        = 200
+}
 
 resource "openstack_compute_volume_attach_v2" "influxdb-va-new" {
   instance_id = openstack_compute_instance_v2.influxdb-usegalaxy-new.id

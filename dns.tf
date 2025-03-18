@@ -25,19 +25,21 @@ resource "aws_route53_record" "galaxyproject-eu" {
 }
 
 resource "aws_route53_record" "mq-proxy" {
-  zone_id = var.zone_galaxyproject_eu
-  name    = "mq.galaxyproject.eu"
-  type    = "A"
-  ttl     = "600"
-  records = ["${var.traefik}"]
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "mq.galaxyproject.eu"
+  type            = "A"
+  ttl             = "600"
+  records         = ["${var.traefik}"]
 }
 
 resource "aws_route53_record" "mq02-server" {
-  zone_id = var.zone_galaxyproject_eu
-  name    = "mq02.galaxyproject.eu"
-  type    = "A"
-  ttl     = "600"
-  records = ["10.5.68.232"]
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "mq02.galaxyproject.eu"
+  type            = "A"
+  ttl             = "600"
+  records         = ["10.5.68.232"]
 }
 
 # Subdomains are all just CNAMEs for galaxyproject.eu → proxy-external
@@ -185,7 +187,7 @@ resource "aws_route53_record" "dnbd3-primary-galaxyproject" {
   name            = "dnbd3-primary.galaxyproject.eu"
   type            = "A"
   ttl             = "7200"
-  records         = ["10.5.68.239"]
+  records         = ["10.4.68.250"]
 }
 
 ## ZFS server #1 (all flash)
@@ -298,10 +300,10 @@ resource "aws_route53_record" "it-subdomain-main" {
 
 resource "aws_route53_record" "usegalaxy_eu_mx_record" {
   allow_overwrite = true
-  zone_id = var.zone_usegalaxy_eu
-  name = ""
-  type = "MX"
-  ttl = 300
+  zone_id         = var.zone_usegalaxy_eu
+  name            = ""
+  type            = "MX"
+  ttl             = 300
   records = [
     "10 mx1.forwardemail.net",
     "10 mx2.forwardemail.net"
@@ -310,10 +312,10 @@ resource "aws_route53_record" "usegalaxy_eu_mx_record" {
 
 resource "aws_route53_record" "usegalaxy_eu_mailforward_cname" {
   allow_overwrite = true
-  zone_id = var.zone_usegalaxy_eu
-  name = "fe-bounces.usegalaxy.eu"
-  type = "CNAME"
-  ttl = 300
+  zone_id         = var.zone_usegalaxy_eu
+  name            = "fe-bounces.usegalaxy.eu"
+  type            = "CNAME"
+  ttl             = 300
   records = [
     "forwardemail.net"
   ]
