@@ -49,7 +49,7 @@ resource "aws_route53_record" "tpv-broker" {
   name            = "tpv-broker.galaxyproject.eu"
   type            = "A"
   ttl             = "600"
-  records         = ["10.4.68.199"]
+  records         = ["${var.traefik}"]
 }
 
 # Subdomains are all just CNAMEs for galaxyproject.eu → proxy-external
