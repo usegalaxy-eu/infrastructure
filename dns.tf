@@ -42,6 +42,16 @@ resource "aws_route53_record" "mq02-server" {
   records         = ["10.5.68.232"]
 }
 
+
+resource "aws_route53_record" "tpv-broker" {
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "tpv-broker.galaxyproject.eu"
+  type            = "A"
+  ttl             = "600"
+  records         = ["${var.traefik}"]
+}
+
 # Subdomains are all just CNAMEs for galaxyproject.eu → proxy-external
 variable "subdomain" {
   type = list(string)
