@@ -24,6 +24,15 @@ resource "aws_route53_record" "galaxyproject-eu" {
   records         = ["${var.sn06}"]
 }
 
+resource "aws_route53_record" "celery-galaxyproject" {
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "celery-1.galaxyproject.eu"
+  type            = "A"
+  ttl             = "600"
+  records         = ["10.4.68.198"]
+}
+
 resource "aws_route53_record" "mq-proxy" {
   allow_overwrite = true
   zone_id         = var.zone_galaxyproject_eu
