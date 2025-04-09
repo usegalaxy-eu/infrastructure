@@ -48,7 +48,7 @@ resource "aws_route53_record" "mq02-server" {
   name            = "mq02.galaxyproject.eu"
   type            = "A"
   ttl             = "600"
-  records         = ["10.5.68.232"]
+  records         = ["10.4.68.197"]
 }
 
 
