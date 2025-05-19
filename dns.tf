@@ -107,7 +107,8 @@ variable "subdomain" {
     "aqua.usegalaxy.eu",
     "earth-system.usegalaxy.eu",
     "eirene.usegalaxy.eu",
-    "microbiology.usegalaxy.eu"
+    "microbiology.usegalaxy.eu",
+    "astronomy.usegalaxy.eu"
   ]
 }
 
