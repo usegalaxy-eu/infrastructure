@@ -116,7 +116,7 @@ resource "aws_route53_record" "subdomains" {
   allow_overwrite = true
   zone_id         = var.zone_usegalaxy_eu
 
-  count = 41
+  count = 42
   name  = element(var.subdomain, count.index)
 
   type    = "CNAME"
