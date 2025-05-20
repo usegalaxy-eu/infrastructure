@@ -26,4 +26,12 @@
 #
 #   count = var.celery-count
 # }
-
+# resource "aws_route53_record" "celery-galaxyproject" {
+#   allow_overwrite = true
+#   zone_id         = var.zone_galaxyproject_eu
+#   name            = "celery-${count.index}.galaxyproject.eu"
+#   type            = "A"
+#   ttl             = "600"
+#   records         = ["${element(openstack_compute_instance_v2.celery.*.access_ip_v4, count.index)}"]
+#   count           = var.celery-count
+# }
