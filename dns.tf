@@ -33,6 +33,15 @@ resource "aws_route53_record" "celery-galaxyproject" {
   records         = ["10.4.68.198"]
 }
 
+resource "aws_route53_record" "influxdb-proxy" {
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "influxdb.galaxyproject.eu"
+  type            = "A"
+  ttl             = "600"
+  records         = ["${var.traefik}"]
+}
+
 resource "aws_route53_record" "mq-proxy" {
   allow_overwrite = true
   zone_id         = var.zone_galaxyproject_eu
