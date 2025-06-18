@@ -1,31 +1,31 @@
-resource "openstack_compute_instance_v2" "influxdb-usegalaxy-new" {
-  name            = "influxdb-new.galaxyproject.eu"
-  image_name      = "vgcn~rockylinux-9-latest-x86_64~+generic+internal~20240821~36799~HEAD~5e494c7"
-  flavor_name     = "m1.xlarge"
-  key_pair        = "cloud2"
-  security_groups = ["egress", "public-ssh", "public-ping", "public-influxdb", "public-web2"]
-
-  lifecycle {
-    ignore_changes = [power_state]
-  }
-
-  network {
-    name = "public"
-  }
-
-  user_data = <<-EOF
-    #cloud-config
-    bootcmd:
-        - test -z "$(blkid /dev/vdb)" && mkfs -t ext4 /dev/vdb
-        - mkdir -p /data
-    mounts:
-        - ["/dev/vdb", "/data", auto, "defaults,nofail", "0", "2"]
-    runcmd:
-        - [ chown, "centos.centos", -R, /data ]
-    package_update: true
-    package_upgrade: true
-  EOF
-}
+#resource "openstack_compute_instance_v2" "influxdb-usegalaxy-new" {
+#  name            = "influxdb-new.galaxyproject.eu"
+#  image_name      = "vgcn~rockylinux-9-latest-x86_64~+generic+internal~20240821~36799~HEAD~5e494c7"
+#  flavor_name     = "m1.xlarge"
+#  key_pair        = "cloud2"
+#  security_groups = ["egress", "public-ssh", "public-ping", "public-influxdb", "public-web2"]
+#
+#  lifecycle {
+#    ignore_changes = [power_state]
+#  }
+#
+#  network {
+#    name = "public"
+#  }
+#
+#  user_data = <<-EOF
+#    #cloud-config
+#    bootcmd:
+#        - test -z "$(blkid /dev/vdb)" && mkfs -t ext4 /dev/vdb
+#        - mkdir -p /data
+#    mounts:
+#        - ["/dev/vdb", "/data", auto, "defaults,nofail", "0", "2"]
+#    runcmd:
+#        - [ chown, "centos.centos", -R, /data ]
+#    package_update: true
+#    package_upgrade: true
+#  EOF
+#}
 
 resource "openstack_blockstorage_volume_v3" "influxdb-data-new" {
   name        = "influxdb-new"
@@ -33,11 +33,11 @@ resource "openstack_blockstorage_volume_v3" "influxdb-data-new" {
   size        = 200
 }
 
-resource "openstack_compute_volume_attach_v2" "influxdb-va-new" {
-  instance_id = openstack_compute_instance_v2.influxdb-usegalaxy-new.id
-  volume_id   = openstack_blockstorage_volume_v3.influxdb-data-new.id
-  device      = "/dev/vdb"
-}
+#resource "openstack_compute_volume_attach_v2" "influxdb-va-new" {
+#  instance_id = openstack_compute_instance_v2.influxdb-usegalaxy-new.id
+#  volume_id   = openstack_blockstorage_volume_v3.influxdb-data-new.id
+#  device      = "/dev/vdb"
+#}
 
 # resource "aws_route53_record" "influxdb-usegalaxy-internal-new" {
 #   allow_overwrite = true
