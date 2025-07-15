@@ -267,6 +267,15 @@ resource "aws_route53_record" "dnbd3-primary-galaxyproject" {
   records         = ["10.4.68.250"]
 }
 
+resource "aws_route53_record" "dnbd3-secondary-galaxyproject" {
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "dnbd3-secondary.galaxyproject.eu"
+  type            = "CNAME"
+  ttl             = "7200"
+  records         = ["sn12.bi.privat"]
+}
+
 ## ZFS server #1 (all flash)
 resource "aws_route53_record" "ssds1-galaxyproject" {
   allow_overwrite = true
