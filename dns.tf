@@ -264,7 +264,7 @@ resource "aws_route53_record" "dnbd3-primary-galaxyproject" {
   name            = "dnbd3-primary.galaxyproject.eu"
   type            = "A"
   ttl             = "7200"
-  records         = ["10.4.68.250"]
+  records         = ["10.8.103.38"]
 }
 
 resource "aws_route53_record" "dnbd3-secondary-galaxyproject" {
