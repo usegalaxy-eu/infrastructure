@@ -462,3 +462,40 @@ resource "aws_route53_record" "galaxyproject_eu_spf_txt" {
 ##ttl     = "600"
 ##records = ["test.internal.usegalaxy.eu"]
 ##}
+
+# Galaxy test instance (ESG instance is now the EU's new test endpoint) and its services
+resource "aws_route53_record" "galaxy-test-instance" {
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "galaxy-test.galaxyproject.eu"
+  type            = "A"
+  ttl             = "7200"
+  records         = ["132.230.224.103"]
+}
+
+resource "aws_route53_record" "usegalaxy-test-instance" {
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "usegalaxy-test.galaxyproject.eu"
+  type            = "CNAME"
+  ttl             = "7200"
+  records         = ["132.230.224.103"]
+}
+
+resource "aws_route53_record" "galaxy-test-mq" {
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "galaxy-test-mq.galaxyproject.eu"
+  type            = "A"
+  ttl             = "7200"
+  records         = ["132.230.224.68"]
+}
+
+resource "aws_route53_record" "galaxy-test-rustus" {
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "galaxy-test-upload.galaxyproject.eu"
+  type            = "A"
+  ttl             = "7200"
+  records         = ["132.230.224.122"]
+}
