@@ -267,10 +267,10 @@ resource "aws_route53_record" "dnbd3-primary-galaxyproject" {
   records         = ["10.8.103.38"]
 }
 
-resource "aws_route53_record" "dnbd3-secondary-galaxyproject" {
+resource "aws_route53_record" "dnbd3-proxy-galaxyproject" {
   allow_overwrite = true
   zone_id         = var.zone_galaxyproject_eu
-  name            = "dnbd3-secondary.galaxyproject.eu"
+  name            = "dnbd3-proxy.galaxyproject.eu"
   type            = "CNAME"
   ttl             = "7200"
   records         = ["sn12.bi.privat"]
