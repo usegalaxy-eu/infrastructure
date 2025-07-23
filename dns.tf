@@ -6,6 +6,10 @@ variable "traefik" {
   default = "132.230.103.37"
 }
 
+variable "sn09" {
+  default = "10.4.68.201"
+}
+
 resource "aws_route53_record" "usegalaxy-eu" {
   allow_overwrite = true
   zone_id         = var.zone_usegalaxy_eu
@@ -21,7 +25,7 @@ resource "aws_route53_record" "galaxyproject-eu" {
   name            = "galaxyproject.eu"
   type            = "A"
   ttl             = "7200"
-  records         = ["${var.sn06}"]
+  records         = ["${var.sn09}"]
 }
 
 resource "aws_route53_record" "beacon-galaxyproject" {
@@ -144,10 +148,8 @@ variable "subdomain" {
 resource "aws_route53_record" "subdomains" {
   allow_overwrite = true
   zone_id         = var.zone_usegalaxy_eu
-
   count = 42
   name  = element(var.subdomain, count.index)
-
   type    = "CNAME"
   ttl     = "7200"
   records = ["usegalaxy.eu"]
@@ -166,10 +168,8 @@ variable "subdomain-internal" {
 resource "aws_route53_record" "subdomain-internal" {
   allow_overwrite = true
   zone_id         = var.zone_galaxyproject_eu
-
   count = 1
   name  = element(var.subdomain-internal, count.index)
-
   type    = "CNAME"
   ttl     = "7200"
   records = ["proxy.galaxyproject.eu"]
