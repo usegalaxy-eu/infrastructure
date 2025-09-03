@@ -10,4 +10,22 @@ resource "openstack_compute_instance_v2" "osiris-denbi" {
   }
 }
 
-# For DNS record see dns.tf and osiris-denbi.galaxyproject.eu
+# Record for osiris-denbi.galaxyproject.eu
+# redirected to from osiris.denbi.de
+resource "aws_route53_record" "osiris-denbi-galaxyproject" {
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "osiris-denbi.galaxyproject.eu"
+  type            = "A"
+  ttl             = "600"
+  records         = ["${openstack_compute_instance_v2.incoming.access_ip_v4}"]
+}
+
+resource "aws_route53_record" "osiris-denbi" {
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "osiris.denbi.de"
+  type            = "A"
+  ttl             = "600"
+  records         = ["${openstack_compute_instance_v2.incoming.access_ip_v4}"]
+}
