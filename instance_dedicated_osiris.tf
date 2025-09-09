@@ -18,6 +18,6 @@ resource "aws_route53_record" "osiris-denbi-galaxyproject" {
   name            = "osiris-denbi.galaxyproject.eu"
   type            = "A"
   ttl             = "600"
-  records         = ["${openstack_compute_instance_v2.incoming.access_ip_v4}"]
+  records         = ["${openstack_compute_instance_v2.osiris-denbi.access_ip_v4}"]
 }
 
