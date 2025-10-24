@@ -47,6 +47,7 @@ resource "openstack_compute_instance_v2" "training-vm-eu" {
       expire: False
     runcmd:
      - [ sed, -i, s/PasswordAuthentication no/PasswordAuthentication yes/, /etc/ssh/sshd_config ]
+     - [ sed, -i, s/PasswordAuthentication no/PasswordAuthentication yes/, /etc/ssh/sshd_config.d/60-cloudimg-settings.conf ]
      - [ systemctl, restart, ssh ]
   EOF
 
