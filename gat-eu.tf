@@ -1,9 +1,9 @@
 variable "gat-count-eu" {
-  default = 0
+  default = 10
 }
 
 data "openstack_images_image_v2" "gat-image-eu" {
-  name = "Ubuntu 22.04"
+  name = "Ubuntu 24.04"
 }
 
 
