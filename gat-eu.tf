@@ -2,6 +2,10 @@ variable "gat-count-eu" {
   default = 10
 }
 
+variable "gat-zone-id-eu" {
+  default = "Z05016927AMHTHGB1IS2"
+}
+
 data "openstack_images_image_v2" "gat-image-eu" {
   name = "Ubuntu 24.04"
 }
@@ -55,7 +59,7 @@ resource "openstack_compute_instance_v2" "training-vm-eu" {
 
 # Setup a DNS record for the VMs to make access easier (and https possible.)
 resource "aws_route53_record" "training-vm-eu" {
-  zone_id = "Z05016927AMHTHGB1IS2"
+  zone_id = var.gat-zone-id-eu
   name    = "gat-${count.index}.eu.training.galaxyproject.eu"
   type    = "A"
   ttl     = "3600"
@@ -63,15 +67,14 @@ resource "aws_route53_record" "training-vm-eu" {
   count   = var.gat-count-eu
 }
 
-## Only for the REAL gat.
-#resource "aws_route53_record" "training-vm-eu-gxit-wildcard" {
-#  zone_id = aws_route53_zone.training-gxp-eu.zone_id
-#  name    = "*.interactivetoolentrypoint.interactivetool.gat-${count.index}.eu.training.galaxyproject.eu"
-#  type    = "CNAME"
-#  ttl     = "3600"
-#  records = ["gat-${count.index}.eu.training.galaxyproject.eu"]
-#  count   = var.gat-count-eu
-#}
+resource "aws_route53_record" "training-vm-eu-gxit-wildcard" {
+  zone_id = var.gat-zone-id-eu
+  name    = "*.ep.interactivetool.gat-${count.index}.eu.training.galaxyproject.eu"
+  type    = "CNAME"
+  ttl     = "3600"
+  records = ["gat-${count.index}.eu.training.galaxyproject.eu"]
+  count   = var.gat-count-eu
+}
 
 # Outputs to be consumed by admins
 output "training_ips-eu" {
