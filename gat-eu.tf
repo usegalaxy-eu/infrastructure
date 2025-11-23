@@ -1,5 +1,5 @@
 variable "gat-count-eu" {
-  default = 10
+  default = 27
 }
 
 variable "gat-zone-id-eu" {
