@@ -1,3 +1,11 @@
+resource "aws_route53_zone" "zone_galaxyproject_eu" {
+  name = "galaxyproject.eu"
+}
+
+resource "aws_route53_zone" "zone_usegalaxy_eu" {
+  name = "usegalaxy.eu"
+}
+
 variable "sn06" {
   default = "132.230.223.239"
 }

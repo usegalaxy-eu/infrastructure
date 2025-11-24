@@ -6,6 +6,10 @@ variable "gat-zone-id-eu" {
   default = "Z05016927AMHTHGB1IS2"
 }
 
+resource "aws_route53_zone" "zone_gat_eu" {
+  name = "training.galaxyproject.eu"
+}
+
 data "openstack_images_image_v2" "gat-image-eu" {
   name = "Ubuntu 24.04"
 }
