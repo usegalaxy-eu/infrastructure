@@ -16,7 +16,7 @@ resource "openstack_compute_instance_v2" "cvmfs1-ufr0-eu" {
 
 resource "aws_route53_record" "cvmfs1-ufr0-eu" {
   allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
+  zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
   name            = var.cvmfs1-ufr0-eu-dns
   type            = "A"
   ttl             = "600"

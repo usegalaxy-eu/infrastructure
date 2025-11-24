@@ -20,7 +20,7 @@ variable "sn09" {
 
 resource "aws_route53_record" "usegalaxy-eu" {
   allow_overwrite = true
-  zone_id         = var.zone_usegalaxy_eu
+  zone_id         = aws_route53_zone.zone_usegalaxy_eu.zone_id
   name            = "usegalaxy.eu"
   type            = "A"
   ttl             = "7200"
@@ -29,7 +29,7 @@ resource "aws_route53_record" "usegalaxy-eu" {
 
 resource "aws_route53_record" "galaxyproject-eu" {
   allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
+  zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
   name            = "galaxyproject.eu"
   type            = "A"
   ttl             = "7200"
@@ -38,7 +38,7 @@ resource "aws_route53_record" "galaxyproject-eu" {
 
 resource "aws_route53_record" "beacon-galaxyproject" {
   allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
+  zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
   name            = "beacon.galaxyproject.eu"
   type            = "CNAME"
   ttl             = "600"
@@ -47,7 +47,7 @@ resource "aws_route53_record" "beacon-galaxyproject" {
 
 resource "aws_route53_record" "celery-galaxyproject" {
   allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
+  zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
   name            = "celery-1.galaxyproject.eu"
   type            = "A"
   ttl             = "600"
@@ -56,7 +56,7 @@ resource "aws_route53_record" "celery-galaxyproject" {
 
 resource "aws_route53_record" "influxdb-proxy" {
   allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
+  zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
   name            = "influxdb.galaxyproject.eu"
   type            = "A"
   ttl             = "600"
@@ -65,7 +65,7 @@ resource "aws_route53_record" "influxdb-proxy" {
 
 resource "aws_route53_record" "mq-proxy" {
   allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
+  zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
   name            = "mq.galaxyproject.eu"
   type            = "A"
   ttl             = "600"
@@ -74,7 +74,7 @@ resource "aws_route53_record" "mq-proxy" {
 
 resource "aws_route53_record" "mq02-server" {
   allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
+  zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
   name            = "mq02.galaxyproject.eu"
   type            = "A"
   ttl             = "600"
@@ -84,7 +84,7 @@ resource "aws_route53_record" "mq02-server" {
 
 resource "aws_route53_record" "tpv-broker" {
   allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
+  zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
   name            = "tpv-broker.galaxyproject.eu"
   type            = "A"
   ttl             = "600"
@@ -145,7 +145,7 @@ variable "subdomain" {
 
 resource "aws_route53_record" "subdomains" {
   allow_overwrite = true
-  zone_id         = var.zone_usegalaxy_eu
+  zone_id         = aws_route53_zone.zone_usegalaxy_eu.zone_id
   count = 43
   name  = element(var.subdomain, count.index)
   type    = "CNAME"
@@ -165,7 +165,7 @@ variable "subdomain-internal" {
 
 resource "aws_route53_record" "subdomain-internal" {
   allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
+  zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
   count = 1
   name  = element(var.subdomain-internal, count.index)
   type    = "CNAME"
@@ -176,7 +176,7 @@ resource "aws_route53_record" "subdomain-internal" {
 # Bare metals
 resource "aws_route53_record" "sn06-galaxyproject" {
   allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
+  zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
   name            = "sn06.galaxyproject.eu"
   type            = "A"
   ttl             = "7200"
@@ -185,7 +185,7 @@ resource "aws_route53_record" "sn06-galaxyproject" {
 
 resource "aws_route53_record" "sn07-galaxyproject" {
   allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
+  zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
   name            = "sn07.galaxyproject.eu"
   type            = "A"
   ttl             = "7200"
@@ -194,7 +194,7 @@ resource "aws_route53_record" "sn07-galaxyproject" {
 
 resource "aws_route53_record" "sn07-usegalaxy" {
   allow_overwrite = true
-  zone_id         = var.zone_usegalaxy_eu
+  zone_id         = aws_route53_zone.zone_usegalaxy_eu.zone_id
   name            = "sn07.usegalaxy.eu"
   type            = "A"
   ttl             = "7200"
@@ -203,7 +203,7 @@ resource "aws_route53_record" "sn07-usegalaxy" {
 
 resource "aws_route53_record" "sn05-galaxyproject" {
   allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
+  zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
   name            = "sn05.galaxyproject.eu"
   type            = "A"
   ttl             = "7200"
@@ -212,7 +212,7 @@ resource "aws_route53_record" "sn05-galaxyproject" {
 
 resource "aws_route53_record" "build-usegalaxy" {
   allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
+  zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
   name            = "build.galaxyproject.eu"
   type            = "A"
   ttl             = "7200"
@@ -221,7 +221,7 @@ resource "aws_route53_record" "build-usegalaxy" {
 
 resource "aws_route53_record" "cm-galaxyproject" {
   allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
+  zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
   name            = "cm.galaxyproject.eu"
   type            = "CNAME"
   ttl             = "7200"
@@ -230,7 +230,7 @@ resource "aws_route53_record" "cm-galaxyproject" {
 
 resource "aws_route53_record" "sn09-galaxyproject" {
   allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
+  zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
   name            = "sn09.galaxyproject.eu"
   type            = "A"
   ttl             = "7200"
@@ -239,7 +239,7 @@ resource "aws_route53_record" "sn09-galaxyproject" {
 
 resource "aws_route53_record" "sn10-galaxyproject" {
   allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
+  zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
   name            = "sn10.galaxyproject.eu"
   type            = "A"
   ttl             = "7200"
@@ -248,7 +248,7 @@ resource "aws_route53_record" "sn10-galaxyproject" {
 
 resource "aws_route53_record" "sn11-galaxyproject" {
   allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
+  zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
   name            = "sn11.galaxyproject.eu"
   type            = "A"
   ttl             = "7200"
@@ -257,7 +257,7 @@ resource "aws_route53_record" "sn11-galaxyproject" {
 
 resource "aws_route53_record" "sn12-galaxyproject" {
   allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
+  zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
   name            = "sn12.galaxyproject.eu"
   type            = "A"
   ttl             = "7200"
@@ -267,7 +267,7 @@ resource "aws_route53_record" "sn12-galaxyproject" {
 ## DNBD3 Boot Infrastructure
 resource "aws_route53_record" "dnbd3-primary-galaxyproject" {
   allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
+  zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
   name            = "dnbd3-primary.galaxyproject.eu"
   type            = "A"
   ttl             = "7200"
@@ -276,7 +276,7 @@ resource "aws_route53_record" "dnbd3-primary-galaxyproject" {
 
 resource "aws_route53_record" "dnbd3-proxy-galaxyproject" {
   allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
+  zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
   name            = "dnbd3-proxy.galaxyproject.eu"
   type            = "CNAME"
   ttl             = "7200"
@@ -286,7 +286,7 @@ resource "aws_route53_record" "dnbd3-proxy-galaxyproject" {
 ## ZFS server #1 (all flash)
 resource "aws_route53_record" "ssds1-galaxyproject" {
   allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
+  zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
   name            = "zfs0f.galaxyproject.eu"
   type            = "A"
   ttl             = "7200"
@@ -296,7 +296,7 @@ resource "aws_route53_record" "ssds1-galaxyproject" {
 ## ZFS server #2 (spinning disks w/ flash cache)
 resource "aws_route53_record" "zfs1-galaxyproject" {
   allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
+  zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
   name            = "zfs1.galaxyproject.eu"
   type            = "A"
   ttl             = "7200"
@@ -306,7 +306,7 @@ resource "aws_route53_record" "zfs1-galaxyproject" {
 ## ZFS server #3 (all flash)
 resource "aws_route53_record" "zfs2f-galaxyproject" {
   allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
+  zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
   name            = "zfs2f.galaxyproject.eu"
   type            = "A"
   ttl             = "7200"
@@ -317,7 +317,7 @@ resource "aws_route53_record" "zfs2f-galaxyproject" {
 ## ZFS server #4 (all flash)
 resource "aws_route53_record" "zfs3f-galaxyproject" {
   allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
+  zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
   name            = "zfs3f.galaxyproject.eu"
   type            = "A"
   ttl             = "7200"
@@ -326,7 +326,7 @@ resource "aws_route53_record" "zfs3f-galaxyproject" {
 
 ## Previous central-manager
 #resource "aws_route53_record" "vgcn-cm" {
-#  zone_id = "${var.zone_galaxyproject_eu}"
+#  zone_id = "${aws_route53_zone.zone_galaxyproject_eu.zone_id}"
 #  name    = "manager.vgcn.galaxyproject.eu"
 #  type    = "A"
 #  ttl     = "300"
@@ -337,7 +337,7 @@ resource "aws_route53_record" "zfs3f-galaxyproject" {
 ## We redirect all subdomains planning for URLs like
 ## https://727a121642ce1f94-3a20d7fa7b014959af58c7f6a47d1af.interactivetoolentrypoint.interactivetool.{some-subdomain}.usegalaxy.eu/
 #resource "aws_route53_record" "it-subdomain-main-really" {
-#  zone_id = var.zone_usegalaxy_eu
+#  zone_id = aws_route53_zone.zone_usegalaxy_eu.zone_id
 #
 #  # Guess new domains won't get this for now, but whatever.
 #  name    = "*.ep.interactivetool.usegalaxy.eu"
@@ -383,7 +383,7 @@ variable "it-subdomain" {
 
 resource "aws_route53_record" "it-subdomain-main" {
   allow_overwrite = true
-  zone_id         = var.zone_usegalaxy_eu
+  zone_id         = aws_route53_zone.zone_usegalaxy_eu.zone_id
   count           = 26
   name            = "*.ep.interactivetool.${element(var.it-subdomain, count.index)}"
   type            = "CNAME"
@@ -393,7 +393,7 @@ resource "aws_route53_record" "it-subdomain-main" {
 
 resource "aws_route53_record" "usegalaxy_eu_mx_record" {
   allow_overwrite = true
-  zone_id         = var.zone_usegalaxy_eu
+  zone_id         = aws_route53_zone.zone_usegalaxy_eu.zone_id
   name            = ""
   type            = "MX"
   ttl             = 300
@@ -405,7 +405,7 @@ resource "aws_route53_record" "usegalaxy_eu_mx_record" {
 
 resource "aws_route53_record" "usegalaxy_eu_mailforward_cname" {
   allow_overwrite = true
-  zone_id         = var.zone_usegalaxy_eu
+  zone_id         = aws_route53_zone.zone_usegalaxy_eu.zone_id
   name            = "fe-bounces.usegalaxy.eu"
   type            = "CNAME"
   ttl             = 300
@@ -417,7 +417,7 @@ resource "aws_route53_record" "usegalaxy_eu_mailforward_cname" {
 # SPF and DMARC records
 resource "aws_route53_record" "usegalaxy_eu_dmarc_txt" {
   allow_overwrite = true
-  zone_id         = var.zone_usegalaxy_eu
+  zone_id         = aws_route53_zone.zone_usegalaxy_eu.zone_id
   name            = "_dmarc.usegalaxy.eu"
   type            = "TXT"
   ttl             = "300"
@@ -428,7 +428,7 @@ resource "aws_route53_record" "usegalaxy_eu_dmarc_txt" {
 
 resource "aws_route53_record" "usegalaxy_eu_forwardmail_validation_txt" {
   allow_overwrite = true
-  zone_id         = var.zone_usegalaxy_eu
+  zone_id         = aws_route53_zone.zone_usegalaxy_eu.zone_id
   name            = ""
   type            = "TXT"
   ttl             = "3600"
@@ -440,7 +440,7 @@ resource "aws_route53_record" "usegalaxy_eu_forwardmail_validation_txt" {
 
 resource "aws_route53_record" "galaxyproject_eu_dmarc_txt" {
   allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
+  zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
   name            = "_dmarc.galaxyproject.eu"
   type            = "TXT"
   ttl             = "300"
@@ -451,7 +451,7 @@ resource "aws_route53_record" "galaxyproject_eu_dmarc_txt" {
 
 resource "aws_route53_record" "galaxyproject_eu_spf_txt" {
   allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
+  zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
   name            = ""
   type            = "TXT"
   ttl             = "300"
@@ -463,7 +463,7 @@ resource "aws_route53_record" "galaxyproject_eu_spf_txt" {
 #
 ## https://727a121642ce1f94-3a20d7fa7b014959af58c7f6a47d1af.interactivetoolentrypoint.interactivetool.test.internal.usegalaxy.eu/
 ##resource "aws_route53_record" "it-subdomain-test" {
-##zone_id = "${var.zone_usegalaxy_eu}"
+##zone_id = "${aws_route53_zone.zone_usegalaxy_eu.zone_id}"
 ##name    = "*.interactivetoolentrypoint.interactivetool.test.internal.usegalaxy.eu"
 ##type    = "CNAME"
 ##ttl     = "600"
@@ -473,7 +473,7 @@ resource "aws_route53_record" "galaxyproject_eu_spf_txt" {
 # Galaxy test instance (ESG instance is now the EU's new test endpoint) and its services
 resource "aws_route53_record" "galaxy-test-instance" {
   allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
+  zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
   name            = "galaxy-test.galaxyproject.eu"
   type            = "A"
   ttl             = "7200"
@@ -482,7 +482,7 @@ resource "aws_route53_record" "galaxy-test-instance" {
 
 resource "aws_route53_record" "usegalaxy-test-instance" {
   allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
+  zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
   name            = "usegalaxy-test.galaxyproject.eu"
   type            = "CNAME"
   ttl             = "7200"
@@ -491,7 +491,7 @@ resource "aws_route53_record" "usegalaxy-test-instance" {
 
 resource "aws_route53_record" "galaxy-test-mq" {
   allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
+  zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
   name            = "galaxy-test-mq.galaxyproject.eu"
   type            = "A"
   ttl             = "7200"
@@ -500,7 +500,7 @@ resource "aws_route53_record" "galaxy-test-mq" {
 
 resource "aws_route53_record" "galaxy-test-rustus" {
   allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
+  zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
   name            = "galaxy-test-upload.galaxyproject.eu"
   type            = "A"
   ttl             = "7200"

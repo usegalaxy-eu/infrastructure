@@ -32,7 +32,7 @@
 #
 #resource "aws_route53_record" "beacon-galaxyproject" {
 #  allow_overwrite = true
-#  zone_id         = var.zone_galaxyproject_eu
+#  zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
 #  name            = "beacon.galaxyproject.eu"
 #  type            = "A"
 #  ttl             = "600"

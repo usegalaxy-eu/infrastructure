@@ -1,5 +1,5 @@
 #data "aws_route53_zone" "gxp-eu" {
-#  zone_id = var.zone_galaxyproject_eu
+#  zone_id = aws_route53_zone.zone_galaxyproject_eu.zone_id
 #}
 #
 ## Setup the hosted zone below

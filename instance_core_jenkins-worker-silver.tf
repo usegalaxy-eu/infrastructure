@@ -47,7 +47,7 @@
 
 # resource "aws_route53_record" "jenkins-workers-silver" {
 #   allow_overwrite = true
-#   zone_id         = var.zone_galaxyproject_eu
+#   zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
 #   name            = "worker-${count.index}.silver.build.galaxyproject.eu"
 #   type            = "A"
 #   ttl             = "7200"

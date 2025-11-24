@@ -26,7 +26,7 @@
 #
 #resource "aws_route53_record" "beacon-import-galaxyproject" {
 #  allow_overwrite = true
-#  zone_id         = var.zone_galaxyproject_eu
+#  zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
 #  name            = "beacon-import.galaxyproject.eu"
 #  records         = ["${openstack_compute_instance_v2.beacon-import.access_ip_v4}"]
 #  type            = "A"

@@ -34,7 +34,7 @@ resource "openstack_compute_volume_attach_v2" "stats-data-vol2" {
 
 resource "aws_route53_record" "grafana-usegalaxy" {
   allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
+  zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
   name            = "stats.galaxyproject.eu"
   type            = "A"
   ttl             = "7200"

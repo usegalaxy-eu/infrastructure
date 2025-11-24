@@ -26,7 +26,7 @@ resource "openstack_compute_instance_v2" "upload" {
 
 resource "aws_route53_record" "upload-galaxyproject" {
   allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
+  zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
   name            = var.upload-dns
   type            = "A"
   ttl             = "600"

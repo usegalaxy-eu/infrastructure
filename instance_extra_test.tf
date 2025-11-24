@@ -21,7 +21,7 @@
 
 # resource "aws_route53_record" "test-galaxy" {
 #   allow_overwrite = true
-#   zone_id         = var.zone_usegalaxy_eu
+#   zone_id         = aws_route53_zone.zone_usegalaxy_eu.zone_id
 #   name            = "test.internal.usegalaxy.eu"
 #   type            = "A"
 #   ttl             = "300"

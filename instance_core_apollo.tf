@@ -19,7 +19,7 @@ resource "openstack_compute_instance_v2" "apollo-usegalaxy" {
 
 resource "aws_route53_record" "apollo-usegalaxy-internal" {
   allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
+  zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
   name            = "apollo.internal.galaxyproject.eu"
   type            = "A"
   ttl             = "600"

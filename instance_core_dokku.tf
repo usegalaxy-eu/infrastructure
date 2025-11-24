@@ -30,7 +30,7 @@
 
 # resource "aws_route53_record" "dokku-dns" {
 #   allow_overwrite = true
-#   zone_id         = var.zone_galaxyproject_eu
+#   zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
 #   name            = "apps.galaxyproject.eu"
 #   type            = "A"
 #   ttl             = "3600"
@@ -39,7 +39,7 @@
 
 # resource "aws_route53_record" "dokku-dns-wildcard" {
 #   allow_overwrite = true
-#   zone_id         = var.zone_galaxyproject_eu
+#   zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
 #   name            = "*.apps.galaxyproject.eu"
 #   type            = "CNAME"
 #   ttl             = "3600"

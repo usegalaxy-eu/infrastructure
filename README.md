@@ -81,7 +81,7 @@ resource "openstack_compute_instance_v2" "apollo-usegalaxy" {
 # Here we define a DNS record for this VM
 resource "aws_route53_record" "apollo-usegalaxy" {
   # The zone needs to be correct for the TLD you want.
-  zone_id = "var.zone_usegalaxy_eu"
+  zone_id = "aws_route53_zone.zone_usegalaxy_eu.zone_id"
   # The actual record
   name    = "apollo.usegalaxy.eu"
   type    = "A"

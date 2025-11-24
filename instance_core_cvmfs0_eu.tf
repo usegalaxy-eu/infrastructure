@@ -38,7 +38,7 @@ resource "openstack_compute_volume_attach_v2" "cvmfs-stratum0-va-eu" {
 
 resource "aws_route53_record" "cvmfs-stratum0-eu" {
   allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
+  zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
   name            = var.cvmfs-stratum0-eu-dns
   type            = "A"
   ttl             = "600"

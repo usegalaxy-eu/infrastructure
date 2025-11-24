@@ -67,7 +67,7 @@
 
 # resource "aws_route53_record" "gpunodealpha" {
 #   allow_overwrite = true
-#   zone_id         = var.zone_galaxyproject_eu
+#   zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
 #   name            = var.gpu-node-alpha-dns
 #   type            = "A"
 #   ttl             = "600"

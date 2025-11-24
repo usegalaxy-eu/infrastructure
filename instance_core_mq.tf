@@ -11,7 +11,7 @@
 #   }
 # }
 # resource "aws_route53_record" "mq-instance" {
-#   zone_id = var.zone_galaxyproject_eu
+#   zone_id = aws_route53_zone.zone_galaxyproject_eu.zone_id
 #   name    = "mq.galaxyproject.eu"
 #   type    = "A"
 #   ttl     = "600"

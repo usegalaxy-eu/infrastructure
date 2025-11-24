@@ -2,10 +2,6 @@ variable "gat-count-eu" {
   default = 10
 }
 
-variable "gat-zone-id-eu" {
-  default = "Z05016927AMHTHGB1IS2"
-}
-
 resource "aws_route53_zone" "zone_gat_eu" {
   name = "training.galaxyproject.eu"
 }
@@ -63,7 +59,7 @@ resource "openstack_compute_instance_v2" "training-vm-eu" {
 
 # Setup a DNS record for the VMs to make access easier (and https possible.)
 resource "aws_route53_record" "training-vm-eu" {
-  zone_id = var.gat-zone-id-eu
+  zone_id = aws_route53_zone.zone_gat_eu.zone_id
   name    = "gat-${count.index}.eu.training.galaxyproject.eu"
   type    = "A"
   ttl     = "3600"
@@ -72,7 +68,7 @@ resource "aws_route53_record" "training-vm-eu" {
 }
 
 resource "aws_route53_record" "training-vm-eu-gxit-wildcard" {
-  zone_id = var.gat-zone-id-eu
+  zone_id = aws_route53_zone.zone_gat_eu.zone_id
   name    = "*.ep.interactivetool.gat-${count.index}.eu.training.galaxyproject.eu"
   type    = "CNAME"
   ttl     = "3600"

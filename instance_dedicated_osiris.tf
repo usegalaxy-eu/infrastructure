@@ -14,7 +14,7 @@ resource "openstack_compute_instance_v2" "osiris-denbi" {
 # redirected to from osiris.denbi.de
 resource "aws_route53_record" "osiris-denbi-galaxyproject" {
   allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
+  zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
   name            = "osiris-denbi.galaxyproject.eu"
   type            = "A"
   ttl             = "600"

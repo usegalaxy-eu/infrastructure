@@ -41,7 +41,7 @@ resource "openstack_blockstorage_volume_v3" "influxdb-data-new" {
 
 # resource "aws_route53_record" "influxdb-usegalaxy-internal-new" {
 #   allow_overwrite = true
-#   zone_id         = var.zone_galaxyproject_eu
+#   zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
 #   name            = "influxdb.galaxyproject.eu"
 #   type            = "A"
 #   ttl             = "600"

@@ -18,7 +18,7 @@ resource "openstack_compute_instance_v2" "plausible-usegalaxy" {
 
 resource "aws_route53_record" "plausible-usegalaxy" {
   allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
+  zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
   name            = "plausible.galaxyproject.eu"
   type            = "A"
   ttl             = "600"

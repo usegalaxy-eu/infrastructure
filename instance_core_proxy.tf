@@ -16,7 +16,7 @@ resource "openstack_compute_instance_v2" "proxy" {
 
 resource "aws_route53_record" "proxy-internal" {
   allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
+  zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
   name            = "proxy.internal.galaxyproject.eu"
   type            = "A"
   ttl             = "7200"
@@ -25,7 +25,7 @@ resource "aws_route53_record" "proxy-internal" {
 
 resource "aws_route53_record" "proxy" {
   allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
+  zone_id         = aws_route53_zone.zone_galaxyproject_eu.zone_id
   name            = var.proxy-dns
   type            = "A"
   ttl             = "600"
