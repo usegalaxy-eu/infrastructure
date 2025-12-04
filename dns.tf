@@ -140,7 +140,7 @@ variable "subdomain" {
     "eirene.usegalaxy.eu",
     "microbiology.usegalaxy.eu",
     "astronomy.usegalaxy.eu",
-    "biodiversity.usegalaxy.eu"
+    "biodiversity-genomics.usegalaxy.eu"
   ]
 }
 
