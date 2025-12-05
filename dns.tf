@@ -117,7 +117,6 @@ variable "subdomain" {
     "climate.usegalaxy.eu",
     "nanopore.usegalaxy.eu",
     "metabolomics.usegalaxy.eu",
-    "nubri.usegalaxy.eu",
     "humancellatlas.usegalaxy.eu",
     "annotation.usegalaxy.eu",
     "erasmusmc.usegalaxy.eu",
@@ -141,7 +140,8 @@ variable "subdomain" {
     "eirene.usegalaxy.eu",
     "microbiology.usegalaxy.eu",
     "astronomy.usegalaxy.eu",
-    "biodiversity-genomics.usegalaxy.eu"
+    "biodiversity-genomics.usegalaxy.eu",
+    "nubri.usegalaxy.eu"
   ]
 }
 
