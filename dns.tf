@@ -141,14 +141,15 @@ variable "subdomain" {
     "microbiology.usegalaxy.eu",
     "astronomy.usegalaxy.eu",
     "biodiversity-genomics.usegalaxy.eu",
-    "nubri.usegalaxy.eu"
+    "nubri.usegalaxy.eu",
+    "ghana.usegalaxy.eu"
   ]
 }
 
 resource "aws_route53_record" "subdomains" {
   allow_overwrite = true
   zone_id         = var.zone_usegalaxy_eu
-  count = 44
+  count = 45
   name  = element(var.subdomain, count.index)
   type    = "CNAME"
   ttl     = "7200"
@@ -379,14 +380,16 @@ variable "it-subdomain" {
     "streetscience.usegalaxy.eu",
     "test.usegalaxy.eu",
     "earth-system.usegalaxy.eu",
-    "eirene.usegalaxy.eu"
+    "eirene.usegalaxy.eu",
+    "nubri.usegalaxy.eu",
+    "ghana.usegalaxy.eu"
   ]
 }
 
 resource "aws_route53_record" "it-subdomain-main" {
   allow_overwrite = true
   zone_id         = var.zone_usegalaxy_eu
-  count           = 26
+  count           = 28
   name            = "*.ep.interactivetool.${element(var.it-subdomain, count.index)}"
   type            = "CNAME"
   ttl             = "7200"
