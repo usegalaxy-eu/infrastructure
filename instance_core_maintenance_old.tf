@@ -1,8 +1,8 @@
-data "openstack_images_image_v2" "maintenance-new-image" {
-  name = "Rocky 9.4"
+data "openstack_images_image_v2" "maintenance-image" {
+  name = "generic-rockylinux8-v60-j167-5f3adb0e100c-main"
 }
 
-resource "openstack_compute_instance_v2" "maintenance-new" {
+resource "openstack_compute_instance_v2" "maintenance" {
   name            = "maintenance.galaxyproject.eu"
   flavor_name     = "m1.xlarge"
   key_pair        = "cloud2"
@@ -14,7 +14,7 @@ resource "openstack_compute_instance_v2" "maintenance-new" {
   }
 
   block_device {
-    uuid                  = data.openstack_images_image_v2.maintenance-new-image.id
+    uuid                  = data.openstack_images_image_v2.maintenance-image.id
     source_type           = "image"
     volume_size           = 500
     destination_type      = "volume"
@@ -29,10 +29,10 @@ resource "openstack_compute_instance_v2" "maintenance-new" {
   EOF
 }
 
-resource "aws_route53_record" "maintenance-new-galaxyproject" {
+resource "aws_route53_record" "maintenance-galaxyproject" {
   allow_overwrite = true
   zone_id         = var.zone_galaxyproject_eu
-  name            = "maintenance.galaxyproject.eu"
+  name            = "maintenance-old.galaxyproject.eu"
   type            = "A"
   ttl             = "600"
   records         = ["${openstack_compute_instance_v2.maintenance.access_ip_v4}"]
