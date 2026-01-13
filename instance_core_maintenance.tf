@@ -35,5 +35,5 @@ resource "aws_route53_record" "maintenance-new-galaxyproject" {
   name            = "maintenance.galaxyproject.eu"
   type            = "A"
   ttl             = "600"
-  records         = ["${openstack_compute_instance_v2.maintenance.access_ip_v4}"]
+  records         = ["${openstack_compute_instance_v2.maintenance-new.access_ip_v4}"]
 }
