@@ -27,7 +27,7 @@ resource "openstack_compute_instance_v2" "celery" {
   count = var.celery-count
 }
 
-resource "aws_route53_record" "celery-galaxyproject" {
+resource "aws_route53_record" "celery-cloud-galaxyproject" {
   allow_overwrite = true
   zone_id         = var.zone_galaxyproject_eu
   name            = "celery-cloud-${count.index}.galaxyproject.eu"
