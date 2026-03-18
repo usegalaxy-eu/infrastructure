@@ -8,8 +8,7 @@ data "openstack_images_image_v2" "celery-image" {
 
 resource "openstack_compute_instance_v2" "celery" {
   name            = "celery-cloud-${count.index}.galaxyproject.eu"
-  image_id        = data.openstack_images_image_v2.celery-image.id
-  flavor_name     = "c1.c62m240d50"
+  flavor_name     = "m1.xxlarge"
   key_pair        = "cloud2"
   tags            = []
   security_groups = ["default", "ingress-from-proxy"]
@@ -23,6 +22,15 @@ resource "openstack_compute_instance_v2" "celery" {
     package_update: true
     package_upgrade: true
   EOF
+
+  block_device {
+    uuid                  = data.openstack_images_image_v2.celery-image.id
+    source_type           = "image"
+    destination_type      = "volume"
+    boot_index            = 0
+    volume_size           = 35
+    delete_on_termination = true
+  }
 
   count = var.celery-count
 }
