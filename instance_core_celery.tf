@@ -3,7 +3,7 @@ variable "celery-count" {
 }
 
 data "openstack_images_image_v2" "celery-image" {
-  name = "generic-rockylinux8-v60-j168-5333625af7b2-main"
+  name = "Rocky 9.4"
 }
 
 resource "openstack_compute_instance_v2" "celery" {
