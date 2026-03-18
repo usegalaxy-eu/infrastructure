@@ -9,7 +9,7 @@ data "openstack_images_image_v2" "celery-image" {
 resource "openstack_compute_instance_v2" "celery" {
   name            = "celery-cloud-${count.index}.galaxyproject.eu"
   image_id        = data.openstack_images_image_v2.celery-image.id
-  flavor_name     = "m1.xxlarge"
+  flavor_name     = "c1.c62m240d50"
   key_pair        = "cloud2"
   tags            = []
   security_groups = ["default", "ingress-from-proxy"]
