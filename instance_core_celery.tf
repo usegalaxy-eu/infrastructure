@@ -7,7 +7,7 @@ data "openstack_images_image_v2" "celery-image" {
 }
 
 resource "openstack_compute_instance_v2" "celery" {
-  name            = "celery-${count.index}.galaxyproject.eu"
+  name            = "celery-cloud-${count.index}.galaxyproject.eu"
   image_id        = data.openstack_images_image_v2.celery-image.id
   flavor_name     = "m1.xxlarge"
   key_pair        = "cloud2"
@@ -30,7 +30,7 @@ resource "openstack_compute_instance_v2" "celery" {
 resource "aws_route53_record" "celery-galaxyproject" {
   allow_overwrite = true
   zone_id         = var.zone_galaxyproject_eu
-  name            = "celery-${count.index}.galaxyproject.eu"
+  name            = "celery-cloud-${count.index}.galaxyproject.eu"
   type            = "A"
   ttl             = "600"
   records         = ["${element(openstack_compute_instance_v2.celery.*.access_ip_v4, count.index)}"]
