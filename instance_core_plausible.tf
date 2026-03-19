@@ -54,5 +54,5 @@ resource "aws_route53_record" "plausible-usegalaxy" {
   name            = "plausible.galaxyproject.eu"
   type            = "A"
   ttl             = "600"
-  records         = ["${openstack_compute_instance_v2.plausible-usegalaxy.access_ip_v4}"]
+  records         = ["${openstack_compute_instance_v2.plausible-usegalaxy-old.access_ip_v4}"]
 }
