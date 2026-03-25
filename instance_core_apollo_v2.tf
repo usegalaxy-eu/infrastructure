@@ -17,11 +17,11 @@ resource "openstack_compute_instance_v2" "apollo-usegalaxy-v2" {
 }
 
 
-resource "aws_route53_record" "apollo-usegalaxy-internal" {
+resource "aws_route53_record" "apollo-usegalaxy-internal-v2" {
   allow_overwrite = true
   zone_id         = var.zone_galaxyproject_eu
   name            = "apollo_v2.internal.galaxyproject.eu"
   type            = "A"
   ttl             = "600"
-  records         = ["${openstack_compute_instance_v2.apollo-usegalaxy.access_ip_v4}"]
+  records         = ["${openstack_compute_instance_v2.apollo-usegalaxy-v2.access_ip_v4}"]
 }
