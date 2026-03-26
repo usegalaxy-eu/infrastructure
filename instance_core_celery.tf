@@ -1,5 +1,5 @@
 variable "celery-count" {
-  default = 0
+  default = 3
 }
 
 data "openstack_images_image_v2" "celery-image" {
