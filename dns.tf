@@ -28,15 +28,6 @@ resource "aws_route53_record" "galaxyproject-eu" {
   records         = ["${var.sn09}"]
 }
 
-resource "aws_route53_record" "beacon-galaxyproject" {
-  allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
-  name            = "beacon.galaxyproject.eu"
-  type            = "CNAME"
-  ttl             = "600"
-  records         = ["beacon.bi.privat"]
-}
-
 resource "aws_route53_record" "celery-galaxyproject" {
   allow_overwrite = true
   zone_id         = var.zone_galaxyproject_eu
