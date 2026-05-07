@@ -52,7 +52,7 @@ resource "aws_route53_record" "upload-galaxyproject" {
   name            = "upload.galaxyproject.eu"
   type            = "A"
   ttl             = "600"
-  records         = ["10.4.68.194"]
+  records         = ["10.4.68.191"]
 }
 
 resource "aws_route53_record" "influxdb-proxy" {
