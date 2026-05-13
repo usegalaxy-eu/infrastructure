@@ -37,52 +37,6 @@ resource "aws_route53_record" "beacon-galaxyproject" {
   records         = ["beacon.bi.privat"]
 }
 
-resource "aws_route53_record" "celery-galaxyproject" {
-  allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
-  name            = "celery-1.galaxyproject.eu"
-  type            = "A"
-  ttl             = "600"
-  records         = ["10.4.68.198"]
-}
-
-resource "aws_route53_record" "upload-galaxyproject" {
-  allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
-  name            = "upload.galaxyproject.eu"
-  type            = "A"
-  ttl             = "600"
-  records         = ["10.4.68.194"]
-}
-
-resource "aws_route53_record" "influxdb-proxy" {
-  allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
-  name            = "influxdb.galaxyproject.eu"
-  type            = "A"
-  ttl             = "600"
-  records         = ["${var.traefik}"]
-}
-
-resource "aws_route53_record" "mq-proxy" {
-  allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
-  name            = "mq.galaxyproject.eu"
-  type            = "A"
-  ttl             = "600"
-  records         = ["${var.traefik}"]
-}
-
-resource "aws_route53_record" "mq02-server" {
-  allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
-  name            = "mq02.galaxyproject.eu"
-  type            = "A"
-  ttl             = "600"
-  records         = ["10.4.68.197"]
-}
-
-
 resource "aws_route53_record" "tpv-broker" {
   allow_overwrite = true
   zone_id         = var.zone_galaxyproject_eu
