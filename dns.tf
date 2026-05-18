@@ -37,6 +37,14 @@ resource "aws_route53_record" "beacon-galaxyproject" {
   records         = ["beacon.bi.privat"]
 }
 
+resource "aws_route53_record" "mq-proxy" {
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "mq.galaxyproject.eu"
+  type            = "A"
+  ttl             = "600"
+  records         = ["${var.traefik}"]
+}
 resource "aws_route53_record" "tpv-broker" {
   allow_overwrite = true
   zone_id         = var.zone_galaxyproject_eu
