@@ -1,6 +1,6 @@
 resource "openstack_compute_instance_v2" "apollo-usegalaxy-v2" {
   name            = "apollo_v2.internal.galaxyproject.eu"
-  image_name      = "Rocky Linux 10.1"
+  image_name      = "Rocky 9.4"
   flavor_name     = "m1.xlarge"
   key_pair        = "cloud2"
   security_groups = ["egress", "public-web2", "public-ssh", "default", "public-ping"]
