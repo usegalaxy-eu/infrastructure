@@ -192,7 +192,7 @@ resource "aws_route53_record" "build-usegalaxy" {
   name            = "build.galaxyproject.eu"
   type            = "A"
   ttl             = "7200"
-  records         = ["132.230.223.230"]
+  records         = ["${var.traefik}"]
 }
 
 resource "aws_route53_record" "cm-galaxyproject" {
