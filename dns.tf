@@ -55,6 +55,15 @@ resource "aws_route53_record" "plausible-proxy" {
   records         = ["${var.traefik}"]
 }
 
+resource "aws_route53_record" "ticketsystem" {
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "ticketsystem.galaxyproject.eu"
+  type            = "A"
+  ttl             = "600"
+  records         = ["${var.traefik}"]
+}
+
 resource "aws_route53_record" "influxdb-proxy" {
   allow_overwrite = true
   zone_id         = var.zone_galaxyproject_eu
