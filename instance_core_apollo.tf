@@ -15,13 +15,3 @@ resource "openstack_compute_instance_v2" "apollo-usegalaxy" {
     package_upgrade: true
   EOF
 }
-
-
-resource "aws_route53_record" "apollo-usegalaxy-internal" {
-  allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
-  name            = "apollo.internal.galaxyproject.eu"
-  type            = "A"
-  ttl             = "600"
-  records         = ["${openstack_compute_instance_v2.apollo-usegalaxy.access_ip_v4}"]
-}
