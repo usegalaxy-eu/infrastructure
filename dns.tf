@@ -92,7 +92,7 @@ resource "aws_route53_record" "ucsc-genome-browser" {
   # - [1] https://github.com/usegalaxy-eu/issues/issues/949#issuecomment-4966746269
   allow_overwrite = true
   zone_id         = var.zone_galaxyproject_eu
-  name            = "genome.galaxyproject.eu"
+  name            = "genome-browser.galaxyproject.eu"
   type            = "A"
   ttl             = "600"
   records         = ["${var.traefik}"]
