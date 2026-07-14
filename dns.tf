@@ -82,6 +82,22 @@ resource "aws_route53_record" "tpv-broker" {
   records         = ["${var.traefik}"]
 }
 
+resource "aws_route53_record" "ucsc-genome-browser" {
+  # The domain genome-euro.ucsc.edu is reserved for the UCSC Genome Browser
+  # [1], but it still needs to be set up by the University of California,
+  # Santa Cruz. In the meantime, the UCSC Genome browser is accessible on this
+  # domain.
+  #
+  # References:
+  # - [1] https://github.com/usegalaxy-eu/issues/issues/949#issuecomment-4966746269
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "genome.galaxyproject.eu"
+  type            = "A"
+  ttl             = "600"
+  records         = ["${var.traefik}"]
+}
+
 # Subdomains are all just CNAMEs for galaxyproject.eu → proxy-external
 variable "subdomain" {
   type = list(string)
