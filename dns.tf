@@ -25,7 +25,7 @@ resource "aws_route53_record" "galaxyproject-eu" {
   name            = "galaxyproject.eu"
   type            = "A"
   ttl             = "7200"
-  records         = ["${var.sn09}"]
+  records         = ["${var.traefik}"]
 }
 
 resource "aws_route53_record" "beacon-galaxyproject" {
