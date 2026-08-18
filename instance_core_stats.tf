@@ -32,12 +32,11 @@ resource "openstack_compute_volume_attach_v2" "stats-data-vol2" {
   device      = "/dev/vdc"
 }
 
-resource "aws_route53_record" "grafana-usegalaxy" {
-  allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
-  name            = "stats.galaxyproject.eu"
-  type            = "A"
-  ttl             = "7200"
-  records         = ["${openstack_compute_instance_v2.grafana.access_ip_v4}"]
-}
-
+# resource "aws_route53_record" "grafana-usegalaxy" {
+#   allow_overwrite = true
+#   zone_id         = var.zone_galaxyproject_eu
+#   name            = "stats.galaxyproject.eu"
+#   type            = "A"
+#   ttl             = "7200"
+#   records         = ["${openstack_compute_instance_v2.grafana.access_ip_v4}"]
+# }

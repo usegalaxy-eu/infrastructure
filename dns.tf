@@ -64,6 +64,15 @@ resource "aws_route53_record" "ticketsystem" {
   records         = ["${var.traefik}"]
 }
 
+resource "aws_route53_record" "stats" {
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "stats.galaxyproject.eu"
+  type            = "A"
+  ttl             = "600"
+  records         = ["${var.traefik}"]
+}
+
 resource "aws_route53_record" "influxdb-proxy" {
   allow_overwrite = true
   zone_id         = var.zone_galaxyproject_eu
