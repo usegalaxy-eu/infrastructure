@@ -73,6 +73,15 @@ resource "aws_route53_record" "stats" {
   records         = ["${var.traefik}"]
 }
 
+resource "aws_route53_record" "ftp" {
+  allow_overwrite = true
+  zone_id         = var.zone_usegalaxy_eu
+  name            = "ftp.usegalaxy.eu"
+  type            = "A"
+  ttl             = "600"
+  records         = ["${var.traefik}"]
+}
+
 resource "aws_route53_record" "influxdb-proxy" {
   allow_overwrite = true
   zone_id         = var.zone_galaxyproject_eu
