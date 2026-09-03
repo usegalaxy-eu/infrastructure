@@ -116,6 +116,17 @@ resource "aws_route53_record" "ucsc-genome-browser" {
   records         = ["${var.traefik}"]
 }
 
+resource "aws_route53_record" "osiris-denbi-galaxyproject" {
+  # DNS record for osiris-denbi.galaxyproject.eu, redirected to from
+  # osiris.denbi.de via CNAME DNS record
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "osiris-denbi.galaxyproject.eu"
+  type            = "A"
+  ttl             = "600"
+  records         = ["${var.traefik}"]
+}
+
 # Subdomains are all just CNAMEs for galaxyproject.eu → proxy-external
 variable "subdomain" {
   type = list(string)
