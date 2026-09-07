@@ -46,6 +46,15 @@ resource "aws_route53_record" "mq-proxy" {
   records         = ["${var.traefik}"]
 }
 
+resource "aws_route53_record" "cvmfs-stratum1" {
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "cvmfs1-ufr0.galaxyproject.eu"
+  type            = "A"
+  ttl             = "600"
+  records         = ["${var.traefik}"]
+}
+
 resource "aws_route53_record" "plausible-proxy" {
   allow_overwrite = true
   zone_id         = var.zone_galaxyproject_eu
@@ -179,26 +188,6 @@ resource "aws_route53_record" "subdomains" {
   type    = "CNAME"
   ttl     = "7200"
   records = ["usegalaxy.eu"]
-}
-
-# Subdomains for Project redirected by the proxy to internal services
-variable "subdomain-internal" {
-  type = list(string)
-
-  default = [
-    # Please place new subdomains at the end of the list
-    "cvmfs1-ufr0.galaxyproject.eu",
-  ]
-}
-
-resource "aws_route53_record" "subdomain-internal" {
-  allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
-  count = 1
-  name  = element(var.subdomain-internal, count.index)
-  type    = "CNAME"
-  ttl     = "7200"
-  records = ["proxy.galaxyproject.eu"]
 }
 
 # Bare metals
