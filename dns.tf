@@ -25,7 +25,7 @@ resource "aws_route53_record" "galaxyproject-eu" {
   name            = "galaxyproject.eu"
   type            = "A"
   ttl             = "7200"
-  records         = ["${var.sn09}"]
+  records         = ["${var.traefik}"]
 }
 
 resource "aws_route53_record" "apps" {
@@ -91,6 +91,24 @@ resource "aws_route53_record" "ticketsystem" {
   records         = ["${var.traefik}"]
 }
 
+resource "aws_route53_record" "stats" {
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "stats.galaxyproject.eu"
+  type            = "A"
+  ttl             = "600"
+  records         = ["${var.traefik}"]
+}
+
+resource "aws_route53_record" "ftp" {
+  allow_overwrite = true
+  zone_id         = var.zone_usegalaxy_eu
+  name            = "ftp.usegalaxy.eu"
+  type            = "A"
+  ttl             = "600"
+  records         = ["${var.traefik}"]
+}
+
 resource "aws_route53_record" "influxdb-proxy" {
   allow_overwrite = true
   zone_id         = var.zone_galaxyproject_eu
@@ -120,6 +138,17 @@ resource "aws_route53_record" "ucsc-genome-browser" {
   allow_overwrite = true
   zone_id         = var.zone_galaxyproject_eu
   name            = "genome-browser.galaxyproject.eu"
+  type            = "A"
+  ttl             = "600"
+  records         = ["${var.traefik}"]
+}
+
+resource "aws_route53_record" "osiris-denbi-galaxyproject" {
+  # DNS record for osiris-denbi.galaxyproject.eu, redirected to from
+  # osiris.denbi.de via CNAME DNS record
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "osiris-denbi.galaxyproject.eu"
   type            = "A"
   ttl             = "600"
   records         = ["${var.traefik}"]
