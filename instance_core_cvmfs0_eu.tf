@@ -35,12 +35,3 @@ resource "openstack_compute_volume_attach_v2" "cvmfs-stratum0-va-eu" {
   volume_id   = "b637697c-5227-4b0c-a300-7afdd2256cc4"
   device      = "/dev/vdb"
 }
-
-resource "aws_route53_record" "cvmfs-stratum0-eu" {
-  allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
-  name            = var.cvmfs-stratum0-eu-dns
-  type            = "A"
-  ttl             = "600"
-  records         = ["${openstack_compute_instance_v2.cvmfs-stratum0-eu.access_ip_v4}"]
-}
