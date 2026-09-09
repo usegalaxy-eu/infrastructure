@@ -28,6 +28,33 @@ resource "aws_route53_record" "galaxyproject-eu" {
   records         = ["${var.traefik}"]
 }
 
+resource "aws_route53_record" "apps" {
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "apps.galaxyproject.eu"
+  type            = "A"
+  ttl             = "7200"
+  records         = ["${var.traefik}"]
+}
+
+resource "aws_route53_record" "dnanalyzer-cname" {
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "dnanalyzer.galaxyproject.eu"
+  type            = "CNAME"
+  ttl             = "7200"
+  records         = ["${aws_route53_record.apps.name}"]
+}
+
+resource "aws_route53_record" "apps-cname" {
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "*.apps.galaxyproject.eu"
+  type            = "CNAME"
+  ttl             = "7200"
+  records         = ["${aws_route53_record.apps.name}"]
+}
+
 resource "aws_route53_record" "beacon-galaxyproject" {
   allow_overwrite = true
   zone_id         = var.zone_galaxyproject_eu
@@ -111,6 +138,17 @@ resource "aws_route53_record" "ucsc-genome-browser" {
   allow_overwrite = true
   zone_id         = var.zone_galaxyproject_eu
   name            = "genome-browser.galaxyproject.eu"
+  type            = "A"
+  ttl             = "600"
+  records         = ["${var.traefik}"]
+}
+
+resource "aws_route53_record" "osiris-denbi-galaxyproject" {
+  # DNS record for osiris-denbi.galaxyproject.eu, redirected to from
+  # osiris.denbi.de via CNAME DNS record
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "osiris-denbi.galaxyproject.eu"
   type            = "A"
   ttl             = "600"
   records         = ["${var.traefik}"]
