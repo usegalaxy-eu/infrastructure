@@ -55,15 +55,6 @@ resource "aws_route53_record" "apps-cname" {
   records         = ["${aws_route53_record.apps.name}"]
 }
 
-resource "aws_route53_record" "beacon-galaxyproject" {
-  allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
-  name            = "beacon.galaxyproject.eu"
-  type            = "CNAME"
-  ttl             = "600"
-  records         = ["beacon.bi.privat"]
-}
-
 resource "aws_route53_record" "mq-proxy" {
   allow_overwrite = true
   zone_id         = var.zone_galaxyproject_eu
