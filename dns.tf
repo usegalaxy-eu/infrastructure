@@ -25,34 +25,34 @@ resource "aws_route53_record" "galaxyproject-eu" {
   name            = "galaxyproject.eu"
   type            = "A"
   ttl             = "7200"
-  records         = ["${var.sn09}"]
-}
-
-resource "aws_route53_record" "celery-galaxyproject" {
-  allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
-  name            = "celery-1.galaxyproject.eu"
-  type            = "A"
-  ttl             = "600"
-  records         = ["10.4.68.198"]
-}
-
-resource "aws_route53_record" "upload-galaxyproject" {
-  allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
-  name            = "upload.galaxyproject.eu"
-  type            = "A"
-  ttl             = "600"
-  records         = ["10.4.68.194"]
-}
-
-resource "aws_route53_record" "influxdb-proxy" {
-  allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
-  name            = "influxdb.galaxyproject.eu"
-  type            = "A"
-  ttl             = "600"
   records         = ["${var.traefik}"]
+}
+
+resource "aws_route53_record" "apps" {
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "apps.galaxyproject.eu"
+  type            = "A"
+  ttl             = "7200"
+  records         = ["${var.traefik}"]
+}
+
+resource "aws_route53_record" "dnanalyzer-cname" {
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "dnanalyzer.galaxyproject.eu"
+  type            = "CNAME"
+  ttl             = "7200"
+  records         = ["${aws_route53_record.apps.name}"]
+}
+
+resource "aws_route53_record" "apps-cname" {
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "*.apps.galaxyproject.eu"
+  type            = "CNAME"
+  ttl             = "7200"
+  records         = ["${aws_route53_record.apps.name}"]
 }
 
 resource "aws_route53_record" "mq-proxy" {
@@ -64,20 +64,100 @@ resource "aws_route53_record" "mq-proxy" {
   records         = ["${var.traefik}"]
 }
 
-resource "aws_route53_record" "mq02-server" {
+resource "aws_route53_record" "cvmfs-stratum0" {
   allow_overwrite = true
   zone_id         = var.zone_galaxyproject_eu
-  name            = "mq02.galaxyproject.eu"
+  name            = "cvmfs-stratum0.galaxyproject.eu"
   type            = "A"
   ttl             = "600"
-  records         = ["10.4.68.197"]
+  records         = ["${var.traefik}"]
 }
 
+resource "aws_route53_record" "cvmfs-stratum1" {
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "cvmfs1-ufr0.galaxyproject.eu"
+  type            = "A"
+  ttl             = "600"
+  records         = ["${var.traefik}"]
+}
+
+resource "aws_route53_record" "plausible-proxy" {
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "plausible.galaxyproject.eu"
+  type            = "A"
+  ttl             = "600"
+  records         = ["${var.traefik}"]
+}
+
+resource "aws_route53_record" "ticketsystem" {
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "ticketsystem.galaxyproject.eu"
+  type            = "A"
+  ttl             = "600"
+  records         = ["${var.traefik}"]
+}
+
+resource "aws_route53_record" "stats" {
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "stats.galaxyproject.eu"
+  type            = "A"
+  ttl             = "600"
+  records         = ["${var.traefik}"]
+}
+
+resource "aws_route53_record" "ftp" {
+  allow_overwrite = true
+  zone_id         = var.zone_usegalaxy_eu
+  name            = "ftp.usegalaxy.eu"
+  type            = "A"
+  ttl             = "600"
+  records         = ["${var.traefik}"]
+}
+
+resource "aws_route53_record" "influxdb-proxy" {
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "influxdb.galaxyproject.eu"
+  type            = "A"
+  ttl             = "600"
+  records         = ["${var.traefik}"]
+}
 
 resource "aws_route53_record" "tpv-broker" {
   allow_overwrite = true
   zone_id         = var.zone_galaxyproject_eu
   name            = "tpv-broker.galaxyproject.eu"
+  type            = "A"
+  ttl             = "600"
+  records         = ["${var.traefik}"]
+}
+
+resource "aws_route53_record" "ucsc-genome-browser" {
+  # The domain genome-euro.ucsc.edu is reserved for the UCSC Genome Browser
+  # [1], but it still needs to be set up by the University of California,
+  # Santa Cruz. In the meantime, the UCSC Genome browser is accessible on this
+  # domain.
+  #
+  # References:
+  # - [1] https://github.com/usegalaxy-eu/issues/issues/949#issuecomment-4966746269
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "genome-browser.galaxyproject.eu"
+  type            = "A"
+  ttl             = "600"
+  records         = ["${var.traefik}"]
+}
+
+resource "aws_route53_record" "osiris-denbi-galaxyproject" {
+  # DNS record for osiris-denbi.galaxyproject.eu, redirected to from
+  # osiris.denbi.de via CNAME DNS record
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "osiris-denbi.galaxyproject.eu"
   type            = "A"
   ttl             = "600"
   records         = ["${var.traefik}"]
@@ -133,38 +213,19 @@ variable "subdomain" {
     "astronomy.usegalaxy.eu",
     "biodiversity-genomics.usegalaxy.eu",
     "nubri.usegalaxy.eu",
-    "ghana.usegalaxy.eu"
+    "ghana.usegalaxy.eu",
+    "ssh.usegalaxy.eu"
   ]
 }
 
 resource "aws_route53_record" "subdomains" {
   allow_overwrite = true
   zone_id         = var.zone_usegalaxy_eu
-  count = 45
+  count = 46
   name  = element(var.subdomain, count.index)
   type    = "CNAME"
   ttl     = "7200"
   records = ["usegalaxy.eu"]
-}
-
-# Subdomains for Project redirected by the proxy to internal services
-variable "subdomain-internal" {
-  type = list(string)
-
-  default = [
-    # Please place new subdomains at the end of the list
-    "cvmfs1-ufr0.galaxyproject.eu",
-  ]
-}
-
-resource "aws_route53_record" "subdomain-internal" {
-  allow_overwrite = true
-  zone_id         = var.zone_galaxyproject_eu
-  count = 1
-  name  = element(var.subdomain-internal, count.index)
-  type    = "CNAME"
-  ttl     = "7200"
-  records = ["proxy.galaxyproject.eu"]
 }
 
 # Bare metals
@@ -210,7 +271,7 @@ resource "aws_route53_record" "build-usegalaxy" {
   name            = "build.galaxyproject.eu"
   type            = "A"
   ttl             = "7200"
-  records         = ["132.230.223.230"]
+  records         = ["${var.traefik}"]
 }
 
 resource "aws_route53_record" "cm-galaxyproject" {
