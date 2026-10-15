@@ -136,6 +136,15 @@ resource "aws_route53_record" "tpv-broker" {
   records         = ["${var.traefik}"]
 }
 
+resource "aws_route53_record" "pulsar-relay" {
+  allow_overwrite = true
+  zone_id         = var.zone_galaxyproject_eu
+  name            = "pulsar-relay.galaxyproject.eu"
+  type            = "A"
+  ttl             = "600"
+  records         = ["${var.traefik}"]
+}
+
 resource "aws_route53_record" "ucsc-genome-browser" {
   # The domain genome-euro.ucsc.edu is reserved for the UCSC Genome Browser
   # [1], but it still needs to be set up by the University of California,
