@@ -136,10 +136,10 @@ resource "aws_route53_record" "tpv-broker" {
   records         = ["${var.traefik}"]
 }
 
-resource "aws_route53_record" "pulsar-relay" {
+resource "aws_route53_record" "relay" {
   allow_overwrite = true
   zone_id         = var.zone_galaxyproject_eu
-  name            = "byoc.galaxyproject.eu"
+  name            = "relay.galaxyproject.eu"
   type            = "A"
   ttl             = "600"
   records         = ["${var.traefik}"]
