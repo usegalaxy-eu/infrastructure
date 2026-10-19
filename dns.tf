@@ -139,7 +139,7 @@ resource "aws_route53_record" "tpv-broker" {
 resource "aws_route53_record" "relay" {
   allow_overwrite = true
   zone_id         = var.zone_galaxyproject_eu
-  name            = "relay.galaxyproject.eu"
+  name            = "stargate.galaxyproject.eu"
   type            = "A"
   ttl             = "600"
   records         = ["${var.traefik}"]
