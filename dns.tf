@@ -214,7 +214,7 @@ variable "subdomain" {
     "biodiversity-genomics.usegalaxy.eu",
     "nubri.usegalaxy.eu",
     "ghana.usegalaxy.eu",
-    "ssh.usegalaxy.eu"
+    "ssh.usegalaxy.eu",
     "riboseq.usegalaxy.eu"
   ]
 }
